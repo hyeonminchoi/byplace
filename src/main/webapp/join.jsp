@@ -110,11 +110,11 @@ function idCheck(){
 			</div>
 			<div>
 			<label>비밀번호 확인</label>
-			<input type="password" name="passwd" placeholder="비밀번호를 확인하세요." class="form-control"><br>
+			<input type="password" name="passwd1" placeholder="비밀번호를 확인하세요." class="form-control"><br>
 			</div>
 			<div>
 			<label>닉네임</label>
-			<input type="password" name="passwd" placeholder="닉네임을 입력하세요." class="form-control"><br>
+			<input type="text" name="nickname" placeholder="닉네임을 입력하세요." class="form-control"><br>
 			</div>
 			<div>
 			<label>전화번호</label>
