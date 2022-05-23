@@ -12,6 +12,7 @@
 	<header>
 		<div id="title">
 			<h1>BY Place</h1>
+			수정
 		</div>
 	</header>
 </body>
