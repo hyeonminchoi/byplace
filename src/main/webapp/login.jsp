@@ -47,12 +47,16 @@ function check() {
 	<h1>Login</h1>
 		<hr>
 		<form action="login" method="post">
+			<div>
 			아이디:<input type="text" name="id" placeholder="ID를 입력하세요." required="required"><br>
+			</div>
+			<div>
 			비밀번호:<input type="password" name="pw" placeholder="암호를 입력하세요." required="required"><br>
+			</div>
 			<input type="submit" value="로그인"><br>
 		</form>
-		<a href="#">아이디 찾기</a>
-		<a href="#">비밀번호 초기화</a>
+		<a href="./idfind.jsp">아이디 찾기</a>
+		<a href="./pwfind.jsp">비밀번호 초기화</a>
 		<a href="./join">회원가입</a>
 	</div>
 </body>
