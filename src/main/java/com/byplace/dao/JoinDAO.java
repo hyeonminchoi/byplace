@@ -15,7 +15,7 @@ public class JoinDAO {
 		PreparedStatement pstmt = null;
 		String sql = "INSERT INTO user"
 				+ "(user_id, user_password, user_name, user_nickname, user_email, "
-				+ "user_postcode, user_roadAddress, user_datailAddress, user_extraAddress, "
+				+ "user_postcode, user_roadAddress, user_detailAddress, user_extraAddress, "
 				+ "user_birthday, user_type, user_phone) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
