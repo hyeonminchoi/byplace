@@ -98,18 +98,52 @@ function idCheck(){
 		<hr>
 			<h2>개인정보 입력</h2>
 			<form name="joinform" action="./join" method="post" onsubmit="return check()">
-			<input type="text" id="id" name="id" placeholder="아이디를 입력하세요" class="form-control" onchange= "idcheck()">
+			<div>
+			<label>아이디</label>
+			<input type="text" id="id" name="id" placeholder="아이디를 입력하세요." class="form-control" onchange= "idcheck()">
+			</div>
 			<button type="submit" id="CheckId" class="btn btn-success">아이디 중복확인</button>
 			<div id="checkId">아이디를 확인중입니다.</div>
-			<input type="password" name="passwd" placeholder="비밀번호를 입력하세요" class="form-control"><br>
-			<input type="text" name="name" placeholder="이름을 입력하세요" class="form-control"><br>
-			<input type="number" name="age" placeholder="나이를 입력하세요" class="form-control"><br>
-			<input type="text" name="addr" placeholder="주소를 입력하세요" class="form-control"><br>
-			<input type="email" name="email" placeholder="이메일을 입력하세요" class="form-control"><br>
-			<input type="tel" name="tel" placeholder="전화버호를 입력하세요" class="form-control"><br>
+			<div>
+			<label>비밀번호</label>
+			<input type="password" name="passwd" placeholder="비밀번호를 입력하세요." class="form-control"><br>
+			</div>
+			<div>
+			<label>비밀번호 확인</label>
+			<input type="password" name="passwd" placeholder="비밀번호를 확인하세요." class="form-control"><br>
+			</div>
+			<div>
+			<label>닉네임</label>
+			<input type="password" name="passwd" placeholder="닉네임을 입력하세요." class="form-control"><br>
+			</div>
+			<div>
+			<label>전화번호</label>
+			<input type="tel" name="tel" placeholder="전화번호를 입력하세요." class="form-control"><br>
+			</div>
+			<div>
+			<label>이메일</label>
+			<input type="email" name="email" placeholder="이메일을 입력하세요." class="form-control"><br>
+			</div>
+			<div>
+			<label>주소</label>
+			<input type="text" name="addr" placeholder="주소를 입력하세요." class="form-control"><br>
+			</div>
+			<div>
+			<label>생년월일</label>
+			<input type="number" name="age" placeholder="생년월일을 입력하세요." class="form-control"><br>
+			</div>
+			<div>
+			<select name="user_type" required="required">
+				<option value="개인">개인</option>
+				<option value="사업자">사업자</option>
+				<option value="관리자">관리자</option>
+			</select>
+			</div>
 			<button type="submit" id="joinBtn" class="btn btn-success" >Join</button>
+			<button type="button" onclick="location.href='./index.jsp'">취소하기</button>
 			</form>
 	</div>
 
 </body>
 </html>
+
