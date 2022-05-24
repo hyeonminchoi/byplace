@@ -8,6 +8,26 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="./css/adminPage.css">
+<style type="text/css">
+	table{
+		margin: 0 auto;
+		width: 500px;
+		border-collapse: collapse;
+		border: 1px solid black;
+	}
+	tr, td, th{
+		border: 1px solid black;
+	}
+	td{
+		text-align: center;
+	}  
+	table.pagination { border-collapse: collapse; margin-top: 20px; }
+	table.pagination td { text-align: center; border: 1px solid #aaa; }
+	table.pagination a { text-decoration: none; display: inline-block; padding: 5px 10px; color: #06C; }   
+	table.pagination td.active { background-color: #06C; }
+	table.pagination td.active a { color: white; }
+	
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
@@ -25,6 +45,8 @@ function sort(){
 				temp += "<tr>";
 				temp += "	<td>" + categoryList[i].category_no + "</td>";
 				temp += "	<td>" + categoryList[i].category_category + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"location.href='./editCategory?category_no=" + categoryList[i].category_no + "'\">수정</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"location.href='./deleteCategory?category_no=" + categoryList[i].category_no + "'\">삭제</button>" + "</td>";
 				temp += "</tr>";
 			}
 			$("#category_body").append(temp);
@@ -65,6 +87,8 @@ window.onload = function(){
 					<tr>
 						<th>카테고리 번호</th>
 						<th>카테고리 이름</th>
+						<th>수정</th>
+						<th>삭제</th>
 					</tr>
 				</thead>
 				<tbody id="category_body">

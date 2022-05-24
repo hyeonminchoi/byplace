@@ -18,7 +18,9 @@ public class CategoryDAO {
 			e.printStackTrace();
 		}
 	}
+//	public List<CategoryDTO> findAll(String sort, int currentPage, int pageSize){
 	public List<CategoryDTO> findAll(String sort){
+//		String sql = "SELECT * FROM category ORDER BY " + sort + " LIMIT ?, ?";
 		String sql = "SELECT * FROM category ORDER BY " + sort;
 		List<CategoryDTO> list = new ArrayList<>();
 		Connection con = null;
@@ -27,6 +29,8 @@ public class CategoryDAO {
 		try{
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, (currentPage-1) * pageSize);
+//			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				CategoryDTO categoryDTO = new CategoryDTO();
@@ -41,4 +45,14 @@ public class CategoryDAO {
 		}
 		return list;
 	}
+	
+	/*
+	 * public int count() throws Exception { Connection con = null;
+	 * PreparedStatement pstmt = null; ResultSet rs = null; String sql =
+	 * "SELECT COUNT(*) FROM category"; try{ con = DBConnection.dbConn(); pstmt =
+	 * con.prepareStatement(sql); rs = pstmt.executeQuery(); if (rs.next()) return
+	 * rs.getInt(1); } catch(Exception e) { e.printStackTrace(); } finally {
+	 * close(rs, pstmt); } return 0; }
+	 */
+
 }
