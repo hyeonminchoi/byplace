@@ -36,16 +36,15 @@
 </style>
 </head>
 <body>
-	<%@include file="./logmenu.jsp"%>
+	<%@include file="./menu.jsp"%>
 	<div id="main">
-		서버에서 오는 값 : ${userInfo }<br>
 		아이디 : ${userInfo.id }<br>
-		비밀번호 : ${userInfo.passwd }<br>
+		닉네임 : ${userInfo.nickname }<br>
 		이름 : ${userInfo.name }<br>
-		주소 : ${userInfo.addr }<br>
+		주소 : ${userInfo.roadAddress}<br>
 		이메일 : ${userInfo.email }<br>
-		전화번호 : ${userInfo.tel }<br>
-		가입일 : <br>
+		전화번호 : ${userInfo.phone }<br>
+		가입일 : ${userInfo.joined }<br>
 	</div>
 </body>
 </html>
