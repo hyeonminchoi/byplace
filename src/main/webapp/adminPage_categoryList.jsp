@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 
 <!DOCTYPE html>
 <html>
@@ -9,19 +10,19 @@
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="./css/adminPage.css">
 <style type="text/css">
-	table{
+	#categoryList{
 		margin: 0 auto;
 		width: 500px;
 		border-collapse: collapse;
 		border: 1px solid black;
 	}
-	tr, td, th{
+	#categoryList tr, td, th{
 		border: 1px solid black;
 	}
-	td{
+	#categoryList td{
 		text-align: center;
 	}  
-	table.pagination { border-collapse: collapse; margin-top: 20px; }
+	table.pagination { border-collapse: collapse; margin: 20px auto; }
 	table.pagination td { text-align: center; border: 1px solid #aaa; }
 	table.pagination a { text-decoration: none; display: inline-block; padding: 5px 10px; color: #06C; }   
 	table.pagination td.active { background-color: #06C; }
@@ -31,13 +32,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
-function sort(){
-	var category_sort = $("#category_sort").val();
+function changed(){
+	var sort = $("#category_sort").val();
 	$.ajax({
-		url: "./adminPage_categoryList",
+		url: "./adminPage_categoryList_JSON",
 		type: "GET",
 		dataType: "json",
-		data : {"category_sort" : category_sort},
+		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}},
 		success: function(categoryList){
 			$("#category_body").empty();
 			var temp = "";
@@ -50,6 +51,7 @@ function sort(){
 				temp += "</tr>";
 			}
 			$("#category_body").append(temp);
+			$("#category_sort").val(sort).prop("selected",true);
 		},
 		error: function(){
 			alert("서버가 동작하지 않습니다.");
@@ -77,12 +79,12 @@ window.onload = function(){
 			<h1>카테고리 관리</h1>
 			<div>
 				<label>정렬</label>
-				<select id="category_sort" onchange="sort()">
-					<option value="category_asc" selected="selected">카테고리 번호↑</option>
-					<option value="category_desc">카테고리 번호↓</option>
+				<select name="category_sort" id="category_sort" onchange="changed()">
+					<option value="category_asc"  <c:if test="${sort eq 'category_asc'}">selected</c:if>>카테고리 번호↑</option>
+					<option value="category_desc" <c:if test="${sort eq 'category_desc'}">selected</c:if>>카테고리 번호↓</option>
 				</select>
 			</div>
-			<table>
+			<table id="categoryList">
 				<thead>
 					<tr>
 						<th>카테고리 번호</th>
@@ -95,6 +97,7 @@ window.onload = function(){
 					
 				</tbody>
 			</table>
+			<my:pagination pageSize="${pageSize}" recordCount="${recordCount}" queryStringName="pg" />
 		</div>
 	</section>
 

@@ -54,9 +54,8 @@ if (n <= pageCount)
   <tr>
     <% for (Page p : pages) { %>
       <td class='<%= p.page == currentPage ? "active" : "" %>'>
-        <a href='<%= url.replace("@@@", String.valueOf(p.page)) %>'><%= p.label %></a>
+        <a href='<%= url.replace(".jsp", "").replace("@@@", String.valueOf(p.page))%>'><%= p.label %></a>
       </td>    
     <% } %>
   <tr>
 </table>
-
