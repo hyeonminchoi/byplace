@@ -9,8 +9,12 @@
 <title>홈페이지</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<div id="main">
 		
 	</div>
+=======
+
+>>>>>>> branch 'main' of https://github.com/hyeonminchoi/byplace.git
 </body>
 </html>
