@@ -9,6 +9,8 @@
 <title>홈페이지</title>
 </head>
 <body>
-	
+	<div id="main">
+		
+	</div>
 </body>
 </html>
