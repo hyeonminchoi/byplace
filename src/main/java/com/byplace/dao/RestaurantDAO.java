@@ -22,7 +22,7 @@ public class RestaurantDAO {
 			pstmt.setString(3, dto.getRestaurant_postcode());
 			pstmt.setString(4, dto.getRestaurant_roadAddress());
 			pstmt.setString(5, dto.getRestaurant_detailAddress());
-			pstmt.setString(6, dto.getRestaurant_restaurant_extraAddress());
+			pstmt.setString(6, dto.getRestaurant_extraAddress());
 			pstmt.setString(7, dto.getCategory_category());
 			pstmt.setString(8, dto.getRestaurant_image());
 			

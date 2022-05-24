@@ -34,12 +34,12 @@ public class Resadd extends HttpServlet {
 				request, url, 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 		
 		String restaurant_image = mr.getFilesystemName("restaurant_image");
-		String restaurant_name = mr.getParameter("resname");
-		String restaurant_description = mr.getParameter("resdesc");
+		String restaurant_name = mr.getParameter("restaurant_name");
+		String restaurant_description = mr.getParameter("restaurant_description");
 		String restaurant_postcode = mr.getParameter("restaurant_postcode");
 		String restaurant_roadAddress = mr.getParameter("restaurant_roadAddress");
 		String restaurant_detailAddress = mr.getParameter("restaurant_detailAddress");
-		String restaurant_restaurant_extraAddress = mr.getParameter("restaurant_extraAddress");
+		String restaurant_extraAddress = mr.getParameter("restaurant_extraAddress");
 		String category_category = mr.getParameter("category_category");
 		
 		RestaurantDTO dto = new RestaurantDTO();
@@ -48,7 +48,7 @@ public class Resadd extends HttpServlet {
 		dto.setRestaurant_postcode(restaurant_postcode);
 		dto.setRestaurant_roadAddress(restaurant_roadAddress);
 		dto.setRestaurant_detailAddress(restaurant_detailAddress);
-		dto.setRestaurant_restaurant_extraAddress(restaurant_restaurant_extraAddress);
+		dto.setRestaurant_extraAddress(restaurant_extraAddress);
 		dto.setCategory_category(category_category);
 		dto.setRestaurant_image(restaurant_image);
 		

@@ -34,11 +34,11 @@ $(function(){
 			<form action="./resadd" method="post"  name="resadd" enctype="multipart/form-data">
 			<div>
 			<label>음식점 이름</label> 
-			<input type="text" id="resname" placeholder="음식점 이름을 쓰시오." name="resname"><br>
+			<input type="text" id="restaurant_name" placeholder="음식점 이름을 쓰시오." name="restaurant_name"><br>
 			</div>
 			<div>
 			<label>음식점 소개</label>
-			<input type="text" id="resdesc" placeholder="음식점 설명을 쓰시오." name="resdesc"><br>
+			<input type="text" id="restaurant_description" placeholder="음식점 설명을 쓰시오." name="restaurant_description"><br>
 			</div>
 			<div>
 			<label>음식점 주소</label>
@@ -50,17 +50,17 @@ $(function(){
 			</div>
 			<div id="categ">
 			<label>카테고리</label>
-			<select name="category_category">
-			<option value="none">선택</option>
-			<option value="korfood">한식</option>
-			<option value="westfood">양식</option>
-			<option value="cnfood">중식</option>
-			<option value="jafood">일식</option>
+			<select name="category_category" id="category_category">
+			<option value="선택">선택</option>
+			<option value="한식">한식</option>
+			<option value="양식">양식</option>
+			<option value="중식">중식</option>
+			<option value="일식">일식</option>
 			</select>
 			</div>
 			<div id="resimg">
 			<label>음식점 사진</label>
-			<input type="file" name="restaurant_image" accept="image/*">
+			<input type="file" name="restaurant_image" id="restaurant_image" accept="image/*">
 			</div>
 			<button>확인</button>
 			</form>
