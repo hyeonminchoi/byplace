@@ -16,7 +16,7 @@
 </style>
 <script type="text/javascript">
 
-function check() {
+/* function check() {
    var form = document.joinform;
    var id = form.id;
    if(id.value.length == 0){
@@ -55,16 +55,14 @@ function check() {
       return false;
    }
 
-}
+} */
 
 function idCheck(){
-
 	var id = $("#id").val();
 	if(id == "" || id.lenght < 4){
 		$("#checkResult").css("color", "red");
 		$("#checkResult").text("4글자 이상이어야 함");
 	}else{
-		
 		$.ajax({
 			url : "./idCheck",
 			type : "POST",
@@ -72,16 +70,15 @@ function idCheck(){
 			data : {"id" : id},
 			success : function(data){
 				if(data == 0){
-				$("#checkResult").css("color", "green");
-				$("#checkResult").text(id+"는 가입할 수 있습니다.");
-				$("#joinbtn").attr("disabled", false);
-			}else{
-				$("#checkResult").css("color", "black");
-				$("#checkResult").text(id+"는 이미 등록된 ID입니다.");
-				$("#joinbtn").attr("disabled", true);
-				$("#id").focus();
-				
-			}
+					$("#checkResult").css("color", "green");
+					$("#checkResult").text(id+"는 가입할 수 있습니다.");
+					$("#joinbtn").attr("disabled", false);
+				}else{
+					$("#checkResult").css("color", "red");
+					$("#checkResult").text(id+"는 이미 등록된 ID입니다.");
+					$("#joinbtn").attr("disabled", true);
+					$("#id").focus();
+				}
 			},
 			error : function(){
 				alert("서버가 동작하지 않습니다.");
@@ -89,10 +86,11 @@ function idCheck(){
 		});
 	}
 }
+
 </script>
-</head>
-</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>Join Us</title>
+</head>
 <body>
 		<c:if test="${not empty error}">
 			<script>
@@ -106,10 +104,9 @@ function idCheck(){
 			<form name="joinform" action="./join" method="post" onsubmit="return check()">
 				<div>
 					<label>아이디</label>
-					<input type="text" id="id" name="id" placeholder="아이디를 입력하세요." class="form-control" onchange= "idcheck()" required="required">
+					<input type="text" id="id" name="id" placeholder="아이디를 입력하세요." class="form-control" onchange="idCheck()" required="required">
+					<div id="checkResult">아이디를 확인중입니다.</div>
 				</div>
-					<button type="submit" id="CheckId" class="btn btn-success">아이디 중복확인</button>
-					<div id="checkId">아이디를 확인중입니다.</div>
 				<div>
 					<label>비밀번호</label>
 					<input type="password" name="password" placeholder="비밀번호를 입력하세요." class="form-control" required="required">

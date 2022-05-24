@@ -9,11 +9,10 @@
 <body>
 <%
  request.setCharacterEncoding("UTF-8");
-    String member_name = request.getParameter("member_name");
-     String member_phone = request.getParameter("member_phone");
+    String USER = request.getParameter("USER");
      
-LoginDao dao = new LoginDAO();
- String member_mid = dao.findId(member_name, member_phone); //아이디를 디비에서 가져옴..실패시 널
+UserDTO userDTO = new UserDTO();
+ String member_mid = userDTO.findId(USER); //아이디를 디비에서 가져옴..실패시 널
  
 %>
 

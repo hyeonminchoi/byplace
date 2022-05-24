@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 찾기</title>
+<title>비밀번호 초기화</title>
 <style type="text/css">
 #pwfindForm{
 		margin:0 auto;
@@ -40,18 +40,16 @@ function check() {
 			<div id = "pwfindForm">
 				<h1>비밀번호 찾기</h1>
 				<hr>
-				<form action="pwfind" method="post">
 				<div>
-				아이디 :<input type="text" name="id" placeholder = "아이디" required="required"><br>
+				<label>아이디</label><input type="text" name="id" placeholder = "아이디" required="required"><br>
 				</div>
 				<div>
-				전화번호 :<input type="text" name="phone" placeholder = "휴대폰번호를 '-'없이 입력" required="required"><br>
+				<label>전화번호</label><input type="text" name="phone" placeholder = "휴대폰번호를 '-'없이 입력" required="required"><br>
 				</div>
 				<div id ="findbtn">
 					<input type="button" name="enter" value="찾기"  onClick="id_search()">
 					<input type="button" name="cancle" value="취소" onClick="history.back()">
 			 	</div>
-				</form>
 			</div>
 			<br>
 	

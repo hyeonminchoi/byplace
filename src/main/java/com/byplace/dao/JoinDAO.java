@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import com.byplace.db.DBConnection;
 import com.byplace.dto.UserDTO;
@@ -50,27 +51,26 @@ public class JoinDAO {
 			sb.append(Integer.toHexString(0xff & digested[i]));
 		return sb.toString();
 	}
+	
 
-//	public int idCheck(String id) {
-//		Connection con =null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		String sql = "SELECT COUNT(*) FROM may_member WHERE m_id=?";
-//		int result = 1;//이미 등록된 ID
-//		
-//		try {
-//			con = DBConnection.dbConn();
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, id);
-//			rs = pstmt.executeQuery();
-//			if(rs.next()) {
-//				result = rs.getInt(1);
-//				//System.out.println("결과는:"+result+"개");
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return result;
-//	}
+	public int idCheck(String id) {
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) FROM user WHERE user_id=?";
+		int result = 1;//이미 등록된 ID
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

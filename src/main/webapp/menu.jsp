@@ -3,17 +3,17 @@
 		<div id="navi">
 			<ul>
 				<li>
-					<a href="./index"><img alt="logo" src="./img/logo.png"></a>
+					<a href="./index.jsp"><img alt="logo" src="./img/logo.png"></a>
 				</li>
 				<li>
-					<a href="./notice"><img src="./img/notice.png">공지사항</a>
+					<a href="./notice.jsp"><img src="./img/notice.png">공지사항</a>
 				</li>
 				<li>
-					<a href="./board"><img src="./img/board.png">보드</a>
+					<a href="./board.jsp"><img src="./img/board.png">보드</a>
 				</li>
 			<% if(session.getAttribute("USER") != null){ %>
 				<li>
-					<a href="./userInfo">
+					<a href="./userInfo.jsp">
 						<img src="./img/id.png">${sessionScope.user_name }HELLO.
 					</a>
 				</li>
