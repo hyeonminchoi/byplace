@@ -3,7 +3,7 @@ package com.byplace.dto;
 public class RestaurantDTO {
 	long restaurant_no, user_no;
 	String restaurant_name, restaurant_description, restaurant_postcode, restaurant_roadAddress,
-	       restaurant_detailAddress, restaurant_restaurant_extraAddress, category_category,
+	       restaurant_detailAddress, restaurant_extraAddress, category_category,
 	       restaurant_image, restaurant_joined;
 	int restaurant_del;
 	
@@ -49,11 +49,11 @@ public class RestaurantDTO {
 	public void setRestaurant_detailAddress(String restaurant_detailAddress) {
 		this.restaurant_detailAddress = restaurant_detailAddress;
 	}
-	public String getRestaurant_restaurant_extraAddress() {
-		return restaurant_restaurant_extraAddress;
+	public String getRestaurant_extraAddress() {
+		return restaurant_extraAddress;
 	}
-	public void setRestaurant_restaurant_extraAddress(String restaurant_restaurant_extraAddress) {
-		this.restaurant_restaurant_extraAddress = restaurant_restaurant_extraAddress;
+	public void setRestaurant_extraAddress(String restaurant_extraAddress) {
+		this.restaurant_extraAddress = restaurant_extraAddress;
 	}
 	public String getCategory_category() {
 		return category_category;
