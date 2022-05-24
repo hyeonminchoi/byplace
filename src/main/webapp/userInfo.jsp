@@ -36,7 +36,7 @@
 </style>
 </head>
 <body>
-	<%@include file="./logmenu.jsp"%>
+	<%@include file="./userInfo.jsp"%>
 	<div id="main">
 		서버에서 오는 값 : ${userInfo }<br>
 		아이디 : ${userInfo.id }<br>

@@ -38,6 +38,8 @@ public class Login extends HttpServlet {
 
 			LoginDAO dao = new LoginDAO();
 			userDTO = dao.login(userDTO);
+			
+			
 
 			if (userDTO != null) {
 				request.getSession().setAttribute("USER", userDTO);

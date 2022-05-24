@@ -55,9 +55,9 @@ function check() {
 			</div>
 			<input type="submit" value="로그인"><br>
 		</form>
-		<a href="./idfind.jsp">아이디 찾기</a>
-		<a href="./pwfind.jsp">비밀번호 초기화</a>
-		<a href="./join">회원가입</a>
+		<a href="./findid.jsp">아이디 찾기</a>
+		<a href="./changepw.jsp">비밀번호 초기화</a>
+		<a href="./join.jsp">회원가입</a>
 	</div>
 </body>
 </html>

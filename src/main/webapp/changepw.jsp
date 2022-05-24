@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디 찾기</title>
+<title>비밀번호 찾기</title>
 <style type="text/css">
-	#idfindForm{
+#pwfindForm{
 		margin:0 auto;
 		width: 500px;
 		height: 300px;
@@ -19,10 +18,10 @@
 
 function check() {
    var form = document.joinform;
-   var name = form.name;
-   if(name.value.length == 0){
-      alert("이름을 입력하세요");
-      name.focus();
+   var id = form.id;
+   if(id.value.length == 0){
+      alert("아이디를 입력하세요");
+      id.focus();
       return false;
    }
    var phone = form.phone;
@@ -37,13 +36,13 @@ function check() {
 </script>
 </head>
 <body>
-<form name="idfindForm" method = "POST">
-			<div id = "idfindForm">
-				<h1>아이디 찾기</h1>
+<form name="pwfindForm" method = "POST">
+			<div id = "pwfindForm">
+				<h1>비밀번호 찾기</h1>
 				<hr>
-				<form action="find" method="post">
+				<form action="pwfind" method="post">
 				<div>
-				이름 :<input type="text" name="name" placeholder = "등록한 이름" required="required"><br>
+				아이디 :<input type="text" name="id" placeholder = "아이디" required="required"><br>
 				</div>
 				<div>
 				전화번호 :<input type="text" name="phone" placeholder = "휴대폰번호를 '-'없이 입력" required="required"><br>
