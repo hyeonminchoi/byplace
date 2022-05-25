@@ -29,9 +29,9 @@
 			return;
 		}
 
-		frm.method = "post";
-		frm.action = "findIdResult.jsp"; //넘어간화면
-		frm.submit();
+		form.method = "post";
+		form.action = "findIdResult.jsp"; //넘어간화면
+		form.submit();
 	}
 </script>
 </head>
