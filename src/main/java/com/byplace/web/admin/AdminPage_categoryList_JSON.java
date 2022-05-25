@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.byplace.dao.CategoryDAO;
-import com.byplace.dao.SortDAO;
 import com.byplace.dto.CategoryDTO;
 import com.google.gson.Gson;
 
@@ -31,10 +30,7 @@ public class AdminPage_categoryList_JSON extends HttpServlet {
 			String pg = request.getParameter("pg");
 			int currentPage = Integer.parseInt(pg);
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
-			
-			SortDAO sortDAO = new SortDAO();
-			sortDAO.editSort("categoryList", sort);
-			
+
 			if(sort.equals("category_desc"))
 				cmd = "category_no DESC";
 			else
