@@ -1,8 +1,8 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Press+Start+2P&display=swap');
 a:link a:visited a:hover a:active {
-	color: gray;
+	color: white;
 }
 
 body {
@@ -12,15 +12,20 @@ body {
 	font-family: 'Nanum Gothic Coding', monospace;
 }
 
+
 #menu {
 	width: 100%;
-	height: 50px;
-	background-color: yellow;
+	height: 150px;
+	background: linear-gradient(#dfd0ef 0%, #abb7df 40%, #bfc7eb 100%) fixed;
 }
-#menu img{
-	height: 20px;
-	vertical-align: middle;
+
+#mainlogo{
+	
+
+font-family: 'Press Start 2P';
+font-size: 70px;
 }
+
 #navi {
 	margin: 0 auto;
 	height: 50px;
@@ -35,19 +40,19 @@ ul {
 	overflow: hidden;
 }
 
-li {
+#menulist li {
 	float: left;
 	padding: 15px 16px;
-	color: olive;
+	color: #5287ff;
 }
 
-li a:hover {
+#menulist li a:hover {
 	color: black;
 }
 
-li a {
+#menulist li a {
 	display: block;
-	color: blue;
+	color: white;
 	text-align: center;
 	text-decoration: none;
 }
