@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.byplace.dao.LoginDAO;
+import com.byplace.dao.UserDAO;
 import com.byplace.dto.UserDTO;
 
 @WebServlet("/login")
@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
 			userDTO.setUser_id(id);
 			userDTO.setUser_password(pw);
 
-			LoginDAO dao = new LoginDAO();
+			UserDAO dao = new UserDAO();
 			userDTO = dao.login(userDTO);
 			
 			

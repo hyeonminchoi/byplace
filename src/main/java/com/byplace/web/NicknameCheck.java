@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.byplace.dao.UserDAO;
 
 
-@WebServlet("/idCheck")
-public class IdCheck extends HttpServlet {
+@WebServlet("/nicknameCheck")
+public class NicknameCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public IdCheck() {
+    public NicknameCheck() {
         super();
     }
 
@@ -28,11 +28,11 @@ public class IdCheck extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("id")!= null) {
-			String id = request.getParameter("id");
+		if(request.getParameter("nickname")!= null) {
+			String nickname = request.getParameter("nickname");
 			UserDAO dao = new UserDAO();
 			int result = 1;
-			result = dao.idCheck(id);
+			result = dao.nicknameCheck(nickname);
 			PrintWriter pw = response.getWriter();
 			pw.print(result);
 		}

@@ -86,6 +86,35 @@ function idCheck(){
 		});
 	}
 }
+function nicknameCheck(){
+	var nickname = $("#nickname").val();
+	if(nickname == "" || nickname.lenght < 4){
+		$("#checkNicknameResult").css("color", "red");
+		$("#checkNicknameResult").text("3글자 이상이어야 함");
+	}else{
+		$.ajax({
+			url : "./nicknameCheck",
+			type : "POST",
+			dataType : "html",
+			data : {"nickname" : nickname},
+			success : function(data){
+				if(data == 0){
+					$("#checkNicknameResult").css("color", "green");
+					$("#checkNicknameResult").text(nickname+"는 등록할 수 있습니다.");
+					$("#joinbtn").attr("disabled", false);
+				}else{
+					$("#checkNicknameResult").css("color", "red");
+					$("#checkNicknameResult").text(nickname+"는 이미 등록된 닉네임입니다.");
+					$("#joinbtn").attr("disabled", true);
+					$("#nickname").focus();
+				}
+			},
+			error : function(){
+				alert("서버가 동작하지 않습니다.");
+			}
+		});
+	}
+}
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -121,11 +150,12 @@ function idCheck(){
 				</div>
 				<div>
 					<label>닉네임</label>
-					<input type="text" name="nickname" placeholder="닉네임을 입력하세요." class="form-control" onchange= "idcheck()" required="required">
+					<input type="text" name="nickname" id="nickname" placeholder="닉네임을 입력하세요." class="form-control" onchange="nicknameCheck()"  required="required">
+					<div id="checkNicknameResult">닉네임을 확인중입니다.</div>
 				</div>
 				<div>
 					<label>전화번호</label>
-					<input type="text" name="phone" placeholder="전화번호를 입력하세요." class="form-control" required="required">
+					<input type="text" id="nickname" name="phone" placeholder="전화번호를 입력하세요." class="form-control" required="required">
 				</div>
 				<div>
 					<label>이메일</label>

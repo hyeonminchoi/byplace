@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.byplace.dao.JoinDAO;
+import com.byplace.dao.UserDAO;
 import com.byplace.dto.UserDTO;
 
 
@@ -61,7 +61,7 @@ public class Join extends HttpServlet {
 		dto.setUser_type(type);
 		
 		//dao
-		JoinDAO dao = new JoinDAO();
+		UserDAO dao = new UserDAO();
 		int result = dao.join(dto);
 		
 		if(result>0) {

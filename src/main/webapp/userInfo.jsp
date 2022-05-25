@@ -38,13 +38,13 @@
 <body>
 	<%@include file="./menu.jsp"%>
 	<div id="main">
-		아이디 : ${userInfo.id }<br>
-		닉네임 : ${userInfo.nickname }<br>
-		이름 : ${userInfo.name }<br>
-		주소 : ${userInfo.roadAddress}<br>
-		이메일 : ${userInfo.email }<br>
-		전화번호 : ${userInfo.phone }<br>
-		가입일 : ${userInfo.joined }<br>
+		아이디 : ${user.id }<br>
+		닉네임 : ${user.nickname }<br>
+		이름 : ${user.name }<br>
+		주소 : ${user.roadAddress}<br>
+		이메일 : ${user.email }<br>
+		전화번호 : ${user.phone }<br>
+		가입일 : ${user.joined }<br>
 	</div>
 </body>
 </html>
