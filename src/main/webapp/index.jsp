@@ -67,10 +67,10 @@ img{
 	<div id="tab-3" class="tab-content">
   	<h1>양식</h1>
 	</div>
-	<div id="tab-3" class="tab-content">
+	<div id="tab-4" class="tab-content">
   	<h1>중식</h1>
 	</div>
-	<div id="tab-3" class="tab-content">
+	<div id="tab-5" class="tab-content">
   	<h1>일식</h1>
 	</div>
 <!-- 탭 메뉴 내용 끝 -->

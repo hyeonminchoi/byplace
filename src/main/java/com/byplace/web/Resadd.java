@@ -28,7 +28,7 @@ public class Resadd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//doGet(request, response);
 		HttpSession session = request.getSession();
-		String url = session.getServletContext().getRealPath("/img");
+		String url = session.getServletContext().getRealPath("/restaurantImage");
 		System.out.println(url);
 		MultipartRequest mr = new MultipartRequest(
 				request, url, 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());

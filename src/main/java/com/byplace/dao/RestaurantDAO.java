@@ -2,7 +2,10 @@ package com.byplace.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.byplace.db.DBConnection;
 import com.byplace.dto.RestaurantDTO;
@@ -37,6 +40,42 @@ public class RestaurantDAO {
 			}
 		}
 		return dto;
+	}
+
+	public List<RestaurantDTO> rList() {
+		List<RestaurantDTO> reslist = new ArrayList<RestaurantDTO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM restaurant";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				RestaurantDTO dto = new RestaurantDTO();
+				dto.setRestaurant_no(rs.getLong("restaurant_no"));
+				dto.setRestaurant_name(rs.getString("restaurant_name"));
+				dto.setRestaurant_description(rs.getString("restaurant_description"));
+				dto.setRestaurant_roadAddress(rs.getString("restaurant_roadAddress"));
+				dto.setRestaurant_detailAddress(rs.getString("restaurant_detailAddress"));
+				dto.setRestaurant_extraAddress(rs.getString("restaurant_extraAddress"));
+				dto.setRestaurant_image(rs.getString("restaurant_image"));
+				reslist.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return reslist;
 	}
 	
 }
