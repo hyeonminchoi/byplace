@@ -17,7 +17,7 @@ public class BoardDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM board LIMIT ?, 10";
+		String sql = "SELECT * FROM boardview LIMIT ?, 10";
 
 		try {
 			con = DBConnection.dbConn();
@@ -32,10 +32,10 @@ public class BoardDAO {
 				dto.setBoard_date(rs.getString("board_date"));
 				dto.setBoard_del(rs.getInt("board_del"));
 				dto.setTotalcount(rs.getInt("board_count"));
-//				dto.setTotalcount(rs.getInt("totalcount"));
-//				dto.setUser_id(rs.getString("user_id"));
-//				dto.setUser_no(rs.getLong("user_no"));
-//				dto.setUser_status(rs.getInt("user_status"));
+				dto.setTotalcount(rs.getInt("totalcount"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setUser_no(rs.getLong("user_no"));
+				dto.setUser_status(rs.getInt("user_status"));
 				list.add(dto);// 붙여넣기
 			}
 		} catch (Exception e) {
@@ -112,7 +112,7 @@ public class BoardDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM board WHERE board_no=?";
+		String sql = "SELECT * FROM boardview WHERE board_no=?";
 
 		try {
 			con = DBConnection.dbConn();

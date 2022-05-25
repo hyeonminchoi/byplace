@@ -4,9 +4,18 @@ public class BoardcommentDTO {
 	long boardcomment_no, user_no;
 	String boardcomment_title, boardcomment_comment, boardcomment_date;
 	int boardcomment_del;
+	int board_commentcount;
 	
+
 	String user_id;
 
+	public int getBoard_commentcount() {
+		return board_commentcount;
+	}
+	
+	public void setBoard_commentcount(int board_commentcount) {
+		this.board_commentcount = board_commentcount;
+	}
 	public long getBoardcomment_no() {
 		return boardcomment_no;
 	}
