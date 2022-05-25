@@ -61,7 +61,7 @@ public class BoardDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "INSERT INTO board (board_title, board_comment, user_no) "
-				+ "VALUES (?, ?, (SELECT user_no FROM user WHERE user_id=?))";
+				+ "VALUES (?, ?, (SELECT user_no FROM user WHERE user_no=?))";
 
 		try {
 			con = DBConnection.dbConn();
@@ -112,7 +112,7 @@ public class BoardDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM may_boardview WHERE b_no=?";
+		String sql = "SELECT * FROM board WHERE board_no=?";
 
 		try {
 			con = DBConnection.dbConn();
@@ -152,7 +152,7 @@ public class BoardDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM may_commentview WHERE b_no=?";
+		String sql = "SELECT * FROM boardcomment WHERE board_no=?";
 		
 		try {
 			con = DBConnection.dbConn();
@@ -179,6 +179,32 @@ public class BoardDAO {
 		
 		
 		return list;
+	}
+	
+	public void update(BoardDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE board SET board_title=?, board_comment=? " + "WHERE board_no=? , user_no=("
+				+ "SELECT user_no FROM user WHERE user_id=?)";
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getBoard_title());
+			pstmt.setString(2, dto.getBoard_comment());
+			pstmt.setLong(3, dto.getBoard_no());
+			pstmt.setString(4, dto.getUser_id());
+
+			pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 

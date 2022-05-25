@@ -84,7 +84,6 @@ $(document).ready(function(){
 				<td><img alt="조횟수" src="./img/view.png" title="조횟수" width="25px;"> ${detail.board_count }</td>
 			</tr>
 			<tr>
-				<td colspan="3">${detail.board_content }</td>
 			</tr>
 		</table>
 		<br>
@@ -105,7 +104,7 @@ $(document).ready(function(){
 			<div id="comment_head">
 				<div id="comment_id">
 					${c.boardcomment_no } / ${c.user_no } / ${c.user_id } / ${c.user_name }
-					<c:if test="${sessionScope.m_id eq c.user_id }">
+					<c:if test="${sessionScope.user_id eq c.user_id }">
 						<img src="./img/update.png" title="수정" onclick="cup(${c.baordcomment_no })">
 						<img src="./img/del.png" title="삭제" onclick="cdel(${c.boardcomment_no })">
 					</c:if>

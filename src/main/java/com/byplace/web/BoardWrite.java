@@ -33,6 +33,7 @@ public class BoardWrite extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
 		if(session.getAttribute("USER") !=null) {
 			if(request.getParameter("content") !=null && request.getParameter("title") !=null ) {
 				BoardDTO dto = new BoardDTO();
@@ -41,6 +42,7 @@ public class BoardWrite extends HttpServlet {
 				dto.setUser_no(((UserDTO)session.getAttribute("USER")).getUser_no());
 				BoardDAO dao = new BoardDAO();
 				dao.boardwrite(dto);
+				response.sendRedirect("./board");
 			} else { // 제목 or 내용이 없을 경우
 				response.sendRedirect("./index.jsp");
 			}

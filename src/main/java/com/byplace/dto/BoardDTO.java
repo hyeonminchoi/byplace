@@ -4,10 +4,26 @@ public class BoardDTO {
 	long board_no, user_no;
 	String board_title, board_comment, board_date;
 	int board_del, board_count;
+	int board_commentcount;
 	
 	String user_id; //사용자 id
+	String user_name;
 	int user_status; // 사용자의 상태 확인(-1: 블랙상태일 경우 게시물 안 보이게 설정)
 	int totalcount; //총 게시물 수
+	
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	
+	public int getBoard_commentcount() {
+		return board_commentcount;
+	}
+	public void setBoard_commentcount(int board_commentcount) {
+		this.board_commentcount = board_commentcount;
+	}
 	
 	public long getBoard_no() {
 		return board_no;
@@ -69,4 +85,5 @@ public class BoardDTO {
 	public void setTotalcount(int totalcount) {
 		this.totalcount = totalcount;
 	}
+	
 }

@@ -52,7 +52,7 @@ function check(){
 		return false;
 	}
 	var textarea = document.getElementById("summernote");
-	if(textarea.value.length < 15){
+	if(textarea.value.length < 21){
 		alert("내용은 10글자 이상입니다.");
 		textarea.focus();
 		return false;
