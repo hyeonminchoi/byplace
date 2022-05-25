@@ -4,7 +4,7 @@
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'
 	rel='stylesheet'>
 	
-<div class="sidebar close">
+<div class="sidebar">
 		<div class="logo-details">
 			<!-- <i class='bx bxl-c-plus-plus'></i> -->
 			<span class="logo_name">BY PLACE</span>
@@ -29,6 +29,8 @@
 					<li><a class="link_name" href="#">사용자관리</a></li>
 					<li><a href="#">사용자보기</a></li>
 					<li><a href="#">권한승인</a></li>
+					<li><a href="#">탈퇴리스트</a></li>
+					<li><a href="#">블랙리스트</a></li>
 				</ul>
 			</li>
 			<li>

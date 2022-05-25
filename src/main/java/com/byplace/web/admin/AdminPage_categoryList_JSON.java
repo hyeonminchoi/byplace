@@ -2,15 +2,17 @@ package com.byplace.web.admin;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.byplace.dao.CategoryDAO;
+import com.byplace.dao.admin.AdminCategoryDAO;
 import com.byplace.dto.CategoryDTO;
 import com.google.gson.Gson;
 
@@ -31,11 +33,21 @@ public class AdminPage_categoryList_JSON extends HttpServlet {
 			int currentPage = Integer.parseInt(pg);
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
 
-			if(sort.equals("category_desc"))
-				cmd = "category_no DESC";
+			if(sort.equals("category_no desc"))
+				cmd = "category_no desc";
 			else
-				cmd = "category_no ASC";
-			CategoryDAO categoryDAO = new CategoryDAO();
+				cmd = "category_no asc";
+			StringTokenizer st = new StringTokenizer(cmd, " ");
+			if(st.hasMoreTokens()) {
+				Cookie cookie = new Cookie("column", st.nextToken());
+				response.addCookie(cookie);
+			}
+			if(st.hasMoreTokens()) {
+				Cookie cookie = new Cookie("column_sort", st.nextToken());
+				response.addCookie(cookie);
+			}
+			
+			AdminCategoryDAO categoryDAO = new AdminCategoryDAO();
 			List<CategoryDTO> categoryList = categoryDAO.findAll(cmd, currentPage, pageSize);
 			
 			String json = new Gson().toJson(categoryList);

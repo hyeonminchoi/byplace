@@ -27,7 +27,19 @@
 	table.pagination a { text-decoration: none; display: inline-block; padding: 5px 10px; color: #06C; }   
 	table.pagination td.active { background-color: #06C; }
 	table.pagination td.active a { color: white; }
-	
+	dialog{
+		margin: auto;
+		padding: 0;
+		width: 300px;
+		height: 200px;
+	}
+	dialog button{
+		margin: 10px auto;
+		padding: 5px;
+		width: 80px;
+		height: auto;
+		
+	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -43,11 +55,12 @@ function changed(){
 			$("#category_body").empty();
 			var temp = "";
 			for(var i in categoryList){
+				var category = JSON.stringify(categoryList[i]);
 				temp += "<tr>";
 				temp += "	<td>" + categoryList[i].category_no + "</td>";
 				temp += "	<td>" + categoryList[i].category_category + "</td>";
-				temp += "	<td>" + "<button type=\"button\" onclick=\"location.href='./editCategory?category_no=" + categoryList[i].category_no + "'\">수정</button>" + "</td>";
-				temp += "	<td>" + "<button type=\"button\" onclick=\"location.href='./deleteCategory?category_no=" + categoryList[i].category_no + "'\">삭제</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\'showCategoryEditDialog(" + category + ")\'>수정</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"deleteCategory(" + categoryList[i].category_no + ")\">삭제</button>" + "</td>";
 				temp += "</tr>";
 			}
 			$("#category_body").append(temp);
@@ -74,15 +87,19 @@ window.onload = function(){
 	<%@ include file="./menu/adminPageSideBar.jsp"%>
 	
 	<section class="home-section">
-		<i class='bx bx-menu'></i>
 		<div class="home-content">
 			<h1>카테고리 관리</h1>
 			<div>
-				<label>정렬</label>
-				<select name="category_sort" id="category_sort" onchange="changed()">
-					<option value="category_asc"  <c:if test="${sort eq 'category_asc'}">selected</c:if>>카테고리 번호↑</option>
-					<option value="category_desc" <c:if test="${sort eq 'category_desc'}">selected</c:if>>카테고리 번호↓</option>
-				</select>
+				<div>
+					<label>정렬</label>
+					<select name="category_sort" id="category_sort" onchange="changed()">
+						<option value="category_no asc"  <c:if test="${sort eq 'category_no asc'}">selected</c:if>>카테고리 번호↑</option>
+						<option value="category_no desc" <c:if test="${sort eq 'category_no desc'}">selected</c:if>>카테고리 번호↓</option>
+					</select>
+				</div>
+				<div>
+					<button type="button" onclick="showCategoryAddDialog()">카테고리 추가</button>
+				</div>
 			</div>
 			<table id="categoryList">
 				<thead>
@@ -101,8 +118,66 @@ window.onload = function(){
 		</div>
 	</section>
 
+<dialog id="categoryAddDialog">
+	<div>
+		<h1>카테고리 추가</h1>
+		<form action="./adminCategoryAdd" method="post">
+			<div>
+				<label>카테고리 이름</label>
+				<input type="text" name="categoryName" required="required">
+			</div>
+			<div>
+				<button type="submit">전송</button>
+				<button type="button" onclick="hideCategoryAddDialog()">취소</button>
+			</div>
+		</form>
+	</div>
+</dialog>
+
+<dialog id="categoryEditDialog">
+	<div>
+		<h1>카테고리 수정</h1>
+		<form action="./adminCategoryEdit" method="post">
+			<input type="hidden" name="categoryNo" id="categoryNo">
+			<div>
+				<label>카테고리 이름</label>
+				<input type="text" name="categoryName" required="required" id="categoryName">
+			</div>
+			<div>
+				<button type="submit">전송</button>
+				<button type="button" onclick="hideCategoryEditDialog()">취소</button>
+			</div>
+		</form>
+	</div>
+</dialog>
 
 <script>
+
+	function deleteCategory(no){
+		if(confirm("삭제하겠습니까?")){
+			location.href='./adminCategoryDelete?category_no=' + no;
+		} else{
+			location.href='./adminPage_categoryList';
+		}
+	}
+	var categoryAddDialog = document.getElementById("categoryAddDialog");
+	function showCategoryAddDialog(){
+		categoryAddDialog.showModal();
+	}
+	function hideCategoryAddDialog(){
+		categoryAddDialog.close();
+	}
+	
+	var categoryEditDialog = document.getElementById("categoryEditDialog");
+	function showCategoryEditDialog(category){
+		$("#categoryNo").val(category.category_no);
+		$("#categoryName").val(category.category_category);
+		categoryEditDialog.showModal();
+	}
+	function hideCategoryEditDialog(){
+		categoryEditDialog.close();
+	}
+	
 	let arrow = document.querySelectorAll(".arrow");
 	for (var i = 0; i < arrow.length; i++) {
 	  arrow[i].addEventListener("click", (e)=>{
@@ -110,12 +185,6 @@ window.onload = function(){
 	 	arrowParent.classList.toggle("showMenu");
 	  });
 	}
-	let sidebar = document.querySelector(".sidebar");
-	let sidebarBtn = document.querySelector(".bx-menu");
-	console.log(sidebarBtn);
-	sidebarBtn.addEventListener("click", ()=>{
-	  sidebar.classList.toggle("close");
-	});
 </script>
 </body>
 </html>

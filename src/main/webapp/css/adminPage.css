@@ -213,7 +213,7 @@
   transition: all 0.5s ease;
 }
 .sidebar.close ~ .home-section{
-  left: 0px;
+  left: 260px;
   width: calc(100% - 78px);
 }
 .home-section .home-content{

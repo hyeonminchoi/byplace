@@ -4,13 +4,13 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.byplace.dao.CategoryDAO;
-import com.byplace.dao.SortDAO;
+import com.byplace.dao.admin.AdminCategoryDAO;
 
 @WebServlet("/adminPage_categoryList")
 public class AdminPage_categoryList extends HttpServlet {
@@ -23,16 +23,32 @@ public class AdminPage_categoryList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 //		if(session.getAttribute("USER")!=null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
-			CategoryDAO dao = new CategoryDAO();
+			AdminCategoryDAO dao = new AdminCategoryDAO();
 			request.setAttribute("recordCount", dao.count());
-			request.setAttribute("pageSize", 2);
-			SortDAO sortDAO = new SortDAO(); 
-			String sort = sortDAO.findCategoryList();
-			request.setAttribute("sort", sort);
+			request.setAttribute("pageSize", 20);
+			
+			Cookie cookie[] = request.getCookies();
+			String sort = "category_no asc";
+			String column="", column_sort=""; 
+			if(cookie != null) {
+				for(int i=0;i<cookie.length;i++) {
+					if(cookie[i].getName().equals("column")) {
+						column = cookie[i].getValue(); 
+					}
+					if(cookie[i].getName().equals("column_sort")) {
+						column_sort = cookie[i].getValue();
+					}
+				}
+				if(!column.equals("") && !column_sort.equals("")) {
+					sort = column + " " + column_sort;
+				}
+			}
+			
 			if(request.getParameter("pg")==null)
 				request.setAttribute("pg", "1");
 			else
 				request.setAttribute("pg", request.getParameter("pg"));
+			request.setAttribute("sort", sort);
 			request.getRequestDispatcher("./adminPage_categoryList.jsp").forward(request, response);
 //		} else {
 //			response.sendRedirect("./index.jsp");
