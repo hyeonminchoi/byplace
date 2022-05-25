@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.byplace.dao.CategoryDAO;
+import com.byplace.dao.SortDAO;
 
 @WebServlet("/adminPage_categoryList")
 public class AdminPage_categoryList extends HttpServlet {
@@ -25,6 +26,9 @@ public class AdminPage_categoryList extends HttpServlet {
 			CategoryDAO dao = new CategoryDAO();
 			request.setAttribute("recordCount", dao.count());
 			request.setAttribute("pageSize", 2);
+			SortDAO sortDAO = new SortDAO(); 
+			String sort = sortDAO.findCategoryList();
+			request.setAttribute("sort", sort);
 			if(request.getParameter("pg")==null)
 				request.setAttribute("pg", "1");
 			else
