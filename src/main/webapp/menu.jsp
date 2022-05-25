@@ -3,11 +3,11 @@
       <div id="navi">
          <ul id="menulist">
             <li id="mainlogo">BY PLACE</li>
-          	<li>
-          	<button>로그인</button>
+          	<li id="mainbutton1">
+          		<img src="./img/login.png" onclick="location.href='./login.jsp'">
           	</li>
-          	<li>
-          	<button>회원가입</button>
+          	<li id="mainbutton2">
+          	<button type="button" onclick="location.href='./join.jsp'">회원가입</button>
           	</li>
           
          <% if(session.getAttribute("USER") != null){ %>
@@ -18,10 +18,7 @@
             </li>
             <li>
                <img src="./img/logout.png" onclick="logout()"></li>
-         <%} else { %>
-            <li>
-               <img src="./img/login.png" onclick="location.href='./login.jsp'"></li>
-         <% } %>
+         <%}%>
       	</ul>
       </div>
    </div>

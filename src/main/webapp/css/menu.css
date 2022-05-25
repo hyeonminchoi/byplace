@@ -21,16 +21,25 @@ body {
 
 #mainlogo{
 	
-
 font-family: 'Press Start 2P';
-font-size: 70px;
+font-size: 90px;
+
+}
+
+#mainbutton1{
+	position:fixed; top: 45px; right: 60px;
+	
+}
+
+#mainbutton2{
+	position:fixed; top: 45px; right: 140px;
+	
 }
 
 #navi {
 	margin: 0 auto;
 	height: 50px;
 	width: 800px;
-	
 }
 
 ul {
@@ -42,12 +51,12 @@ ul {
 
 #menulist li {
 	float: left;
-	padding: 15px 16px;
+	padding: 13px 20px;
 	color: #5287ff;
 }
 
 #menulist li a:hover {
-	color: black;
+	color: gray;
 }
 
 #menulist li a {
