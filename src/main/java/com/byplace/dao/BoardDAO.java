@@ -127,6 +127,10 @@ public class BoardDAO {
 				dto.setBoard_date(rs.getString("board_date"));
 				dto.setBoard_del(rs.getInt("board_del"));
 				dto.setTotalcount(rs.getInt("board_count"));
+				dto.setUser_no(rs.getLong("user_no"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setUser_name(rs.getString("user_name"));
+				dto.setBoard_commentcount(rs.getInt("board_commentcount"));
 			}
 
 		} catch (Exception e) {

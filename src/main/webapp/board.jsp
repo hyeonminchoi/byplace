@@ -31,8 +31,8 @@ td {
 				<tr>
 					<td>${i.board_no }</td>
 					<td id="tleft"><a href="./detail?board_no=${i.board_no }">${i.board_title  }
-							<c:if test="${i.board_comment gt 0 }">
-								<small>${i.board_comment }</small>
+							<c:if test="${i.board_commentcount gt 0 }">
+								<small>${i.board_commentcount }</small>
 							</c:if>
 					</a></td>
 					<td>${i.board_date }</td>

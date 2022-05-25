@@ -34,7 +34,6 @@ public class Detail extends HttpServlet {
 				List<BoardcommentDTO> commList = dao.commentList(board_no);
 				request.setAttribute("commList", commList);
 			}
-
 			RequestDispatcher rd = request.getRequestDispatcher("/detail.jsp");
 			request.setAttribute("detail", detail);
 			rd.forward(request, response);
