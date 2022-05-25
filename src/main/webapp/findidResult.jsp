@@ -1,3 +1,4 @@
+<%@page import="com.byplace.dao.UserDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,20 +12,20 @@
  request.setCharacterEncoding("UTF-8");
     String USER = request.getParameter("USER");
      
-UserDTO userDTO = new UserDTO();
- String member_mid = userDTO.findId(USER); //아이디를 디비에서 가져옴..실패시 널
+UserDAO userDAO = new UserDAO();
+ String user_id = userDAO.findId(USER); //아이디를 디비에서 가져옴..실패시 널
  
 %>
 
   <form name="idsearch" method="post">
       <%
-       if (member_mid != null) {
+       if (user_id != null) {
       %>
       
       <div class = "container">
       	<div class = "found-success">
 	      <h4>  회원님의 아이디는 </h4>  
-	      <div class ="found-id"><%=member_mid%></div>
+	      <div class ="found-id"><%=user_id%></div>
 	      <h4>  입니다 </h4>
 	     </div>
 	     <div class = "found-login">
