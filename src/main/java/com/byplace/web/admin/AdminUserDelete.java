@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.byplace.dao.admin.AdminCategoryDAO;
+import com.byplace.dao.admin.AdminUserDAO;
 
-@WebServlet("/adminCategoryDelete")
-public class AdminCategoryDelete extends HttpServlet {
+@WebServlet("/adminUserDelete")
+public class AdminUserDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminCategoryDelete() {
+    public AdminUserDelete() {
         super();
     }
 
@@ -27,13 +27,13 @@ public class AdminCategoryDelete extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
 //		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
-			int category_no = Integer.parseInt(request.getParameter("category_no"));
-			AdminCategoryDAO adminCategoryDAO = new AdminCategoryDAO();
-			int result = adminCategoryDAO.delete(category_no);
-			if(result==1) { //삭제 성공
-				writer.println("<script>alert('" + "삭제에 성공했습니다" + "'); location.href='./adminPage_categoryList';</script>");
-			} else { //삭제 실패
-				writer.println("<script>alert('" + "삭제에 실패했습니다" + "'); location.href='./adminPage_categoryList';</script>");
+			int user_no = Integer.parseInt(request.getParameter("user_no"));
+			AdminUserDAO adminUserDAO = new AdminUserDAO();
+			int result = adminUserDAO.delete(user_no);
+			if(result==1) { //탈퇴 성공
+				writer.println("<script>alert('" + "탈퇴에 성공했습니다" + "'); location.href='./adminPage_userList';</script>");
+			} else { //탈퇴 실패
+				writer.println("<script>alert('" + "탈퇴에 실패했습니다" + "'); location.href='./adminPage_userList';</script>");
 			}
 //		} else {
 //			response.sendRedirect("./index.jsp");

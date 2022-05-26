@@ -28,7 +28,7 @@
 				<ul class="sub-menu">
 					<li><a class="link_name" href="#">사용자관리</a></li>
 					<li><a href="./adminPage_userList">유저리스트</a></li>
-					<li><a href="#">권한승인</a></li>
+					<li><a href="./adminPage_userAuth">권한승인</a></li>
 					<li><a href="#">탈퇴리스트</a></li>
 					<li><a href="#">블랙리스트</a></li>
 				</ul>
