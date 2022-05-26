@@ -142,6 +142,7 @@ function changed(){
 				}
 				temp += "	<td>" + "<button type=\"button\" onclick=\'showUserEditDialog(" + user + ")\'>수정</button>" + "</td>";
 				temp += "	<td>" + "<button type=\"button\" onclick=\"deleteUser(" + userList[i].user_no + ")\">삭제</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"blackList(" + userList[i].user_no + ")\">블랙</button>" + "</td>";
 				temp += "</tr>";
 			}
 			$("#user_body").append(temp);
@@ -204,6 +205,7 @@ window.onload = function(){
 						<th>탈퇴</th>
 						<th>수정</th>
 						<th>삭제</th>
+						<th>블랙</th>
 					</tr>
 				</thead>
 				<tbody id="user_body">
@@ -277,6 +279,14 @@ window.onload = function(){
 	function deleteUser(no){
 		if(confirm("삭제하겠습니까?")){
 			location.href='./adminUserDelete?user_no=' + no;
+		} else{
+			location.href='./adminPage_userList';
+		}
+	}
+	
+	function blackList(no){
+		if(confirm("사용자를 블랙리스트에 추가하겠습니까?")){
+			location.href='./adminBlackListAdd?user_no=' + no;
 		} else{
 			location.href='./adminPage_userList';
 		}

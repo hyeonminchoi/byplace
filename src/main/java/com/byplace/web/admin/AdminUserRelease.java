@@ -13,11 +13,11 @@ import javax.servlet.http.HttpSession;
 import com.byplace.dao.admin.AdminUserDAO;
 import com.byplace.dto.UserDTO;
 
-@WebServlet("/adminUserAccept")
-public class AdminUserAccept extends HttpServlet {
+@WebServlet("/adminUserRelease")
+public class AdminUserRelease extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminUserAccept() {
+    public AdminUserRelease() {
         super();
     }
 
@@ -33,9 +33,9 @@ public class AdminUserAccept extends HttpServlet {
 			
 			int result = adminUserDAO.accept(user_no);
 			if(result==1) { //추가 성공
-				writer.println("<script>alert('" + "권한 승인에 성공했습니다" + "'); location.href='./adminPage_userAuth';</script>");
+				writer.println("<script>alert('" + "블랙리스트 해제에 성공했습니다" + "'); location.href='./adminPage_userBlackList';</script>");
 			} else { //추가 실패
-				writer.println("<script>alert('" + "권한 승인에 실패했습니다" + "'); location.href='./adminPage_userAuth';</script>");
+				writer.println("<script>alert('" + "블랙리스트 해제에 실패했습니다" + "'); location.href='./adminPage_userBlackList';</script>");
 			}
 //		} else {
 //			response.sendRedirect("./index.jsp");

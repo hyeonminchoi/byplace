@@ -169,7 +169,7 @@ public class AdminUserDAO {
 	public int accept(int user_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE user SET user_del = 1 WHERE user_no=?";
+		String sql = "UPDATE user SET user_status = 1 WHERE user_no=?";
 		int result = 0;
 		try {
 			con = DBConnection.dbConn();
@@ -183,4 +183,133 @@ public class AdminUserDAO {
 		return result;
 	}
 
+	public int drop(int user_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM user WHERE user_no=?";
+		int result = 0;
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, user_no);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+		} finally {
+			close(null, pstmt);
+		}
+		return result;
+	}
+
+	public int blackList(int user_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE user SET user_status = -1 WHERE user_no=?";
+		int result = 0;
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, user_no);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+		} finally {
+			close(null, pstmt);
+		}
+		return result;
+	}
+
+	public List<UserDTO> findByBlackList(String cmd, int currentPage, int pageSize) {
+		String sql = "SELECT * FROM user WHERE user_status=-1 ORDER BY " + cmd + " LIMIT ?, ?";
+		List<UserDTO> list = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, (currentPage - 1) * pageSize);
+			pstmt.setInt(2, pageSize);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				UserDTO userDTO = new UserDTO();
+				userDTO.setUser_no(rs.getLong("user_no"));
+				userDTO.setUser_id(rs.getString("user_id"));
+				userDTO.setUser_name(rs.getString("user_name"));
+				userDTO.setUser_nickname(rs.getString("user_nickname"));
+				userDTO.setUser_email(rs.getString("user_email"));
+				userDTO.setUser_postcode(rs.getString("user_postcode"));
+				userDTO.setUser_roadAddress(rs.getString("user_roadAddress"));
+				userDTO.setUser_detailAddress(rs.getString("user_detailAddress"));
+				userDTO.setUser_extraAddress(rs.getString("user_extraAddress"));
+				userDTO.setUser_birthday(rs.getString("user_birthday"));
+				userDTO.setUser_joined(rs.getString("user_joined"));
+				userDTO.setUser_type(rs.getString("user_type"));
+				userDTO.setUser_phone(rs.getString("user_phone"));
+				userDTO.setUser_status(rs.getInt("user_status"));
+				userDTO.setUser_del(rs.getInt("user_del"));
+				list.add(userDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt);
+		}
+		return list;
+	}
+
+	public List<UserDTO> findByWithdrawalList(String cmd, int currentPage, int pageSize) {
+		String sql = "SELECT * FROM user WHERE user_del=1 ORDER BY " + cmd + " LIMIT ?, ?";
+		List<UserDTO> list = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, (currentPage - 1) * pageSize);
+			pstmt.setInt(2, pageSize);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				UserDTO userDTO = new UserDTO();
+				userDTO.setUser_no(rs.getLong("user_no"));
+				userDTO.setUser_id(rs.getString("user_id"));
+				userDTO.setUser_name(rs.getString("user_name"));
+				userDTO.setUser_nickname(rs.getString("user_nickname"));
+				userDTO.setUser_email(rs.getString("user_email"));
+				userDTO.setUser_postcode(rs.getString("user_postcode"));
+				userDTO.setUser_roadAddress(rs.getString("user_roadAddress"));
+				userDTO.setUser_detailAddress(rs.getString("user_detailAddress"));
+				userDTO.setUser_extraAddress(rs.getString("user_extraAddress"));
+				userDTO.setUser_birthday(rs.getString("user_birthday"));
+				userDTO.setUser_joined(rs.getString("user_joined"));
+				userDTO.setUser_type(rs.getString("user_type"));
+				userDTO.setUser_phone(rs.getString("user_phone"));
+				userDTO.setUser_status(rs.getInt("user_status"));
+				userDTO.setUser_del(rs.getInt("user_del"));
+				list.add(userDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt);
+		}
+		return list;
+	}
+
+	public int recovery(int user_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE user SET user_del = 0 WHERE user_no=?";
+		int result = 0;
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, user_no);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+		} finally {
+			close(null, pstmt);
+		}
+		return result;
+	}
+	
 }

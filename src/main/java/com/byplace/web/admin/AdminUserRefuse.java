@@ -13,11 +13,11 @@ import javax.servlet.http.HttpSession;
 import com.byplace.dao.admin.AdminUserDAO;
 import com.byplace.dto.UserDTO;
 
-@WebServlet("/adminUserAccept")
-public class AdminUserAccept extends HttpServlet {
+@WebServlet("/adminUserRefuse")
+public class AdminUserRefuse extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminUserAccept() {
+    public AdminUserRefuse() {
         super();
     }
 
@@ -31,11 +31,11 @@ public class AdminUserAccept extends HttpServlet {
 			int user_no = Integer.parseInt(request.getParameter("user_no"));
 			AdminUserDAO adminUserDAO = new AdminUserDAO();
 			
-			int result = adminUserDAO.accept(user_no);
+			int result = adminUserDAO.drop(user_no);
 			if(result==1) { //추가 성공
-				writer.println("<script>alert('" + "권한 승인에 성공했습니다" + "'); location.href='./adminPage_userAuth';</script>");
+				writer.println("<script>alert('" + "권한 거부에 성공했습니다" + "'); location.href='./adminPage_userAuth';</script>");
 			} else { //추가 실패
-				writer.println("<script>alert('" + "권한 승인에 실패했습니다" + "'); location.href='./adminPage_userAuth';</script>");
+				writer.println("<script>alert('" + "권한 거부에 실패했습니다" + "'); location.href='./adminPage_userAuth';</script>");
 			}
 //		} else {
 //			response.sendRedirect("./index.jsp");
