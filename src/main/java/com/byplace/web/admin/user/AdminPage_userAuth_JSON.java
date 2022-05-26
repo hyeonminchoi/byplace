@@ -1,4 +1,4 @@
-package com.byplace.web.admin;
+package com.byplace.web.admin.user;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.byplace.dao.admin.AdminCategoryDAO;
-import com.byplace.dto.CategoryDTO;
+import com.byplace.dao.admin.AdminUserDAO;
+import com.byplace.dto.UserDTO;
 import com.google.gson.Gson;
 
-@WebServlet("/adminPage_categoryList_JSON")
-public class AdminPage_categoryList_JSON extends HttpServlet {
+@WebServlet("/adminPage_userAuth_JSON")
+public class AdminPage_userAuth_JSON extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminPage_categoryList_JSON() {
+    public AdminPage_userAuth_JSON() {
         super();
     }
 
@@ -33,10 +33,22 @@ public class AdminPage_categoryList_JSON extends HttpServlet {
 			int currentPage = Integer.parseInt(pg);
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
 
-			if(sort.equals("category_no desc"))
-				cmd = "category_no desc";
+			if(sort.equals("user_no desc"))
+				cmd = "user_no desc";
+			else if(sort.equals("user_no asc"))
+				cmd = "user_no asc";
+			else if(sort.equals("user_id desc"))
+				cmd = "user_id desc";
+			else if(sort.equals("user_id asc"))
+				cmd = "user_id asc";
+			else if(sort.equals("user_nickname desc"))
+				cmd = "user_nickname desc";
+			else if(sort.equals("user_nickname asc"))
+				cmd = "user_nickname asc";
+			else if(sort.equals("user_joined desc"))
+				cmd = "user_joined desc";
 			else
-				cmd = "category_no asc";
+				cmd = "user_joined asc";
 			StringTokenizer st = new StringTokenizer(cmd, " ");
 			if(st.hasMoreTokens()) {
 				Cookie cookie = new Cookie("column", st.nextToken());
@@ -47,10 +59,9 @@ public class AdminPage_categoryList_JSON extends HttpServlet {
 				response.addCookie(cookie);
 			}
 			
-			AdminCategoryDAO categoryDAO = new AdminCategoryDAO();
-			List<CategoryDTO> categoryList = categoryDAO.findAll(cmd, currentPage, pageSize);
-			
-			String json = new Gson().toJson(categoryList);
+			AdminUserDAO userDAO = new AdminUserDAO();
+			List<UserDTO> userList = userDAO.findByAuthList(cmd, currentPage, pageSize);
+			String json = new Gson().toJson(userList);
 			
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");

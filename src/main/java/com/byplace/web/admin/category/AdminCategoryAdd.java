@@ -1,4 +1,4 @@
-package com.byplace.web.admin;
+package com.byplace.web.admin.category;
 
 import java.io.IOException;
 import java.io.PrintWriter;

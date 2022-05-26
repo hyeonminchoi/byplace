@@ -127,7 +127,7 @@ public class AdminUserDAO {
 		return result;
 	}
 
-	public List<UserDTO> findByAuth(String cmd, int currentPage, int pageSize) {
+	public List<UserDTO> findByAuthList(String cmd, int currentPage, int pageSize) {
 		String sql = "SELECT * FROM user WHERE user_status=0 ORDER BY " + cmd + " LIMIT ?, ?";
 		List<UserDTO> list = new ArrayList<>();
 		Connection con = null;

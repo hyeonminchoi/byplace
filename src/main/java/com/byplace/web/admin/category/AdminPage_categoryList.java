@@ -1,4 +1,4 @@
-package com.byplace.web.admin;
+package com.byplace.web.admin.category;
 
 import java.io.IOException;
 
@@ -10,25 +10,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.byplace.dao.admin.AdminUserDAO;
+import com.byplace.dao.admin.AdminCategoryDAO;
 
-@WebServlet("/adminPage_userList")
-public class AdminPage_userList extends HttpServlet {
+@WebServlet("/adminPage_categoryList")
+public class AdminPage_categoryList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminPage_userList() {
+    public AdminPage_categoryList() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 //		if(session.getAttribute("USER")!=null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
-			AdminUserDAO dao = new AdminUserDAO();
+			AdminCategoryDAO dao = new AdminCategoryDAO();
 			request.setAttribute("recordCount", dao.count());
 			request.setAttribute("pageSize", 20);
 			
 			Cookie cookie[] = request.getCookies();
-			String sort = "user_no asc";
+			String sort = "category_no asc";
 			String column="", column_sort=""; 
 			if(cookie != null) {
 				for(int i=0;i<cookie.length;i++) {
@@ -49,7 +49,7 @@ public class AdminPage_userList extends HttpServlet {
 			else
 				request.setAttribute("pg", request.getParameter("pg"));
 			request.setAttribute("sort", sort);
-			request.getRequestDispatcher("./adminPage_userList.jsp").forward(request, response);
+			request.getRequestDispatcher("./adminPage_categoryList.jsp").forward(request, response);
 //		} else {
 //			response.sendRedirect("./index.jsp");
 //		}

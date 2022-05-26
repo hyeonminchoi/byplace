@@ -1,4 +1,4 @@
-package com.byplace.web.admin;
+package com.byplace.web.admin.user;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,11 +16,11 @@ import com.byplace.dao.admin.AdminUserDAO;
 import com.byplace.dto.UserDTO;
 import com.google.gson.Gson;
 
-@WebServlet("/adminPage_userWithdrawalList_JSON")
-public class AdminPage_userWithdrawalList_JSON extends HttpServlet {
+@WebServlet("/adminPage_userBlackList_JSON")
+public class AdminPage_userBlackList_JSON extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminPage_userWithdrawalList_JSON() {
+    public AdminPage_userBlackList_JSON() {
         super();
     }
 
@@ -60,7 +60,7 @@ public class AdminPage_userWithdrawalList_JSON extends HttpServlet {
 			}
 			
 			AdminUserDAO userDAO = new AdminUserDAO();
-			List<UserDTO> userList = userDAO.findByWithdrawalList(cmd, currentPage, pageSize);
+			List<UserDTO> userList = userDAO.findByBlackList(cmd, currentPage, pageSize);
 			String json = new Gson().toJson(userList);
 			
 			response.setContentType("application/json");

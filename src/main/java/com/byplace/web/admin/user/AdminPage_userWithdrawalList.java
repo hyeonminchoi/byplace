@@ -1,4 +1,4 @@
-package com.byplace.web.admin;
+package com.byplace.web.admin.user;
 
 import java.io.IOException;
 
@@ -12,11 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.dao.admin.AdminUserDAO;
 
-@WebServlet("/adminPage_userAuth")
-public class AdminPage_userAuth extends HttpServlet {
+@WebServlet("/adminPage_userWithdrawalList")
+public class AdminPage_userWithdrawalList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminPage_userAuth() {
+    public AdminPage_userWithdrawalList() {
         super();
     }
 
@@ -49,7 +49,7 @@ public class AdminPage_userAuth extends HttpServlet {
 			else
 				request.setAttribute("pg", request.getParameter("pg"));
 			request.setAttribute("sort", sort);
-			request.getRequestDispatcher("./adminPage_userAuth.jsp").forward(request, response);
+			request.getRequestDispatcher("./adminPage_userWithdrawalList.jsp").forward(request, response);
 //		} else {
 //			response.sendRedirect("./index.jsp");
 //		}

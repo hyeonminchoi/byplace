@@ -1,4 +1,4 @@
-package com.byplace.web.admin;
+package com.byplace.web.admin.user;
 
 import java.io.IOException;
 
