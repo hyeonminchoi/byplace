@@ -191,7 +191,7 @@ public class BoardDAO {
 	public void update(BoardDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE board SET board_title=?, board_comment=? " + "WHERE board_no=? , user_no=("
+		String sql = "UPDATE board SET board_title=?, board_comment=? " + "WHERE board_no=? AND user_no=("
 				+ "SELECT user_no FROM user WHERE user_id=?)";
 		try {
 			con = DBConnection.dbConn();
