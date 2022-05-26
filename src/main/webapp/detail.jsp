@@ -84,7 +84,10 @@ $(document).ready(function(){
 				<td><img alt="조회수" src="" title="조회수" width="25px;"> ${detail.board_count }</td>
 			</tr>
 			<tr>
-				<td colspan="3">${detail.board_comment }</td>
+				<td colspan="3">${detail.board_date }</td>
+			</tr>
+			<tr>
+				<td colspan="4">${detail.board_comment }</td>
 			</tr>
 		</table>
 		<br>

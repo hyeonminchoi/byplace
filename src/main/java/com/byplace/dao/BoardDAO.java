@@ -11,6 +11,9 @@ import com.byplace.db.DBConnection;
 import com.byplace.dto.BoardDTO;
 import com.byplace.dto.BoardcommentDTO;
 
+
+
+
 public class BoardDAO {
 	public List<BoardDTO> boardList(int pageNo) {
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
@@ -31,7 +34,7 @@ public class BoardDAO {
 				dto.setBoard_comment(rs.getString("board_comment"));
 				dto.setBoard_date(rs.getString("board_date"));
 				dto.setBoard_del(rs.getInt("board_del"));
-				dto.setTotalcount(rs.getInt("board_count"));
+				dto.setBoard_count(rs.getInt("board_count"));
 				dto.setTotalcount(rs.getInt("totalcount"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setUser_no(rs.getLong("user_no"));
@@ -126,7 +129,7 @@ public class BoardDAO {
 				dto.setBoard_comment(rs.getString("board_comment"));
 				dto.setBoard_date(rs.getString("board_date"));
 				dto.setBoard_del(rs.getInt("board_del"));
-				dto.setTotalcount(rs.getInt("board_count"));
+				dto.setBoard_count(rs.getInt("board_count"));
 				dto.setUser_no(rs.getLong("user_no"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setUser_name(rs.getString("user_name"));
@@ -204,6 +207,101 @@ public class BoardDAO {
 		} finally {
 			try {
 				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public BoardcommentDTO commentDetail(BoardcommentDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM boardcommentview WHERE boardcomment_no=?";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, dto.getBoardcomment_no());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setBoardcomment_comment(rs.getString("boardcomment_comment"));
+				dto.setBoardcomment_date(rs.getString("boardcomment_date"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setUser_name(rs.getString("user_name"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+
+	public void commentUpdate(BoardcommentDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE boardcomment SET boardcomment_comment=? WHERE boardcomment_no=? "
+				+ "AND user_no=(SELECT user_no FROM boardcomment WHERE user_id=?)";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getBoardcomment_comment());
+			pstmt.setLong(2, dto.getBoardcomment_no());
+			pstmt.setString(3, dto.getUser_id());
+			
+			pstmt.execute();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public void cdel(BoardcommentDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE boardcomment SET boardcomment_del=1 "
+				+ "WHERE boardcomment_no=? AND user_no="
+				+ "(SELECT user_no FROM user WHERE m_id=?)";
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, dto.getBoardcomment_no());//물음표에  
+			pstmt.setString(2, dto.getUser_id());
+			
+			pstmt.execute();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public void postDel(BoardDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE board SET board_del=1 " + "WHERE board_no=? AND user_no="
+				+ "(SELECT user_no FROM user WHERE user_id=?)";
+
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, dto.getBoard_no());
+			pstmt.setString(2, dto.getUser_id());
+			pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
