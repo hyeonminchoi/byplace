@@ -26,12 +26,12 @@ font-size: 90px;
 
 }
 
-#mainbutton1{
+.mainbutton1{
 	position:fixed; top: 45px; right: 60px;
 	
 }
 
-#mainbutton2{
+.mainbutton2{
 	position:fixed; top: 45px; right: 140px;
 	
 }

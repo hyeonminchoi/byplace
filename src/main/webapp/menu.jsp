@@ -1,24 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    <div id="menu">
       <div id="navi">
          <ul id="menulist">
             <li id="mainlogo">BY PLACE</li>
-          	<li id="mainbutton1">
-          		<img src="./img/login.png" onclick="location.href='./login.jsp'">
-          	</li>
-          	<li id="mainbutton2">
-          		<img src="./img/memberjoin.png" onclick="location.href='./join.jsp'">
-          	</li>
-          
-         <% if(session.getAttribute("USER") != null){ %>
-            <li>
-               <a href="./userInfo.jsp">
-                  <img src="./img/id.png">${sessionScope.user_name }HELLO.
-               </a>
-            </li>
-            <li>
-               <img src="./img/logout.png" onclick="logout()"></li>
-         <%}%>
+           	<c:if test="${empty sessionScope.USER}">
+	          	<li class="mainbutton1">
+	          		<img src="./img/login.png" onclick="location.href='./login.jsp'">
+	          	</li>
+	          	<li class="mainbutton2">
+	          		<img src="./img/memberjoin.png" onclick="location.href='./join.jsp'">
+	          	</li>
+          	</c:if>
+          	<c:if test="${not empty sessionScope.USER}">
+	            <li class="mainbutton2">
+	               <img src="" alt="안녕">
+	            </li>
+	            <li class="mainbutton1">
+	               <img src="./img/logout.png" onclick="logout()">
+	           	</li>
+         	</c:if>
       	</ul>
       </div>
    </div>

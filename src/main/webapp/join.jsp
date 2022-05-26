@@ -4,16 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-#joinbox{
-	width: 800px;
-	height: 500px;
-	margin: 0 auto;
-	padding: 0;
-	box-sizing: border-box;
-	text-align: center;
-}
-</style>
+<link rel="stylesheet" href="./css/join.css">
 <script type="text/javascript">
 
 /* function check() {
