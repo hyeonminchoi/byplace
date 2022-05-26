@@ -5,9 +5,20 @@ public class BoardcommentDTO {
 	String boardcomment_title, boardcomment_comment, boardcomment_date;
 	int boardcomment_del;
 	int board_commentcount;
-	
+	int board_no;	
 
 	String user_id;
+	String user_name;
+
+	
+	
+	public int getBoard_no() {
+		return board_no;
+	}
+
+	public void setBoard_no(int board_no) {
+		this.board_no = board_no;
+	}
 
 	public int getBoard_commentcount() {
 		return board_commentcount;
@@ -71,4 +82,13 @@ public class BoardcommentDTO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	
 }

@@ -60,15 +60,13 @@ public class Update extends HttpServlet {
 		if (session.getAttribute("user_id") != null) {
 			if (request.getParameter("board_no") != null && Util.str2Int(request.getParameter("board_no"))) {
 				int board_no = Integer.parseInt(request.getParameter("board_no"));
-				String title = request.getParameter("title");
-				String content = request.getParameter("content");
-//				System.out.println(b_no);
-//				System.out.println(title);
-//				System.out.println(content);
+				String board_title = request.getParameter("board_title");
+				String board_comment = request.getParameter("board_comment");
+
 				BoardDTO dto = new BoardDTO();
 				dto.setBoard_no(board_no);
-				dto.setBoard_title(Util.HTML2str(title));
-				dto.setBoard_comment(content);
+				dto.setBoard_title(Util.HTML2str(board_title));
+				dto.setBoard_comment(board_comment);
 				dto.setUser_id((String) session.getAttribute("user_id"));
 				BoardDAO dao = new BoardDAO();
 				dao.update(dto);
