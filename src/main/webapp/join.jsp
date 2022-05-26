@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./css/join.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
 /* function check() {
@@ -108,7 +109,7 @@ function nicknameCheck(){
 }
 
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <title>Join Us</title>
 </head>
 <body>
@@ -129,11 +130,11 @@ function nicknameCheck(){
 				</div>
 				<div>
 					<label>비밀번호</label>
-					<input type="password" name="password" placeholder="비밀번호를 입력하세요." class="form-control" required="required">
+					<input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." class="form-control" required="required">
 				</div>
 				<div>
 					<label>비밀번호 확인</label>
-					<input type="password" name="password1" placeholder="비밀번호를 확인하세요." class="form-control" required="required">
+					<input type="password" id="password1" placeholder="비밀번호를 확인하세요." class="form-control" onchange="pwCheck()" required="required">
 				</div>
 				<div>
 					<label>이름</label>

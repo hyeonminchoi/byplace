@@ -224,10 +224,50 @@ public class UserDAO {
 				user_id = rs.getString("user_id");// rs.getString(1)
 			}
 
-			// con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return user_id;
+	}
+	//비밀번호 초기화(사용자 번호 찾기)
+	public long findpw(UserDTO dto) {
+		Connection con;
+		long result = -1;
+		
+		try {
+			con=DBConnection.dbConn();
+			String sql = "SELECT user_no FROM user WHERE user_id=? and user_name=? and user_phone=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getUser_id());
+			pstmt.setString(2, dto.getUser_name());
+			pstmt.setString(3, dto.getUser_phone());
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getLong("user_no");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int changePw(long user_no, String password) {
+		Connection con;
+		int result = 0;
+		
+		try {
+			con=DBConnection.dbConn();
+			String sql = "UPDATE user SET user_password = ? WHERE user_no = ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, encrypt(password));
+			pstmt.setLong(2, user_no);
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }
