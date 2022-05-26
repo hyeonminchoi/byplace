@@ -5,34 +5,52 @@ body{
 	line-height: 1.6
 }
 .container{
-	width: 500px;
+	width: 100%;
 	margin: 0 auto;
+	
 }
 
 
 
 ul.tabs{
-	margin: 0px;
+	margin:10px 5px;
 	padding: 0px;
 	list-style: none;
+	
+	
 }
+
+.tab-link{
+  color: rgba(30, 22, 54, 0.6);
+  box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 2px inset;
+	
+}
+
+.tab-link:hover{
+	 color: rgba(255, 255, 255, 0.85);
+	 box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
+	
+}
+
 ul.tabs li{
 	background: none;
-	color: #222;
+	color: black;
 	display: inline-block;
 	padding: 10px 15px;
 	cursor: pointer;
+	position: relative;
 }
 
 ul.tabs li.current{
-	background: #ededed;
-	color: #222;
+	background: #e9ccb4;
+	color: black;
 }
 
 .tab-content{
 	display: none;
 	background: #ededed;
 	padding: 15px;
+	height: 100px;
 }
 
 .tab-content.current{

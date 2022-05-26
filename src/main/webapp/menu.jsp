@@ -7,7 +7,7 @@
           		<img src="./img/login.png" onclick="location.href='./login.jsp'">
           	</li>
           	<li id="mainbutton2">
-          	<button type="button" onclick="location.href='./join.jsp'">회원가입</button>
+          		<img src="./img/memberjoin.png" onclick="location.href='./join.jsp'">
           	</li>
           
          <% if(session.getAttribute("USER") != null){ %>
