@@ -16,10 +16,15 @@ public class UserDAO {
 		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO user" + "(user_id, user_password, user_name, user_nickname, user_email, "
+		String sql = "";
+		if(dto.getUser_type().equals("사업자"))
+			sql = "INSERT INTO user" + "(user_id, user_password, user_name, user_nickname, user_email, "
 				+ "user_postcode, user_roadAddress, user_detailAddress, user_extraAddress, "
 				+ "user_birthday, user_type, user_phone) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+		else
+			sql = "INSERT INTO user" + "(user_id, user_password, user_name, user_nickname, user_email, "
+					+ "user_postcode, user_roadAddress, user_detailAddress, user_extraAddress, "
+					+ "user_birthday, user_type, user_phone, user_status) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
@@ -159,22 +164,26 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				dto.setUser_no(rs.getLong("user_no"));
-				dto.setUser_id(rs.getString("user_id"));
-				dto.setUser_password(rs.getString("user_password"));
-				dto.setUser_name(rs.getString("user_name"));
-				dto.setUser_nickname(rs.getString("user_nickname"));
-				dto.setUser_email(rs.getString("user_email"));
-				dto.setUser_postcode(rs.getString("user_postcode"));
-				dto.setUser_roadAddress(rs.getString("user_roadAddress"));
-				dto.setUser_detailAddress(rs.getString("user_detailAddress"));
-				dto.setUser_extraAddress(rs.getString("user_extraAddress"));
-				dto.setUser_birthday(rs.getString("user_birthday"));
-				dto.setUser_joined(rs.getString("user_joined"));
-				dto.setUser_type(rs.getString("user_type"));
-				dto.setUser_phone(rs.getString("user_phone"));
-				dto.setUser_del(rs.getInt("user_del"));
-				dto.setUser_status(rs.getInt("user_status"));
+				if(rs.getInt("user_status")==1) {
+					dto.setUser_no(rs.getLong("user_no"));
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setUser_password(rs.getString("user_password"));
+					dto.setUser_name(rs.getString("user_name"));
+					dto.setUser_nickname(rs.getString("user_nickname"));
+					dto.setUser_email(rs.getString("user_email"));
+					dto.setUser_postcode(rs.getString("user_postcode"));
+					dto.setUser_roadAddress(rs.getString("user_roadAddress"));
+					dto.setUser_detailAddress(rs.getString("user_detailAddress"));
+					dto.setUser_extraAddress(rs.getString("user_extraAddress"));
+					dto.setUser_birthday(rs.getString("user_birthday"));
+					dto.setUser_joined(rs.getString("user_joined"));
+					dto.setUser_type(rs.getString("user_type"));
+					dto.setUser_phone(rs.getString("user_phone"));
+					dto.setUser_del(rs.getInt("user_del"));
+					dto.setUser_status(rs.getInt("user_status"));
+				} else {
+					return null;
+				}
 			} else {
 				return null;
 			}
@@ -205,7 +214,7 @@ public class UserDAO {
 
 		try {
 			con = DBConnection.dbConn();
-			String sql = "SELECT user_id FROM member " + "WHERE user_name=? and user_phone=?";
+			String sql = "SELECT user_id FROM user WHERE user_name=? and user_phone=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getUser_name());
 			pstmt.setString(2, dto.getUser_phone());
@@ -213,16 +222,12 @@ public class UserDAO {
 
 			if (rs.next()) {
 				user_id = rs.getString("user_id");// rs.getString(1)
-			} else {
-				user_id = null;
 			}
 
 			// con.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return user_id;
 	}
 }
