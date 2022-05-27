@@ -42,7 +42,7 @@
 					<li><a class="link_name" href="#">음식점관리</a></li>
 					<li><a href="./adminPage_restaurantList">음식점보기</a></li>
 					<li><a href="./adminPage_restaurantApprovalList">음식점승인</a></li>
-					<li><a href="#">음식점복구</a></li>
+					<li><a href="./adminPage_restaurantRecoveryList">음식점복구</a></li>
 				</ul>
 			</li>
 			<li>

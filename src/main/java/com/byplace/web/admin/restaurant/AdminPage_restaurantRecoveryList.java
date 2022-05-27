@@ -1,4 +1,4 @@
-package com.byplace.web.admin.user;
+package com.byplace.web.admin.restaurant;
 
 import java.io.IOException;
 
@@ -13,11 +13,11 @@ import javax.servlet.http.HttpSession;
 import com.byplace.dao.admin.AdminCategoryDAO;
 import com.byplace.dao.admin.AdminUserDAO;
 
-@WebServlet("/adminPage_restaurantApprovalList")
-public class AdminPage_restaurantApprovalList extends HttpServlet {
+@WebServlet("/adminPage_restaurantRecoveryList")
+public class AdminPage_restaurantRecoveryList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminPage_restaurantApprovalList() {
+    public AdminPage_restaurantRecoveryList() {
         super();
     }
 
@@ -33,10 +33,10 @@ public class AdminPage_restaurantApprovalList extends HttpServlet {
 			String column="", column_sort=""; 
 			if(cookie != null) {
 				for(int i=0;i<cookie.length;i++) {
-					if(cookie[i].getName().equals("restaurantApprovalListColumn")) {
+					if(cookie[i].getName().equals("restaurantRecoveryListColumn")) {
 						column = cookie[i].getValue(); 
 					}
-					if(cookie[i].getName().equals("restaurantApprovalListColumn_sort")) {
+					if(cookie[i].getName().equals("restaurantRecoveryListColumn_sort")) {
 						column_sort = cookie[i].getValue();
 					}
 				}
@@ -50,7 +50,7 @@ public class AdminPage_restaurantApprovalList extends HttpServlet {
 			else
 				request.setAttribute("pg", request.getParameter("pg"));
 			request.setAttribute("sort", sort);
-			request.getRequestDispatcher("./adminPage_restaurantApprovalList.jsp").forward(request, response);
+			request.getRequestDispatcher("./adminPage_restaurantRecoveryList.jsp").forward(request, response);
 //		} else {
 //			response.sendRedirect("./index.jsp");
 //		}

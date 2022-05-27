@@ -1,4 +1,4 @@
-package com.byplace.web.admin.user;
+package com.byplace.web.admin.restaurant;
 
 import java.io.IOException;
 

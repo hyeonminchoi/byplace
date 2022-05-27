@@ -1,4 +1,4 @@
-package com.byplace.web.admin.user;
+package com.byplace.web.admin.restaurant;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,11 +16,11 @@ import com.byplace.dao.admin.AdminRestaurantDAO;
 import com.byplace.dto.RestaurantDTO;
 import com.google.gson.Gson;
 
-@WebServlet("/adminPage_restaurantApprovalList_JSON")
-public class AdminPage_restaurantApprovalList_JSON extends HttpServlet {
+@WebServlet("/adminPage_restaurantList_JSON")
+public class AdminPage_restaurantList_JSON extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminPage_restaurantApprovalList_JSON() {
+    public AdminPage_restaurantList_JSON() {
         super();
     }
 
@@ -55,16 +55,16 @@ public class AdminPage_restaurantApprovalList_JSON extends HttpServlet {
 				cmd = "restaurant_del desc";
 			StringTokenizer st = new StringTokenizer(cmd, " ");
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("restaurantApprovalListColumn", st.nextToken());
+				Cookie cookie = new Cookie("restaurantListColumn", st.nextToken());
 				response.addCookie(cookie);
 			}
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("restaurantApprovalListColumn_sort", st.nextToken());
+				Cookie cookie = new Cookie("restaurantListColumn_sort", st.nextToken());
 				response.addCookie(cookie);
 			}
 			
 			AdminRestaurantDAO restaurantDAO = new AdminRestaurantDAO();
-			List<RestaurantDTO> restaurantList = restaurantDAO.findByApprovalList(cmd, currentPage, pageSize);
+			List<RestaurantDTO> restaurantList = restaurantDAO.findAll(cmd, currentPage, pageSize);
 			String json = new Gson().toJson(restaurantList);
 			
 			response.setContentType("application/json");
