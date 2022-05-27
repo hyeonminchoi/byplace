@@ -29,7 +29,14 @@ public class Menuadd extends HttpServlet {
 		if(session.getAttribute("user_id") != null
 				&& request.getParameter("restaurant_no") != null
 				&& Util.str2Int(request.getParameter("restaurant_no"))) {
+			
 			FoodDTO dto = new FoodDTO();
+			dto.setFood_name(request.getParameter("food_name"));
+			dto.setFood_description(request.getParameter("food_description"));
+			dto.setFood_price(Integer.parseInt(request.getParameter("food_price")));
+			dto.setFood_image(request.getParameter("food_image"));
+			
+		} else {
 			
 		}
 	}
