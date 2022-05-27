@@ -38,7 +38,11 @@
 		padding: 5px;
 		width: 80px;
 		height: auto;
-		
+	}
+	dialog img{
+		margin: 10px auto;
+		width: 300px;
+		height: auto;
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -59,18 +63,20 @@ function changed(){
 				temp += "<tr>";
 				temp += "	<td>" + restaurantList[i].restaurant_no + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_name + "</td>";
-				temp += "	<td>" + "<button type=\"button\" onclick=\'showRestaurantDescription(\'" + restaurantList[i].restaurant_description + "\')\'>설명보기</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantDescription(\'" + restaurantList[i].restaurant_description + "\')\">설명보기</button>" + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_roadAddress + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_detailAddress + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_extraAddress + "</td>";
 				temp += "	<td>" + restaurantList[i].category_category + "</td>";
-				temp += "	<td>" + "<button type=\"button\" onclick=\'showRestaurantImage(\'" + restaurantList[i].restaurant_image + "\')\'>사진보기</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantImage(\'" + restaurantList[i].restaurant_image + "\')\">사진보기</button>" + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_joined + "</td>";
 				temp += "	<td>" + restaurantList[i].user_id + "</td>";
 				if(restaurantList[i].restaurant_del == 0){
-					temp += "	<td>" + "N" + "</td>";
+					temp += "	<td>" + "게시" + "</td>";
+				} else if(restaurantList[i].restaurant_del == 1){
+					temp += "	<td>" + "삭제" + "</td>";
 				} else{
-					temp += "	<td>" + "Y" + "</td>";
+					temp += "	<td>" + "문의" + "</td>";
 				}
 				temp += "	<td>" + "<button type=\"button\" onclick=\'showRestaurantEditDialog(" + restaurant + ")\'>수정</button>" + "</td>";
 				temp += "	<td>" + "<button type=\"button\" onclick=\"deleteRestaurant(" + restaurantList[i].restaurant_no + ")\">삭제</button>" + "</td>";
@@ -114,6 +120,8 @@ window.onload = function(){
 						<option value="category_category desc" <c:if test="${sort eq 'category_category desc'}">selected</c:if>>카테고리↓</option>
 						<option value="restaurant_joined asc"  <c:if test="${sort eq 'restaurant_joined asc'}">selected</c:if>>가입일↑</option>
 						<option value="restaurant_joined desc" <c:if test="${sort eq 'restaurant_joined desc'}">selected</c:if>>가입일↓</option>
+						<option value="restaurant_del asc" <c:if test="${sort eq 'restaurant_del asc'}">selected</c:if>>상태↑</option>
+						<option value="restaurant_del desc" <c:if test="${sort eq 'restaurant_del desc'}">selected</c:if>>상태↓</option>
 					</select>
 				</div>
 			</div>
@@ -130,7 +138,7 @@ window.onload = function(){
 						<th>이미지</th>
 						<th>가입일</th>
 						<th>글쓴이</th>
-						<th>삭제여부</th>
+						<th>상태</th>
 						<th>수정</th>
 						<th>삭제</th>
 					</tr>
@@ -190,16 +198,23 @@ window.onload = function(){
 
 <dialog id="restaurantDescriptionDialog">
 	<div>
-		<textarea id="restaurant_description"></textarea>
+		<textarea id="description"></textarea>
 	</div>
 	<button type="button" onclick="hideRestaurantDescription()">닫기</button>
+</dialog>
+
+<dialog id="restaurantImageDialog">
+	<div>
+		<img id="image" alt="로딩 실패">
+	</div>
+	<button type="button" onclick="hideRestaurantImage()">닫기</button>
 </dialog>
 
 <script>
 
 	function deleteRestaurant(no){
 		if(confirm("삭제하겠습니까?")){
-			location.href='./adminRestaurantDelete?user_no=' + no;
+			location.href='./adminRestaurantDelete?restaurant_no=' + no;
 		} else{
 			location.href='./adminPage_restaurantList';
 		}
@@ -207,12 +222,22 @@ window.onload = function(){
 	
 	var restaurantDescriptionDialog = document.getElementById("restaurantDescriptionDialog");
 	function showRestaurantDescription(description){
-		$("#restaurant_description").val(description);
+		$("#description").val(description);
 		restaurantDescriptionDialog.showModal();
 	}
 	
 	function hideRestaurantDescription(){
 		restaurantDescriptionDialog.close();		
+	}
+	
+	var restaurantImageDialog = document.getElementById("restaurantImageDialog");
+	function showRestaurantImage(image){
+		$("#image").attr("src", "./restaurantImage/" + image);
+		restaurantImageDialog.showModal();
+	}
+	
+	function hideRestaurantImage(){
+		restaurantImageDialog.close();		
 	}
 	
 	var restaurantEditDialog = document.getElementById("restaurantEditDialog");

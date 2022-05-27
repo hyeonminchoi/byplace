@@ -47,8 +47,12 @@ public class AdminPage_restaurantList_JSON extends HttpServlet {
 				cmd = "category_category desc";
 			else if(sort.equals("restaurant_joined asc"))
 				cmd = "restaurant_joined asc";
-			else
+			else if(sort.equals("restaurant_joined desc"))
 				cmd = "restaurant_joined desc";
+			else if(sort.equals("restaurant_del asc"))
+				cmd = "restaurant_del asc";
+			else if(sort.equals("restaurant_del desc"))
+				cmd = "restaurant_del desc";
 			StringTokenizer st = new StringTokenizer(cmd, " ");
 			if(st.hasMoreTokens()) {
 				Cookie cookie = new Cookie("restaurantListColumn", st.nextToken());

@@ -59,4 +59,22 @@ public class AdminRestaurantDAO {
 		}
 		return list;
 	}
+	
+	//음식점 삭제
+	public int delete(int restaurant_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE restaurant SET restaurant_del = 1 WHERE restaurant_no=?";
+		int result = 0;
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, restaurant_no);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+		} finally {
+			close(null, pstmt);
+		}
+		return result;
+	}
 }
