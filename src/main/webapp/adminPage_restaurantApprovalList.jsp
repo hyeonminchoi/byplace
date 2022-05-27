@@ -71,7 +71,7 @@ function changed(){
 				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantImage(\'" + restaurantList[i].restaurant_image + "\')\">사진보기</button>" + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_joined + "</td>";
 				temp += "	<td>" + restaurantList[i].user_id + "</td>";
-				temp += "	<td>" + "<button type=\"button\" onclick=\'accept(" + restaurant + ")\'>승인</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"accept(" + restaurantList[i].restaurant_no + ")\">승인</button>" + "</td>";
 				temp += "	<td>" + "<button type=\"button\" onclick=\"refuse(" + restaurantList[i].restaurant_no + ")\">거부</button>" + "</td>";
 				temp += "</tr>";
 			}

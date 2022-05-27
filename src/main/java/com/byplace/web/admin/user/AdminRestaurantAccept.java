@@ -32,10 +32,10 @@ public class AdminRestaurantAccept extends HttpServlet {
 			AdminRestaurantDAO adminRestaurantDAO = new AdminRestaurantDAO();
 			
 			int result = adminRestaurantDAO.accept(restaurant_no);
-			if(result==1) { //추가 성공
-				writer.println("<script>alert('" + "권한 승인에 성공했습니다" + "'); location.href='./adminPage_restaurantApprovalList';</script>");
-			} else { //추가 실패
-				writer.println("<script>alert('" + "권한 승인에 실패했습니다" + "'); location.href='./adminPage_restaurantApprovalList';</script>");
+			if(result==1) { //음식점 승인 성공
+				writer.println("<script>alert('" + "승인에 성공했습니다" + "'); location.href='./adminPage_restaurantApprovalList';</script>");
+			} else { //승인 실패
+				writer.println("<script>alert('" + "승인에 실패했습니다" + "'); location.href='./adminPage_restaurantApprovalList';</script>");
 			}
 //		} else {
 //			response.sendRedirect("./index.jsp");
