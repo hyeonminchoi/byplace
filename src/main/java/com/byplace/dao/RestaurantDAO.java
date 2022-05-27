@@ -15,7 +15,7 @@ public class RestaurantDAO {
 	public RestaurantDTO restboard(RestaurantDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO restaurant(restaurant_name, restaurant_description, restaurant_postcode, restaurant_roadAddress, restaurant_detailAddress, restaurant_extraAddress, category_category, restaurant_image) VALUES(?, ?, ?, ?, ?, ?, ?, ?) ";
+		String sql = "INSERT INTO restaurant(restaurant_name, restaurant_description, restaurant_postcode, restaurant_roadAddress, restaurant_detailAddress, restaurant_extraAddress, category_category, restaurant_image, user_no) VALUES(?, ?, ?, ?, ?, ?, ?, ?, (SELECT user_no FROM user WHERE user_id=?)) ";
 		
 		try {
 			con = DBConnection.dbConn();
@@ -28,6 +28,7 @@ public class RestaurantDAO {
 			pstmt.setString(6, dto.getRestaurant_extraAddress());
 			pstmt.setString(7, dto.getCategory_category());
 			pstmt.setString(8, dto.getRestaurant_image());
+			pstmt.setString(9, dto.getUser_id());
 			
 			pstmt.execute();
 		} catch (Exception e) {

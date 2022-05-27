@@ -45,21 +45,21 @@ td{
 	width : calc(100% - 100px);
 }
 </style>
-<c:if test="${detail.user_id eq sessionScope.user_id}">
+<c:if test="${detail.user_id eq sessionScope.USER.user_id}">
 <script type="text/javascript">
 $(document).ready(function(){
 	var board_no = ${detail.board_no };
 	$("#up").click(function(){
 		if(confirm("해당 글을 수정하시겠습니까?")){
-			location.replace("./update?board_no="+boarad_no);
+			location.replace("./update?board_no="+board_no);
 		}
 	});
 	
 	$("#del").click(function(){
 		if(confirm("해당 글을 삭제하시겠습니까?")){
-			var boarad_no2 = $("#board_no").text();
+			var boarad_no = $("#board_no").text();
 			//alert(b_no2 + "번글을 삭제합니다.");
-			location.replace("./delete?board_no="+board_no2);
+			location.replace("./delete?board_no="+board_no);
 		}
 	});
 });
@@ -73,7 +73,7 @@ $(document).ready(function(){
 			<tr>
 				<td colspan="2">
 				${detail.board_title }
-				<c:if test="${detail.user_id eq sessionScope.user_id}">
+				<c:if test="${detail.user_id eq sessionScope.USER.user_id}">
 						<img id="up" alt="수정" src="" title="수정">
 						<img id="del" alt="삭제" src="" title="삭제">
 				</c:if>
@@ -91,7 +91,7 @@ $(document).ready(function(){
 			</tr>
 		</table>
 		<br>
-	<c:if test="${sessionScope.user_id ne null }">
+	<c:if test="${sessionScope.USER ne null }">
 		<div id="comment">
 			<form action="./commentWrite" method="post">
 			<textarea name="comment"></textarea>
@@ -108,9 +108,9 @@ $(document).ready(function(){
 			<div id="comment_head">
 				<div id="comment_id">
 					${c.boardcomment_no } / ${c.user_no } / ${c.user_id } / ${c.user_name }
-					<c:if test="${sessionScope.user_id eq c.user_id }">
-						<img src="" title="수정" onclick="cup(${c.baordcomment_no })">
-						<img src="" title="삭제" onclick="cdel(${c.boardcomment_no })">
+					<c:if test="${sessionScope.USER.user_id eq c.user_id }">
+						<img alt="수정" src="" title="수정" onclick="cup(${c.boardcomment_no })">
+						<img alt="삭제" src="" title="삭제" onclick="cdel(${c.boardcomment_no })">
 					</c:if>
 				</div>
 				<div id="comment_date">${c.boardcomment_date }</div>	

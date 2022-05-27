@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.dao.BoardDAO;
 import com.byplace.dto.BoardDTO;
+import com.byplace.dto.UserDTO;
 import com.byplace.util.Util;
 
 
@@ -25,12 +26,12 @@ public class Delete extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if(request.getParameter("board_no") != null 
-				&& session.getAttribute("user_id") != null
+				&& session.getAttribute("USER") != null
 				&& Util.str2Int(request.getParameter("board_no"))) {
 			
 			BoardDTO dto = new BoardDTO();
 			dto.setBoard_no(Integer.parseInt(request.getParameter("board_no")));
-			dto.setUser_id((String)session.getAttribute("user_id"));
+			dto.setUser_id(((UserDTO)session.getAttribute("USER")).getUser_id());
 			
 			BoardDAO dao = new BoardDAO();
 			dao.postDel(dto);

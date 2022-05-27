@@ -34,7 +34,7 @@ tr{
 		<h1>댓글 수정하기</h1>
 		<div id="comment">
 			<form action="./cup" method="post">
-				<textarea name="comment">${dto.c_comment }</textarea>
+				<textarea name="comment">${dto.boardcomment_comment }</textarea>
 				<input type="hidden" name="boardcomment_no" value="${dto.boardcomment_no }">
 				<input type="hidden" name="board_no" value="${dto.board_no }">
 				<button type="submit">댓글수정</button>

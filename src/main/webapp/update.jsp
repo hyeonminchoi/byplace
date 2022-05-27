@@ -65,7 +65,7 @@ function check(){
 		<h1>글수정하기</h1>
 		<form action="./update" method="post" onsubmit="return check()">
 			<input type="text" id="title" name="title" value="${dto.board_title }" placeholder="제목을 입력하세요">
-			<textarea id="summernote" name="content">${dto.board_content }</textarea>
+			<textarea id="summernote" name="comment">${dto.board_comment }</textarea>
 			<input type="hidden" name="board_no" value="${dto.board_no }">
 			<button id="btn" type="submit">글수정</button>
 		</form>

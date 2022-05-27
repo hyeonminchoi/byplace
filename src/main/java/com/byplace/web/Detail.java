@@ -26,7 +26,7 @@ public class Detail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (request.getParameter("board_no") != null && Util.str2Int(request.getParameter("board_no"))) {
-			long board_no = Integer.parseInt(request.getParameter("board_no"));
+			int board_no = Integer.parseInt(request.getParameter("board_no"));
 			BoardDAO dao = new BoardDAO();
 			dao.countUp(board_no);
 			BoardDTO detail = dao.detail(board_no);

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.dao.BoardDAO;
 import com.byplace.dto.BoardcommentDTO;
+import com.byplace.dto.UserDTO;
 import com.byplace.util.Util;
 
 
@@ -32,12 +33,12 @@ public class Cup extends HttpServlet {
 		
 		BoardcommentDTO dto = new BoardcommentDTO();
 		
-		if(session.getAttribute("user_id") != null 
+		if(session.getAttribute("USER") != null 
 				&& request.getParameter("boardcomment_no") != null) {
 			//값 담기
 			dto.setBoard_no(Integer.parseInt(request.getParameter("board_no")));
 			dto.setBoardcomment_no(Integer.parseInt(request.getParameter("boardcomment_no")));
-			dto.setUser_id ((String) session.getAttribute("User_id"));
+			dto.setUser_id(((UserDTO)session.getAttribute("USER")).getUser_id());
 			//DB에 물어보기
 			BoardDAO dao = new BoardDAO();
 			dto = dao.commentDetail(dto);//만들어주세요.
@@ -57,15 +58,15 @@ public class Cup extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("user_id") != null 
+		if(session.getAttribute("USER") != null 
 				&& request.getParameter("boardcomment_no") != null
-				&& request.getParameter("boardcomment_comment") != null) {
+				&& request.getParameter("comment") != null) {
 			//저장하기
 			BoardcommentDTO dto = new BoardcommentDTO();
 			dto.setBoard_no(Integer.parseInt(request.getParameter("board_no")));
 			dto.setBoardcomment_no(Integer.parseInt(request.getParameter("boardcomment_no")));
-			dto.setUser_id((String) session.getAttribute("user_id"));
-			dto.setBoardcomment_comment(Util.HTML2str(request.getParameter("boardcomment_comment")));
+			dto.setUser_id(((UserDTO)session.getAttribute("USER")).getUser_id());
+			dto.setBoardcomment_comment(Util.HTML2str(request.getParameter("comment")));
 			
 			BoardDAO dao = new BoardDAO();
 			dao.commentUpdate(dto);
