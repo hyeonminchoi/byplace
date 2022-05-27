@@ -19,7 +19,7 @@ td {
 </head>
 <body>
 	<div id="main">
-		<h1>게시판</h1>
+		<h1>BY Place</h1>
 		<table>
 			<tr>
 				<th>번호</th>

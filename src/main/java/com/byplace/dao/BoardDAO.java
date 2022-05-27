@@ -14,6 +14,8 @@ import com.byplace.dto.BoardcommentDTO;
 
 
 
+
+
 public class BoardDAO {
 	public List<BoardDTO> boardList(int pageNo) {
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
@@ -159,7 +161,7 @@ public class BoardDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM boardcomment WHERE board_no=?";
+		String sql = "SELECT * FROM boardcommentview WHERE board_no=?";
 		
 		try {
 			con = DBConnection.dbConn();
@@ -171,12 +173,12 @@ public class BoardDAO {
 			while(rs.next()) {
 				BoardcommentDTO dto = new BoardcommentDTO();
 				dto.setBoardcomment_no(rs.getLong("boardcomment_no"));
-				dto.setUser_no(rs.getLong("user_no"));
+				dto.setBoard_no(rs.getInt("board_no"));
 				dto.setBoardcomment_comment(rs.getString("boardcomment_comment"));
+				dto.setUser_no(rs.getLong("user_no"));
 				dto.setBoardcomment_date(rs.getString("boardcomment_date"));
-				dto.setBoardcomment_title(rs.getString("boardcomment_title"));
-				dto.setBoardcomment_del(rs.getInt("boardcomment_del"));
 				dto.setUser_id(rs.getString("user_id"));
+				dto.setUser_name(rs.getString("user_name"));
 				
 				list.add(dto);
 			}
@@ -244,7 +246,7 @@ public class BoardDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE boardcomment SET boardcomment_comment=? WHERE boardcomment_no=? "
-				+ "AND user_no=(SELECT user_no FROM boardcomment WHERE user_id=?)";
+				+ "AND user_no=(SELECT user_no FROM user WHERE user_id=?)";
 		
 		try {
 			con = DBConnection.dbConn();
@@ -267,7 +269,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE boardcomment SET boardcomment_del=1 "
 				+ "WHERE boardcomment_no=? AND user_no="
-				+ "(SELECT user_no FROM user WHERE m_id=?)";
+				+ "(SELECT user_no FROM user WHERE user_id=?)";
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
@@ -307,6 +309,28 @@ public class BoardDAO {
 			}
 		}
 
+	}
+
+	public void commentWrite(BoardcommentDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO boardcomment (board_no, boardcomment_comment, user_no) "
+				+ "VALUES (?, ?, (SELECT user_no FROM user WHERE user_id=?))";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, dto.getBoard_no());
+			pstmt.setString(2, dto.getBoardcomment_comment());
+			pstmt.setString(3, dto.getUser_id());
+			
+			pstmt.execute();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 

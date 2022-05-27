@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.dao.BoardDAO;
 import com.byplace.dto.BoardcommentDTO;
+import com.byplace.dto.UserDTO;
 
 
 
@@ -29,12 +30,12 @@ public class Cdel extends HttpServlet {
 		//꼭 검사하세요.
 		if(request.getParameter("board_no") != null 
 				&& request.getParameter("boardcomment_no") != null 
-				&& session.getAttribute("user_id") != null) {
+				&& session.getAttribute("USER") != null) {
 			//데이터베이스로 보내기
 			BoardcommentDTO dto = new BoardcommentDTO();
 			dto.setBoard_no(Integer.parseInt(request.getParameter("board_no")));
 			dto.setBoardcomment_no(Integer.parseInt(request.getParameter("boardcomment_no")));
-			dto.setUser_id ((String) session.getAttribute("User_id"));
+			dto.setUser_id(((UserDTO)session.getAttribute("USER")).getUser_id());
 			
 			BoardDAO dao = new BoardDAO();
 			dao.cdel(dto);

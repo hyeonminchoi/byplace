@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.dao.BoardDAO;
 import com.byplace.dto.BoardDTO;
+import com.byplace.dto.UserDTO;
 import com.byplace.util.Util;
 
 
@@ -32,7 +33,7 @@ public class Update extends HttpServlet {
 				int board_no = Integer.parseInt(request.getParameter("board_no"));
 				// 세션
 				HttpSession session = request.getSession();
-				if (session.getAttribute("user_id") != null) {
+				if (session.getAttribute("USER") != null) {
 					// bno있고, 숫자이고, mid가 있습니다.
 					// 원래 써 있던 글을 가져와야 합니다.
 					BoardDAO dao = new BoardDAO();
@@ -57,17 +58,17 @@ public class Update extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");// 한글
 		// b_no, b_title, b_content AND m_id
 		HttpSession session = request.getSession();
-		if (session.getAttribute("user_id") != null) {
+		if (session.getAttribute("USER") != null) {
 			if (request.getParameter("board_no") != null && Util.str2Int(request.getParameter("board_no"))) {
 				int board_no = Integer.parseInt(request.getParameter("board_no"));
-				String board_title = request.getParameter("board_title");
-				String board_comment = request.getParameter("board_comment");
+				String title = request.getParameter("title");
+				String comment = request.getParameter("comment");
 
 				BoardDTO dto = new BoardDTO();
 				dto.setBoard_no(board_no);
-				dto.setBoard_title(Util.HTML2str(board_title));
-				dto.setBoard_comment(board_comment);
-				dto.setUser_id((String) session.getAttribute("user_id"));
+				dto.setBoard_title(Util.HTML2str(title));
+				dto.setBoard_comment(comment);
+				dto.setUser_id(((UserDTO)session.getAttribute("USER")).getUser_id());
 				BoardDAO dao = new BoardDAO();
 				dao.update(dto);
 				
