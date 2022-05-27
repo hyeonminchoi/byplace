@@ -28,7 +28,7 @@
 				<ul class="sub-menu">
 					<li><a class="link_name" href="#">사용자관리</a></li>
 					<li><a href="./adminPage_userList">유저리스트</a></li>
-					<li><a href="./adminPage_userAuth">권한승인</a></li>
+					<li><a href="./adminPage_userAuthList">권한승인</a></li>
 					<li><a href="./adminPage_userWithdrawalList">탈퇴리스트</a></li>
 					<li><a href="./adminPage_userBlackList">블랙리스트</a></li>
 				</ul>
@@ -40,8 +40,9 @@
 				</div>
 				<ul class="sub-menu">
 					<li><a class="link_name" href="#">음식점관리</a></li>
-					<li><a href="#">음식점보기</a></li>
+					<li><a href="adminPage_restaurantList">음식점보기</a></li>
 					<li><a href="#">음식점승인</a></li>
+					<li><a href="#">음식점복구</a></li>
 				</ul>
 			</li>
 			<li>

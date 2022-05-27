@@ -32,10 +32,10 @@ public class AdminPage_categoryList extends HttpServlet {
 			String column="", column_sort=""; 
 			if(cookie != null) {
 				for(int i=0;i<cookie.length;i++) {
-					if(cookie[i].getName().equals("column")) {
+					if(cookie[i].getName().equals("categoryListColumn")) {
 						column = cookie[i].getValue(); 
 					}
-					if(cookie[i].getName().equals("column_sort")) {
+					if(cookie[i].getName().equals("categoryListColumn_sort")) {
 						column_sort = cookie[i].getValue();
 					}
 				}

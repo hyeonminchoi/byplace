@@ -47,7 +47,7 @@
 function changed(){
 	var sort = $("#user_sort").val();
 	$.ajax({
-		url: "./adminPage_userAuth_JSON",
+		url: "./adminPage_userAuthList_JSON",
 		type: "GET",
 		dataType: "json",
 		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}},
@@ -147,7 +147,7 @@ window.onload = function(){
 		if(confirm("권한을 승인하겠습니까?")){
 			location.href='./adminUserAccept?user_no=' + no;
 		} else{
-			location.href='./adminPage_userAuth';
+			location.href='./adminPage_userAuthList';
 		}
 	}
 	
@@ -155,7 +155,7 @@ window.onload = function(){
 		if(confirm("권한을 거부하겠습니까?")){
 			location.href='./adminUserRefuse?user_no=' + no;
 		} else{
-			location.href='./adminPage_userAuth';
+			location.href='./adminPage_userAuthList';
 		}
 	}
 	

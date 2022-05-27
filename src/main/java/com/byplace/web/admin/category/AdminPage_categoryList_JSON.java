@@ -39,11 +39,11 @@ public class AdminPage_categoryList_JSON extends HttpServlet {
 				cmd = "category_no asc";
 			StringTokenizer st = new StringTokenizer(cmd, " ");
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("column", st.nextToken());
+				Cookie cookie = new Cookie("categoryListColumn", st.nextToken());
 				response.addCookie(cookie);
 			}
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("column_sort", st.nextToken());
+				Cookie cookie = new Cookie("categoryListColumn_sort", st.nextToken());
 				response.addCookie(cookie);
 			}
 			

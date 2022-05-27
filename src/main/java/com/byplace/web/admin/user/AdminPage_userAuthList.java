@@ -12,11 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.dao.admin.AdminUserDAO;
 
-@WebServlet("/adminPage_userAuth")
-public class AdminPage_userAuth extends HttpServlet {
+@WebServlet("/adminPage_userAuthList")
+public class AdminPage_userAuthList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminPage_userAuth() {
+    public AdminPage_userAuthList() {
         super();
     }
 
@@ -32,10 +32,10 @@ public class AdminPage_userAuth extends HttpServlet {
 			String column="", column_sort=""; 
 			if(cookie != null) {
 				for(int i=0;i<cookie.length;i++) {
-					if(cookie[i].getName().equals("column")) {
+					if(cookie[i].getName().equals("userAuthListColumn")) {
 						column = cookie[i].getValue(); 
 					}
-					if(cookie[i].getName().equals("column_sort")) {
+					if(cookie[i].getName().equals("userAuthListColumn_sort")) {
 						column_sort = cookie[i].getValue();
 					}
 				}
@@ -49,7 +49,7 @@ public class AdminPage_userAuth extends HttpServlet {
 			else
 				request.setAttribute("pg", request.getParameter("pg"));
 			request.setAttribute("sort", sort);
-			request.getRequestDispatcher("./adminPage_userAuth.jsp").forward(request, response);
+			request.getRequestDispatcher("./adminPage_userAuthList.jsp").forward(request, response);
 //		} else {
 //			response.sendRedirect("./index.jsp");
 //		}

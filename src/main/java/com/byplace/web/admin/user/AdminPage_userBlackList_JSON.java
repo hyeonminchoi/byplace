@@ -51,11 +51,11 @@ public class AdminPage_userBlackList_JSON extends HttpServlet {
 				cmd = "user_joined asc";
 			StringTokenizer st = new StringTokenizer(cmd, " ");
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("column", st.nextToken());
+				Cookie cookie = new Cookie("userBlackListColumn", st.nextToken());
 				response.addCookie(cookie);
 			}
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("column_sort", st.nextToken());
+				Cookie cookie = new Cookie("userBlackListColumn_sort", st.nextToken());
 				response.addCookie(cookie);
 			}
 			

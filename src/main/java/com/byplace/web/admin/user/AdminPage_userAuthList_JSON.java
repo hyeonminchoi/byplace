@@ -16,11 +16,11 @@ import com.byplace.dao.admin.AdminUserDAO;
 import com.byplace.dto.UserDTO;
 import com.google.gson.Gson;
 
-@WebServlet("/adminPage_userAuth_JSON")
-public class AdminPage_userAuth_JSON extends HttpServlet {
+@WebServlet("/adminPage_userAuthList_JSON")
+public class AdminPage_userAuthList_JSON extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminPage_userAuth_JSON() {
+    public AdminPage_userAuthList_JSON() {
         super();
     }
 
@@ -51,11 +51,11 @@ public class AdminPage_userAuth_JSON extends HttpServlet {
 				cmd = "user_joined asc";
 			StringTokenizer st = new StringTokenizer(cmd, " ");
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("column", st.nextToken());
+				Cookie cookie = new Cookie("userAuthListColumn", st.nextToken());
 				response.addCookie(cookie);
 			}
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("column_sort", st.nextToken());
+				Cookie cookie = new Cookie("userAuthListColumn_sort", st.nextToken());
 				response.addCookie(cookie);
 			}
 			

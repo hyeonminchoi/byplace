@@ -267,7 +267,7 @@ window.onload = function(){
 				</select>
 			</div>
 			<div>
-				<button type="submit">전송</button>
+				<button type="submit">수정</button>
 				<button type="button" onclick="hideUserEditDialog()">취소</button>
 			</div>
 		</form>
