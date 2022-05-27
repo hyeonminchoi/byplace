@@ -30,7 +30,7 @@
 	<a href="./sonjul.jsp">탈퇴하기</a>
 	
 <dialog id="dialog">
-	<form action="./userInfo" method="post">
+	<form action="./userInfofix" method="post">
 		<div>
 			<label>no</label>
 			<input type="number" name="user_no" id="user_no" readonly="readonly" value="${sessionScope.USER.user_no }">

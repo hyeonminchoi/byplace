@@ -292,5 +292,35 @@ public class UserDAO {
 		}
 		return result;
 	}
-	
+
+	public int userfix(UserDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "UPDATE user SET user_name= ?,user_nickname=?,user_phone=?,"
+				+ "user_email=?,user_postcode=?,user_roadAddress=?,"
+				+ "user_detailAddress=?,user_extraAddress=? "
+				+ "WHERE user_no = ?";
+		int result = 0;
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getUser_name());
+			pstmt.setString(2, dto.getUser_nickname());
+			pstmt.setString(3, dto.getUser_phone());
+			pstmt.setString(4, dto.getUser_email());
+			pstmt.setString(5, dto.getUser_postcode());
+			pstmt.setString(6, dto.getUser_roadAddress());
+			pstmt.setString(7, dto.getUser_detailAddress());
+			pstmt.setString(8, dto.getUser_extraAddress());
+			pstmt.setLong(9, dto.getUser_no());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = 1;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
