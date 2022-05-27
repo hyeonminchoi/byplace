@@ -178,8 +178,8 @@ window.onload = function(){
 			<div>
 				<label>카테고리</label>
 				<select name="category_category" id="category_category">
+					<option>카테고리를 선택하세요.</option>
 					<c:forEach var="i" items="${categoryList}">
-						<option>카테고리를 선택하세요.</option>
 						<option value="${i.category_category}">${i.category_category}</option>
 					</c:forEach>
 				</select>

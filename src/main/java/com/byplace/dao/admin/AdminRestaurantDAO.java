@@ -61,7 +61,7 @@ public class AdminRestaurantDAO {
 	}
 	
 	//음식점 삭제
-	public int delete(int restaurant_no) {
+	public int delete(long restaurant_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE restaurant SET restaurant_del = 1 WHERE restaurant_no=?";
@@ -69,7 +69,32 @@ public class AdminRestaurantDAO {
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, restaurant_no);
+			pstmt.setLong(1, restaurant_no);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+		} finally {
+			close(null, pstmt);
+		}
+		return result;
+	}
+
+	public int edit(RestaurantDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE restaurant SET restaurant_name=?, restaurant_description=?, restaurant_postcode=?, restaurant_roadAddress=?, restaurant_detailAddress=?, restaurant_extraAddress=?, category_category=?, restaurant_image=? WHERE restaurant_no=?";
+		int result = 0;
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getRestaurant_name());
+			pstmt.setString(2, dto.getRestaurant_description());
+			pstmt.setString(3, dto.getRestaurant_postcode());
+			pstmt.setString(4, dto.getRestaurant_roadAddress());
+			pstmt.setString(5, dto.getRestaurant_detailAddress());
+			pstmt.setString(6, dto.getRestaurant_extraAddress());
+			pstmt.setString(7, dto.getCategory_category());
+			pstmt.setString(8, dto.getRestaurant_image());
+			pstmt.setLong(9, dto.getRestaurant_no());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {

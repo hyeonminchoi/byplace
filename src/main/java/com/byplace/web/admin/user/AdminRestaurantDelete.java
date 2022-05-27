@@ -27,7 +27,7 @@ public class AdminRestaurantDelete extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
 //		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
-			int restaurant_no = Integer.parseInt(request.getParameter("restaurant_no"));
+			long restaurant_no = Long.parseLong(request.getParameter("restaurant_no"));
 			AdminRestaurantDAO adminRestaurantDAO = new AdminRestaurantDAO();
 			int result = adminRestaurantDAO.delete(restaurant_no);
 			if(result==1) { //삭제 성공
