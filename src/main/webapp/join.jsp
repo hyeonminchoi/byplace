@@ -122,8 +122,10 @@ function nicknameCheck(){
 		<h1>회원가입</h1>
 		<hr>
 			<h2>개인정보 입력</h2>
-			<form name="joinform" action="./join" method="post" onsubmit="return check()">
-				<div>
+			<form name="joinform" id="joinform" action="./join" method="post" onsubmit="return check()">
+			<div id="table">
+				
+				<div id="joinID">
 					<label>아이디</label>
 					<input type="text" id="id" name="id" placeholder="아이디를 입력하세요." class="form-control" onchange="idCheck()" required="required">
 					<div id="checkResult">아이디를 확인중입니다.</div>
@@ -132,7 +134,7 @@ function nicknameCheck(){
 					<label>비밀번호</label>
 					<input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." class="form-control" required="required">
 				</div>
-				<div>
+				<div id="joinPW">
 					<label>비밀번호 확인</label>
 					<input type="password" id="password1" placeholder="비밀번호를 확인하세요." class="form-control" onchange="pwCheck()" required="required">
 				</div>
@@ -140,7 +142,7 @@ function nicknameCheck(){
 					<label>이름</label>
 					<input type="text" name="name" placeholder="이름을 입력하세요." class="form-control" required="required">
 				</div>
-				<div>
+				<div id="joinname">
 					<label>닉네임</label>
 					<input type="text" name="nickname" id="nickname" placeholder="닉네임을 입력하세요." class="form-control" onchange="nicknameCheck()"  required="required">
 					<div id="checkNicknameResult">닉네임을 확인중입니다.</div>
@@ -153,7 +155,7 @@ function nicknameCheck(){
 					<label>이메일</label>
 					<input type="email" name="email" placeholder="이메일을 입력하세요." class="form-control" required="required">
 				</div>
-				<div>
+				<div id="joinAD">
 					<label>주소</label>
 					<input type="text" name="postcode" id="postcode" placeholder="우편번호" required="required">
 					<input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
@@ -165,7 +167,7 @@ function nicknameCheck(){
 					<label>생년월일</label>
 					<input type="date" name="birthday" placeholder="생년월일을 입력하세요." class="form-control" required="required">
 				</div>
-				<div>
+				<div id="joinca">
 					<label>유형</label>
 					<select name="type" required="required">
 						<option value="">유형을 선택하세요.</option>
@@ -174,8 +176,10 @@ function nicknameCheck(){
 						<option value="관리자">관리자</option>
 					</select>
 				</div>
-				<button type="submit" id="joinBtn" class="btn btn-success" >Join</button>
-				<button type="button" onclick="location.href='./index.jsp'">취소하기</button>
+				
+			</div>
+				<button type="submit" id="joinBtn">Join</button>
+				<button type="button" id="joinBtn" onclick="location.href='./index.jsp'">취소하기</button>
 			</form>
 			</div>
 
