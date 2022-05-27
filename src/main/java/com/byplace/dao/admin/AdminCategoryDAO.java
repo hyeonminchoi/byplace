@@ -21,7 +21,7 @@ public class AdminCategoryDAO {
 		}
 	}
 
-	//카테고리 리스트 읽어오기
+	//카테고리 리스트 읽어오기(페이징)
 	public List<CategoryDTO> findAll(String sort, int currentPage, int pageSize) {
 		String sql = "SELECT * FROM category ORDER BY " + sort + " LIMIT ?, ?";
 		List<CategoryDTO> list = new ArrayList<>();
@@ -47,6 +47,31 @@ public class AdminCategoryDAO {
 		}
 		return list;
 	}
+	
+	//카테고리 리스트 읽어오기(페이징)
+		public List<CategoryDTO> findAll() {
+			String sql = "SELECT * FROM category";
+			List<CategoryDTO> list = new ArrayList<>();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				con = DBConnection.dbConn();
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					CategoryDTO categoryDTO = new CategoryDTO();
+					categoryDTO.setCategory_no(rs.getLong("category_no"));
+					categoryDTO.setCategory_category(rs.getString("category_category"));
+					list.add(categoryDTO);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rs, pstmt);
+			}
+			return list;
+		}
 
 	//카테고리 테이블 갯수 구하기
 	public int count() {

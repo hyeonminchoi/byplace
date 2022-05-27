@@ -4,7 +4,7 @@ public class RestaurantDTO {
 	long restaurant_no, user_no;
 	String restaurant_name, restaurant_description, restaurant_postcode, restaurant_roadAddress,
 	       restaurant_detailAddress, restaurant_extraAddress, category_category,
-	       restaurant_image, restaurant_joined;
+	       restaurant_image, restaurant_joined, user_id;
 	int restaurant_del;
 	
 	public long getRestaurant_no() {
@@ -73,12 +73,17 @@ public class RestaurantDTO {
 	public void setRestaurant_joined(String restaurant_joined) {
 		this.restaurant_joined = restaurant_joined;
 	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public int getRestaurant_del() {
 		return restaurant_del;
 	}
 	public void setRestaurant_del(int restaurant_del) {
 		this.restaurant_del = restaurant_del;
 	}
-	
 	
 }
