@@ -123,65 +123,84 @@ function nicknameCheck(){
 		<hr>
 			<h2>개인정보 입력</h2>
 			<form name="joinform" id="joinform" action="./join" method="post" onsubmit="return check()">
-			<div id="table">
-				
-				<div id="joinID">
-					<label>아이디</label>
-					<input type="text" id="id" name="id" placeholder="아이디를 입력하세요." class="form-control" onchange="idCheck()" required="required">
-					<div id="checkResult">아이디를 확인중입니다.</div>
-				</div>
-				<div>
-					<label>비밀번호</label>
-					<input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." class="form-control" required="required">
-				</div>
-				<div id="joinPW">
-					<label>비밀번호 확인</label>
-					<input type="password" id="password1" placeholder="비밀번호를 확인하세요." class="form-control" onchange="pwCheck()" required="required">
-				</div>
-				<div>
-					<label>이름</label>
-					<input type="text" name="name" placeholder="이름을 입력하세요." class="form-control" required="required">
-				</div>
-				<div id="joinname">
-					<label>닉네임</label>
-					<input type="text" name="nickname" id="nickname" placeholder="닉네임을 입력하세요." class="form-control" onchange="nicknameCheck()"  required="required">
-					<div id="checkNicknameResult">닉네임을 확인중입니다.</div>
-				</div>
-				<div>
-					<label>전화번호</label>
-					<input type="text" id="nickname" name="phone" placeholder="전화번호를 입력하세요." class="form-control" required="required">
-				</div>
-				<div>
-					<label>이메일</label>
-					<input type="email" name="email" placeholder="이메일을 입력하세요." class="form-control" required="required">
-				</div>
-				<div id="joinAD">
-					<label id="ta">주소</label>
-					<input type="text" name="postcode" id="postcode" placeholder="우편번호" required="required">
-					<input id="postcodeBtn" type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" name="roadAddress" id="roadAddress" placeholder="도로명주소" required="required"><br>
-					<input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" required="required"><br>
-					<input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" required="required">
-				</div>
-				<div>
-					<label>생년월일</label>
-					<input type="date" name="birthday" placeholder="생년월일을 입력하세요." class="form-control" required="required">
-				</div>
-				<div id="joinca">
-					<label>유형</label>
-					<select name="type" required="required">
-						<option value="">유형을 선택하세요.</option>
-						<option value="개인">개인</option>
-						<option value="사업자">사업자</option>
-						<option value="관리자">관리자</option>
-					</select>
-				</div>
-				
-			</div>
-				<button type="submit" id="joinBtn">Join</button>
-				<button type="button" id="joinBtn" onclick="location.href='./index.jsp'">취소하기</button>
+			<table style="margin: 0px auto;">
+				<tr>
+					<td><label>아이디</label></td>
+					<td><input type="text" id="id" name="id" placeholder="아이디를 입력하세요." class="form-control" onchange="idCheck()" required="required"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="3"><div id="checkResult">아이디를 확인중입니다.</div></td>
+				</tr>
+				<tr>
+					<td><label>비밀번호</label></td>
+					<td><input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." class="form-control" required="required"></td>
+					<td>
+				</tr>
+				<tr>
+					<td><label>비밀번호 확인</label></td>
+					<td><input type="password" id="password1" placeholder="비밀번호를 확인하세요." class="form-control" onchange="pwCheck()" required="required"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><label>이름</label></td>
+					<td><input type="text" name="name" placeholder="이름을 입력하세요." class="form-control" required="required"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><label>닉네임</label></td>
+					<td><input type="text" name="nickname" id="nickname" placeholder="닉네임을 입력하세요." class="form-control" onchange="nicknameCheck()"  required="required"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><div id="checkNicknameResult">닉네임을 확인중입니다.</div></td>
+				</tr>
+				<tr>
+					<td><label>전화번호</label></td>
+					<td><input type="text" id="nickname" name="phone" placeholder="전화번호를 입력하세요." class="form-control" required="required"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><label>이메일</label></td>
+					<td><input type="email" name="email" placeholder="이메일을 입력하세요." class="form-control" required="required"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><label id="ta">주소</label></td>
+					<td>
+						<input type="text" name="postcode" id="postcode" placeholder="우편번호" required="required"><br>
+						<input type="text" name="roadAddress" id="roadAddress" placeholder="도로명주소" required="required"><br>
+						<input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" required="required"><br>
+						<input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" required="required"><br>
+					</td>
+					<td>
+						<input id="postcodeBtn" type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
+					</td>
+				</tr>
+				<tr>
+					<td><label>생년월일</label></td>
+					<td><input type="date" name="birthday" placeholder="생년월일을 입력하세요." class="form-control" required="required"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><label>유형</label></td>
+					<td>
+						<select name="type" required="required">
+							<option value="">유형을 선택하세요.</option>
+							<option value="개인">개인</option>
+							<option value="사업자">사업자</option>
+							<option value="관리자">관리자</option>
+						</select>
+					</td>
+					<td></td>
+				</tr>
+				<tr style="margin: 0px auto;">
+					<td colspan="3">
+						<button type="submit" id="joinBtn">Join</button>
+						<button type="button" id="joinBtn" onclick="location.href='./index.jsp'">취소하기</button>
+					</td>
+				</tr>
+			</table>
 			</form>
-			</div>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

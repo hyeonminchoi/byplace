@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.byplace.dao.admin.AdminUserDAO;
+import com.byplace.dao.admin.AdminRestaurantDAO;
 import com.byplace.dto.UserDTO;
 
-@WebServlet("/adminUserRefuse")
-public class AdminUserRefuse extends HttpServlet {
+@WebServlet("/adminRestaurantAccept")
+public class AdminRestaurantAccept extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminUserRefuse() {
+    public AdminRestaurantAccept() {
         super();
     }
 
@@ -28,14 +28,14 @@ public class AdminUserRefuse extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
 //		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
-			long user_no = Long.parseLong(request.getParameter("user_no"));
-			AdminUserDAO adminUserDAO = new AdminUserDAO();
+			long restaurant_no = Long.parseLong(request.getParameter("restaurant_no"));
+			AdminRestaurantDAO adminRestaurantDAO = new AdminRestaurantDAO();
 			
-			int result = adminUserDAO.drop(user_no);
+			int result = adminRestaurantDAO.accept(restaurant_no);
 			if(result==1) { //추가 성공
-				writer.println("<script>alert('" + "권한 거부에 성공했습니다" + "'); location.href='./adminPage_userAuth';</script>");
+				writer.println("<script>alert('" + "권한 승인에 성공했습니다" + "'); location.href='./adminPage_restaurantApprovalList';</script>");
 			} else { //추가 실패
-				writer.println("<script>alert('" + "권한 거부에 실패했습니다" + "'); location.href='./adminPage_userAuth';</script>");
+				writer.println("<script>alert('" + "권한 승인에 실패했습니다" + "'); location.href='./adminPage_restaurantApprovalList';</script>");
 			}
 //		} else {
 //			response.sendRedirect("./index.jsp");

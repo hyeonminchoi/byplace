@@ -82,7 +82,7 @@ public class AdminUserDAO {
 	}
 
 	// 탈퇴
-	public int delete(int user_no) {
+	public int delete(long user_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE user SET user_del = 1 WHERE user_no=?";
@@ -90,7 +90,7 @@ public class AdminUserDAO {
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, user_no);
+			pstmt.setLong(1, user_no);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
@@ -166,7 +166,7 @@ public class AdminUserDAO {
 		return list;
 	}
 
-	public int accept(int user_no) {
+	public int accept(long user_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE user SET user_status = 1 WHERE user_no=?";
@@ -174,7 +174,7 @@ public class AdminUserDAO {
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, user_no);
+			pstmt.setLong(1, user_no);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
@@ -183,7 +183,7 @@ public class AdminUserDAO {
 		return result;
 	}
 
-	public int drop(int user_no) {
+	public int drop(long user_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "DELETE FROM user WHERE user_no=?";
@@ -191,7 +191,7 @@ public class AdminUserDAO {
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, user_no);
+			pstmt.setLong(1, user_no);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
@@ -200,7 +200,7 @@ public class AdminUserDAO {
 		return result;
 	}
 
-	public int blackList(int user_no) {
+	public int blackList(long user_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE user SET user_status = -1 WHERE user_no=?";
@@ -208,7 +208,7 @@ public class AdminUserDAO {
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, user_no);
+			pstmt.setLong(1, user_no);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
@@ -295,7 +295,7 @@ public class AdminUserDAO {
 		return list;
 	}
 
-	public int recovery(int user_no) {
+	public int recovery(long user_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE user SET user_del = 0 WHERE user_no=?";
@@ -303,7 +303,7 @@ public class AdminUserDAO {
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, user_no);
+			pstmt.setLong(1, user_no);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {

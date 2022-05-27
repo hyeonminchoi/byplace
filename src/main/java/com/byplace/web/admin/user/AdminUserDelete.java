@@ -27,7 +27,7 @@ public class AdminUserDelete extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
 //		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
-			int user_no = Integer.parseInt(request.getParameter("user_no"));
+		long user_no = Long.parseLong(request.getParameter("user_no"));
 			AdminUserDAO adminUserDAO = new AdminUserDAO();
 			int result = adminUserDAO.delete(user_no);
 			if(result==1) { //탈퇴 성공
