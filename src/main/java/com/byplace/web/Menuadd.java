@@ -35,6 +35,8 @@ public class Menuadd extends HttpServlet {
 			dto.setFood_description(request.getParameter("food_description"));
 			dto.setFood_price(Integer.parseInt(request.getParameter("food_price")));
 			dto.setFood_image(request.getParameter("food_image"));
+			RestaurantDAO dao = new RestaurantDAO();
+			
 			
 		} else {
 			
