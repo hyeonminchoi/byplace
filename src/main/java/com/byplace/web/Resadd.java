@@ -1,6 +1,7 @@
 package com.byplace.web;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.dao.RestaurantDAO;
 import com.byplace.dto.RestaurantDTO;
+import com.byplace.dto.UserDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -28,7 +30,7 @@ public class Resadd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//doGet(request, response);
 		HttpSession session = request.getSession();
-		if(session.getAttribute("user_id") != null) {
+		if(session.getAttribute("USER") != null) {
 			String url = session.getServletContext().getRealPath("/restaurantImage");
 			System.out.println(url);
 			MultipartRequest mr = new MultipartRequest(
@@ -53,7 +55,7 @@ public class Resadd extends HttpServlet {
 			dto.setRestaurant_extraAddress(restaurant_extraAddress);
 			dto.setCategory_category(category_category);
 			dto.setRestaurant_image(restaurant_image);
-			dto.setUser_id((String)session.getAttribute("user_id"));
+			dto.setUser_id(((UserDTO)session.getAttribute("USER")).getUser_id());
 			
 			RestaurantDAO dao = new RestaurantDAO();
 			dao.restboard(dto);
