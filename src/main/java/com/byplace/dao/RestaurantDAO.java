@@ -77,5 +77,39 @@ public class RestaurantDAO {
 		}
 		return reslist;
 	}
+
+	public RestaurantDTO resdetail(int restaurant_no) {
+		RestaurantDTO dto = new RestaurantDTO();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM restaurant WHERE restaurant_no=?";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, restaurant_no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dto.setRestaurant_name(rs.getString("restaurant_name"));
+				dto.setRestaurant_image(rs.getString("restaurant_image"));
+				dto.setRestaurant_description(rs.getString("restaurant_description"));
+				dto.setRestaurant_postcode(rs.getString("restaurant_postcode"));
+				dto.setRestaurant_roadAddress(rs.getString("restaurant_roadAddress"));
+				dto.setRestaurant_detailAddress(rs.getString("restaurant_detailAddress"));
+				dto.setRestaurant_extraAddress(rs.getString("restaurant_extraAddress"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	}
 	
 }

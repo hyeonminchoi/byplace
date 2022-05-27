@@ -47,7 +47,7 @@ function check() {
 	<div id="loginForm">
 	<h1>Login</h1>
 		<hr>
-		<form action="login" method="post">
+		<form action="./login" method="post">
 			<div>
 			아이디:<input type="text" name="id" placeholder="ID를 입력하세요." required="required"><br>
 			</div>
