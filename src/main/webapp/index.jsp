@@ -47,7 +47,6 @@ img{
 	<%@include file="./menu.jsp" %>
 <!-- 탭 메뉴 상단 시작 -->
 	<%@include file="./tabmenu.jsp" %>
-	<a href="./restaurantadd.jsp">음식점만들기</a>
 	
 	<button type="button" onclick="showDialog()">개인정보</button>
 
