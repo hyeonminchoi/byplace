@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.byplace.db.DBConnection;
+import com.byplace.dto.CategoryDTO;
 import com.byplace.dto.RestaurantDTO;
 
 public class RestaurantDAO {
@@ -111,6 +112,37 @@ public class RestaurantDAO {
 			}
 		}
 		return dto;
+	}
+
+	public List<CategoryDTO> categorylist() {
+		List<CategoryDTO> catelist = new ArrayList<CategoryDTO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM category";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				CategoryDTO dto = new CategoryDTO();
+				dto.setCategory_category(rs.getString("category_category"));
+				catelist.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt !=null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return catelist;
 	}
 	
 }

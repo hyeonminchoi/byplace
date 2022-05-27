@@ -101,6 +101,7 @@ public class UserDAO {
 		
 		return result;
 	}
+	
 	public UserDTO userInfo(UserDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -252,9 +253,9 @@ public class UserDAO {
 		}
 		return result;
 	}
-	
+	//비밀번호 변경
 	public int changePw(long user_no, String password) {
-		Connection con;
+		Connection con = null;
 		int result = 0;
 		
 		try {
@@ -270,4 +271,26 @@ public class UserDAO {
 		}
 		return result;
 	}
+
+	public int passwordCheck(long user_no, String password) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM user WHERE user_no = ? AND user_password=?";
+		int result = 0;
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, user_no);
+			pstmt.setString(2, encrypt(password));
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = 1;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 }

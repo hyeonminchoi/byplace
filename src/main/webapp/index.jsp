@@ -47,5 +47,28 @@ img{
 	<%@include file="./menu.jsp" %>
 <!-- 탭 메뉴 상단 시작 -->
 	<%@include file="./tabmenu.jsp" %>
+	
+	<button type="button" onclick="showDialog()">개인정보</button>
+
+	<c:if test="${not empty sessionScope.USER }">
+		<dialog id="dialog">
+			<form action="./userInfo" method="post">
+				<label>비밀번호 입력</label>
+				<input type="hidden" name="user_no" value=${sessionScope.USER.user_no }>
+				<input type="password" name="password">
+				<button type="submit">인증</button>
+				<button type="button" onclick="hideDialog()">닫기</button>
+			</form>
+		</dialog>
+	</c:if>
+<script type="text/javascript">
+	var dialog = document.getElementById("dialog");
+	function showDialog(){
+		dialog.showModal();
+	}
+	function hideDialog(){
+		dialog.close();
+	}
+</script>
 </body>
 </html>
