@@ -27,7 +27,11 @@ public class Resadd extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		RestaurantDAO dao = new RestaurantDAO();
+		List<CategoryDTO> categorylist = dao.categorylist();
+		RequestDispatcher rd = request.getRequestDispatcher("./restaurantadd.jsp");
+		request.setAttribute("catelist",categorylist);
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
