@@ -7,29 +7,44 @@
 	padding: 0;
 	box-sizing: border-box;
 	text-align: center;
+	border: 2px;
 }
 
+#ta{
+	text-align: left;
+	width : 50px;
+}
+label{
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+	
+}
+input, select{
+	width: 200px;
+}
 #joinBtn{
 	
 	width: 80px;
     padding: 10px 0 10px;
     border: 0;
-    color: #8e3db0;
+    color: black;
     background-color: #76cdff;
     font-size: 20px;
     font-weight: 400;
 }
 
 #joinID{
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	margin-top: 50px;
+	
 }
 #joinPW{
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 #joinname{
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 #joinAD{
@@ -40,11 +55,14 @@
 	
 	margin-bottom: 50px;
 }
-#table{
-	
-  border-collapse: collapse;
-  line-height: 1.5;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  margin: 20px 10px;
+#postcodeBtn{
+	width: 100px;
 }
+#table{
+  border-collapse: collapse;
+  line-height: 2;
+  border: 2px solid #ccc;
+  margin: 20px 10px;
+  border-radius: 15px;
+}
+

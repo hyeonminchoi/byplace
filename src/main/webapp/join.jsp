@@ -156,9 +156,9 @@ function nicknameCheck(){
 					<input type="email" name="email" placeholder="이메일을 입력하세요." class="form-control" required="required">
 				</div>
 				<div id="joinAD">
-					<label>주소</label>
+					<label id="ta">주소</label>
 					<input type="text" name="postcode" id="postcode" placeholder="우편번호" required="required">
-					<input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
+					<input id="postcodeBtn" type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
 					<input type="text" name="roadAddress" id="roadAddress" placeholder="도로명주소" required="required"><br>
 					<input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" required="required"><br>
 					<input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" required="required">
