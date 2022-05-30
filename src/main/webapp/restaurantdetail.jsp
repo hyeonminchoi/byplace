@@ -63,7 +63,26 @@
 			<!-- 탭 메뉴 상단 끝 -->
 			<!-- 탭 메뉴 내용 시작 -->
 			<div id="tab-1" class="tab-content current">
-			
+			<c:if test="${sessionScope.USER ne null }">
+			<form action="./menuadd" method="post" name="menuadd" enctype="multipart/form-data">
+			<label>음식 이름</label>
+			<input type="text" id="food_name" placeholder="음식 이름을 입력하시오." name="food_name" required="required"><br>
+			<label>음식 설명</label>
+			<input type="text" id="food_description" placeholder="음식 설명을 입력하시오." name="food_description" required="required"><br>
+			<label>음식 가격</label>
+			<input type="text" id="food_price" placeholder="음식 가격을 입력하시오." name="food_price" required="required"><br>
+			<label>음식 사진</label>
+			<input type="file" name="food_image" id="food_image" accept="image/*" required="required"><br>
+			<input type="hidden" name="restaurant_no" value="${menu.restaurant_no }">
+			<button>확인</button>
+			</form>
+			<button name="cancel" id="cancel">취소</button>
+			</c:if>
+			<c:forEach items="${menulist }" var="m">
+				${m.food_image } ${m.food_name } <br>
+				${m.food_price } <br>
+				${m.food_description } 
+			</c:forEach>
 			</div>
 			<div id="tab-2" class="tab-content">
 				<div id="map" style="width:100%;height:350px;"></div>

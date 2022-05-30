@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.byplace.db.DBConnection;
 import com.byplace.dto.CategoryDTO;
+import com.byplace.dto.FoodDTO;
 import com.byplace.dto.RestaurantDTO;
 
 public class RestaurantDAO {
@@ -143,6 +144,67 @@ public class RestaurantDAO {
 		
 		
 		return catelist;
+	}
+
+	public void menuadd(FoodDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO food (restaurant_no, food_name, food_price, food_image, food_description, user_no) VALUES (? ,?, ?, ?, ?, (SELECT user_no FROM user WHERE user_id=?))";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, dto.getRestaurant_no());
+			pstmt.setString(2, dto.getFood_name());
+			pstmt.setInt(3, dto.getFood_price());
+			pstmt.setString(4, dto.getFood_image());
+			pstmt.setString(5, dto.getFood_description());
+			pstmt.setString(6, dto.getUser_id());
+			
+			pstmt.execute();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	public List<FoodDTO> menulist() {
+		List<FoodDTO> list = new ArrayList<FoodDTO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM food";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				FoodDTO dto = new FoodDTO();
+				dto.setFood_name(rs.getString("food_name"));
+				dto.setFood_description(rs.getString("food_description"));
+				dto.setFood_price(rs.getInt("food_price"));
+				dto.setFood_image(rs.getString("food_image"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 	
 }
