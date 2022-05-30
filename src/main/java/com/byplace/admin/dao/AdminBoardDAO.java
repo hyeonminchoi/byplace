@@ -3,6 +3,7 @@ package com.byplace.admin.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +14,14 @@ import com.byplace.db.DBConnection;
 import com.byplace.dto.BoardDTO;
 
 public class AdminBoardDAO {
-	public void close(ResultSet rs, PreparedStatement pstmt) {
+	public void close(ResultSet rs, PreparedStatement pstmt, Connection con) {
 		try {
 			if (rs != null)
 				rs.close();
 			if (pstmt != null)
 				pstmt.close();
+			if(con!=null)
+				con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -55,7 +58,7 @@ public class AdminBoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rs, pstmt);
+			close(rs, pstmt, con);
 		}
 		return list;
 	}
@@ -73,7 +76,7 @@ public class AdminBoardDAO {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
-			close(null, pstmt);
+			close(null, pstmt, con);
 		}
 		return result;
 	}
@@ -92,7 +95,7 @@ public class AdminBoardDAO {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
-			close(null, pstmt);
+			close(null, pstmt, con);
 		}
 		return result;
 	}
@@ -109,7 +112,7 @@ public class AdminBoardDAO {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
-			close(null, pstmt);
+			close(null, pstmt, con);
 		}
 		return result;
 	}
@@ -131,7 +134,7 @@ public class AdminBoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rs, pstmt);
+			close(rs, pstmt, con);
 		}
 		return 0;
 	}
@@ -153,7 +156,7 @@ public class AdminBoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rs, pstmt);
+			close(rs, pstmt, con);
 		}
 		return 0;
 	}
@@ -171,7 +174,7 @@ public class AdminBoardDAO {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
-			close(null, pstmt);
+			close(null, pstmt, con);
 		}
 		return result;
 	}
@@ -207,7 +210,7 @@ public class AdminBoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rs, pstmt);
+			close(rs, pstmt, con);
 		}
 		return list;
 	}
@@ -225,7 +228,7 @@ public class AdminBoardDAO {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
-			close(null, pstmt);
+			close(null, pstmt, con);
 		}
 		return result;
 	}
