@@ -37,7 +37,7 @@ public class Menuadd extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("user_id") != null
+		if(session.getAttribute("USER") != null
 				&& request.getParameter("restaurant_no") != null
 				&& Util.str2Int(request.getParameter("restaurant_no"))) {
 			String url = session.getServletContext().getRealPath("/restaurantImage");
