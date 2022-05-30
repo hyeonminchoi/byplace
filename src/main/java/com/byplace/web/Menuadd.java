@@ -27,38 +27,31 @@ public class Menuadd extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RestaurantDAO dao = new RestaurantDAO();
-		List<FoodDTO> menulist = dao.menulist();
-		RequestDispatcher rd = request.getRequestDispatcher("./restaurantdetail.jsp");
-		request.setAttribute("menulist", menulist);
-		rd.forward(request, response);
-		
+		response.sendRedirect("./index.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("USER") != null
-				&& request.getParameter("restaurant_no") != null
-				&& Util.str2Int(request.getParameter("restaurant_no"))) {
-			String url = session.getServletContext().getRealPath("/restaurantImage");
-			System.out.println(url);
+		if(session.getAttribute("USER") != null) {
+			String url = session.getServletContext().getRealPath("/menuImage");
 			MultipartRequest mr = new MultipartRequest(
 					request, url, 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 			
-			String food_name = mr.getFilesystemName("food_name");
-			String food_description = mr.getFilesystemName("food_description");
+			String food_name = mr.getParameter("food_name");
+			String food_description = mr.getParameter("food_description");
 			String food_image = mr.getFilesystemName("food_image");
-			
+			Long restaurant_no = Long.parseLong(mr.getParameter("restaurant_no"));
 			FoodDTO dto = new FoodDTO();
+			dto.setRestaurant_no(restaurant_no);
 			dto.setFood_name(food_name);
 			dto.setFood_description(food_description);
-			dto.setFood_price(Integer.parseInt(request.getParameter("food_price")));
+			dto.setFood_price(Integer.parseInt(mr.getParameter("food_price")));
 			dto.setFood_image(food_image);
 			dto.setUser_id(((UserDTO)session.getAttribute("USER")).getUser_id());
 			RestaurantDAO dao = new RestaurantDAO();
 			dao.menuadd(dto);
 			
-			response.sendRedirect("./index.jsp");
+			response.sendRedirect("./restaurantdetail?restaurant_no=" + restaurant_no);
 		} else {
 			response.sendRedirect("./login.jsp");
 		}
