@@ -47,16 +47,6 @@
 			</li>
 			<li>
 				<div class="iocn-link">
-					<a href="#"> <span class="link_name">대표메뉴관리</span>
-					</a> <i class='bx bxs-chevron-down arrow'></i>
-				</div>
-				<ul class="sub-menu">
-					<li><a class="link_name" href="#">대표메뉴관리</a></li>
-					<li><a href="#">대표메뉴보기</a></li>
-				</ul>
-			</li>
-			<li>
-				<div class="iocn-link">
 					<a href="#"> <span class="link_name">리뷰관리</span>
 					</a> <i class='bx bxs-chevron-down arrow'></i>
 				</div>

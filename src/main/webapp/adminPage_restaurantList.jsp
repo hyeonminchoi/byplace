@@ -44,6 +44,10 @@
 		width: 300px;
 		height: auto;
 	}
+	textarea{
+		width: 100%;
+		height: 300px;
+	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -79,7 +83,7 @@ function changed(){
 				var restaurant = JSON.stringify(restaurantList[i]);
 				temp += "<tr>";
 				temp += "	<td>" + restaurantList[i].restaurant_no + "</td>";
-				temp += "	<td>" + restaurantList[i].restaurant_name + "</td>";
+				temp += "	<td><a href='./adminPage_foodList?restaurant_no=" + restaurantList[i].restaurant_no + "'>" + restaurantList[i].restaurant_name + "</a></td>";
 				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantDescription(\'" + restaurantList[i].restaurant_description + "\')\">설명보기</button>" + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_roadAddress + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_detailAddress + "</td>";
@@ -224,7 +228,7 @@ window.onload = function(){
 
 <dialog id="restaurantDescriptionDialog">
 	<div>
-		<textarea id="description"></textarea>
+		<textarea id="description" readonly="readonly"></textarea>
 	</div>
 	<button type="button" onclick="hideRestaurantDescription()">닫기</button>
 </dialog>
