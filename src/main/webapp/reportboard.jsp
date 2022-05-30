@@ -32,7 +32,7 @@ td {
 					<td>${i.reportboard_no }</td>
 					<c:choose>
 						<c:when test="${sessionScope.USER.user_type eq '관리자' or sessionScope.USER.user_no eq i.user_no }">
-							<td id="tleft"><a href="./reportdetail?reportboard_no=${i.reportboard_no }">${i.reportboard_title  }
+							<td id="tleft"><a href="./reportdetail?reportboard_no=${i.reportboard_no }&user_no=${i.user_no}">${i.reportboard_title  }
 									<c:if test="${i.reportboard_commentcount gt 0 }">
 										<small>${i.reportboard_commentcount }</small>
 									</c:if>
