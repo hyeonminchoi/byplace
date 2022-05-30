@@ -8,21 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.byplace.db.DBConnection;
-import com.byplace.dto.BoardDTO;
-import com.byplace.dto.BoardcommentDTO;
+
+import com.byplace.dto.ReportboardDTO;
+import com.byplace.dto.ReportboardcommentDTO;
 
 
 
 
 
 
-public class BoardDAO {
-	public List<BoardDTO> boardList(int pageNo) {
-		List<BoardDTO> list = new ArrayList<BoardDTO>();
+public class ReportBoardDAO {
+	public List<ReportboardDTO> ReportboardList(int pageNo) {
+		List<ReportboardDTO> list = new ArrayList<ReportboardDTO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM boardview LIMIT ?, 10";
+		String sql = "SELECT * FROM reportboardview LIMIT ?, 10";
 
 		try {
 			con = DBConnection.dbConn();
@@ -30,14 +31,14 @@ public class BoardDAO {
 			pstmt.setInt(1, pageNo);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				BoardDTO dto = new BoardDTO();
-				dto.setBoard_no(rs.getLong("board_no"));
-				dto.setBoard_title(rs.getString("board_title"));
-				dto.setBoard_comment(rs.getString("board_comment"));
-				dto.setBoard_commentcount(rs.getInt("board_commentcount"));
-				dto.setBoard_date(rs.getString("board_date"));
-				dto.setBoard_del(rs.getInt("board_del"));
-				dto.setBoard_count(rs.getInt("board_count"));
+				ReportboardDTO dto = new ReportboardDTO();
+				dto.setReportboard_no(rs.getLong("reportboard_no"));
+				dto.setReportboard_title(rs.getString("reportboard_title"));
+				dto.setReportboard_comment(rs.getString("reportboard_comment"));
+				dto.setReportboard_commentcount(rs.getInt("reportboard_commentcount"));
+				dto.setReportboard_date(rs.getString("reportboard_date"));
+				dto.setReportboard_del(rs.getInt("reportboard_del"));
+				dto.setReportboard_count(rs.getInt("reportboard_count"));
 				dto.setTotalcount(rs.getInt("totalcount"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setUser_no(rs.getLong("user_no"));
@@ -63,17 +64,17 @@ public class BoardDAO {
 		return list;
 	}
 
-	public void boardwrite(BoardDTO dto) {
+	public void Reportboardwrite(ReportboardDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO board (board_title, board_comment, user_no) "
+		String sql = "INSERT INTO reportboard (reportboard_title, reportboard_comment, user_no) "
 				+ "VALUES (?, ?, (SELECT user_no FROM user WHERE user_no=?))";
 
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getBoard_title());
-			pstmt.setString(2, dto.getBoard_comment());
+			pstmt.setString(1, dto.getReportboard_title());
+			pstmt.setString(2, dto.getReportboard_comment());
 			pstmt.setLong(3, dto.getUser_no());
 			pstmt.execute();
 
@@ -90,15 +91,15 @@ public class BoardDAO {
 		}
 	}
 
-	public void countUp(long board_no) {
+	public void ReportcountUp(long reportboard_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE board SET board_count=board_count + 1 WHERE board_no=?";
+		String sql = "UPDATE reportboard SET reportboard_count=reportboard_count + 1 WHERE reportboard_no=?";
 		
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, board_no);
+			pstmt.setLong(1, reportboard_no);
 			pstmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -113,30 +114,30 @@ public class BoardDAO {
 	
 	}
 
-	public BoardDTO detail(long board_no) {
-		BoardDTO dto = new BoardDTO();
+	public ReportboardDTO Reportdetail(long reportboard_no) {
+		ReportboardDTO dto = new ReportboardDTO();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM boardview WHERE board_no=?";
+		String sql = "SELECT * FROM reportboardview WHERE reportboard_no=?";
 
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, board_no);
+			pstmt.setLong(1, reportboard_no);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				dto.setBoard_no(rs.getLong("board_no"));
-				dto.setBoard_title(rs.getString("board_title"));
-				dto.setBoard_comment(rs.getString("board_comment"));
-				dto.setBoard_date(rs.getString("board_date"));
-				dto.setBoard_del(rs.getInt("board_del"));
-				dto.setBoard_count(rs.getInt("board_count"));
+				dto.setReportboard_no(rs.getLong("reportboard_no"));
+				dto.setReportboard_title(rs.getString("reportboard_title"));
+				dto.setReportboard_comment(rs.getString("reportboard_comment"));
+				dto.setReportboard_date(rs.getString("reportboard_date"));
+				dto.setReportboard_del(rs.getInt("reportboard_del"));
+				dto.setReportboard_count(rs.getInt("reportboard_count"));
 				dto.setUser_no(rs.getLong("user_no"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setUser_name(rs.getString("user_name"));
-				dto.setBoard_commentcount(rs.getInt("board_commentcount"));
+				dto.setReportboard_commentcount(rs.getInt("reportboard_commentcount"));
 			}
 
 		} catch (Exception e) {
@@ -157,27 +158,27 @@ public class BoardDAO {
 		return dto;
 	}
 
-	public List<BoardcommentDTO> commentList(long board_no) {
-		List<BoardcommentDTO> list = new ArrayList<BoardcommentDTO>();
+	public List<ReportboardcommentDTO> reportcommentList(long reportboard_no) {
+		List<ReportboardcommentDTO> list = new ArrayList<ReportboardcommentDTO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM boardcommentview WHERE board_no=?";
+		String sql = "SELECT * FROM reportboardcommentview WHERE reportboard_no=?";
 		
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, board_no);
+			pstmt.setLong(1, reportboard_no);
 			rs = pstmt.executeQuery();
 			
 			
 			while(rs.next()) {
-				BoardcommentDTO dto = new BoardcommentDTO();
-				dto.setBoardcomment_no(rs.getLong("boardcomment_no"));
-				dto.setBoard_no(rs.getInt("board_no"));
-				dto.setBoardcomment_comment(rs.getString("boardcomment_comment"));
+				ReportboardcommentDTO dto = new ReportboardcommentDTO();
+				dto.setReportboardcomment_no(rs.getLong("reportboardcomment_no"));
+				dto.setReportboard_no(rs.getInt("reportboard_no"));
+				dto.setReportboardcomment_comment(rs.getString("reportboardcomment_comment"));
 				dto.setUser_no(rs.getLong("user_no"));
-				dto.setBoardcomment_date(rs.getString("boardcomment_date"));
+				dto.setReportboardcomment_date(rs.getString("reportboardcomment_date"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setUser_name(rs.getString("user_name"));
 				
@@ -191,17 +192,17 @@ public class BoardDAO {
 		return list;
 	}
 	
-	public void update(BoardDTO dto) {
+	public void Reportupdate(ReportboardDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE board SET board_title=?, board_comment=? " + "WHERE board_no=? AND user_no=("
+		String sql = "UPDATE reportboard SET reportboard_title=?, reportboard_comment=? " + "WHERE reportboard_no=? AND user_no=("
 				+ "SELECT user_no FROM user WHERE user_id=?)";
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getBoard_title());
-			pstmt.setString(2, dto.getBoard_comment());
-			pstmt.setLong(3, dto.getBoard_no());
+			pstmt.setString(1, dto.getReportboard_title());
+			pstmt.setString(2, dto.getReportboard_comment());
+			pstmt.setLong(3, dto.getReportboard_no());
 			pstmt.setString(4, dto.getUser_id());
 
 			pstmt.execute();
@@ -217,22 +218,22 @@ public class BoardDAO {
 
 	}
 
-	public BoardcommentDTO commentDetail(BoardcommentDTO dto) {
+	public ReportboardcommentDTO ReportcommentDetail(ReportboardcommentDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM boardcommentview WHERE boardcomment_no=?";
+		String sql = "SELECT * FROM reportboardcommentview WHERE reportboardcomment_no=?";
 		
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, dto.getBoardcomment_no());
+			pstmt.setLong(1, dto.getReportboardcomment_no());
 			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				dto.setBoardcomment_comment(rs.getString("boardcomment_comment"));
-				dto.setBoardcomment_date(rs.getString("boardcomment_date"));
+				dto.setReportboardcomment_comment(rs.getString("reportboardcomment_comment"));
+				dto.setReportboardcomment_date(rs.getString("reportboardcomment_date"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setUser_name(rs.getString("user_name"));
 			}
@@ -243,17 +244,17 @@ public class BoardDAO {
 		return dto;
 	}
 
-	public void commentUpdate(BoardcommentDTO dto) {
+	public void ReportcommentUpdate(ReportboardcommentDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE boardcomment SET boardcomment_comment=? WHERE boardcomment_no=? "
+		String sql = "UPDATE reportboardcomment SET reportboardcomment_comment=? WHERE reportboardcomment_no=? "
 				+ "AND user_no=(SELECT user_no FROM user WHERE user_id=?)";
 		
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getBoardcomment_comment());
-			pstmt.setLong(2, dto.getBoardcomment_no());
+			pstmt.setString(1, dto.getReportboardcomment_comment());
+			pstmt.setLong(2, dto.getReportboardcomment_no());
 			pstmt.setString(3, dto.getUser_id());
 			
 			pstmt.execute();
@@ -265,16 +266,16 @@ public class BoardDAO {
 		
 	}
 
-	public void cdel(BoardcommentDTO dto) {
+	public void Reportcdel(ReportboardcommentDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE boardcomment SET boardcomment_del=1 "
-				+ "WHERE boardcomment_no=? AND user_no="
+		String sql = "UPDATE reportboardcomment SET reportboardcomment_del=1 "
+				+ "WHERE reportboardcomment_no=? AND user_no="
 				+ "(SELECT user_no FROM user WHERE user_id=?)";
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, dto.getBoardcomment_no());//물음표에  
+			pstmt.setLong(1, dto.getReportboardcomment_no());//물음표에  
 			pstmt.setString(2, dto.getUser_id());
 			
 			pstmt.execute();
@@ -286,16 +287,16 @@ public class BoardDAO {
 		
 	}
 
-	public void postDel(BoardDTO dto) {
+	public void ReportpostDel(ReportboardDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE board SET board_del=1 " + "WHERE board_no=? AND user_no="
+		String sql = "UPDATE reportboard SET reportboard_del=1 " + "WHERE reportboard_no=? AND user_no="
 				+ "(SELECT user_no FROM user WHERE user_id=?)";
 
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, dto.getBoard_no());
+			pstmt.setLong(1, dto.getReportboard_no());
 			pstmt.setString(2, dto.getUser_id());
 			pstmt.execute();
 		} catch (Exception e) {
@@ -312,17 +313,17 @@ public class BoardDAO {
 
 	}
 
-	public void commentWrite(BoardcommentDTO dto) {
+	public void ReportcommentWrite(ReportboardcommentDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO boardcomment (board_no, boardcomment_comment, user_no) "
+		String sql = "INSERT INTO reportboardcomment (reportboard_no, reportboardcomment_comment, user_no) "
 				+ "VALUES (?, ?, (SELECT user_no FROM user WHERE user_id=?))";
 		
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, dto.getBoard_no());
-			pstmt.setString(2, dto.getBoardcomment_comment());
+			pstmt.setLong(1, dto.getReportboard_no());
+			pstmt.setString(2, dto.getReportboardcomment_comment());
 			pstmt.setString(3, dto.getUser_id());
 			
 			pstmt.execute();
@@ -333,6 +334,7 @@ public class BoardDAO {
 		
 		
 	}
+
 
 
 	
