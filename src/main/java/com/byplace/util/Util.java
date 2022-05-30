@@ -3,7 +3,7 @@ package com.byplace.util;
 public class Util {
 	public static boolean str2Int(String str) {
 		try {
-			Integer.parseInt(str);
+			Long.parseLong(str);
 			return true;
 		} catch (Exception e) {
 			return false;
