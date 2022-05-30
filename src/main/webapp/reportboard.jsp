@@ -18,7 +18,22 @@ td {
 </style>
 </head>
 <body>
-	<div id="main">
+<div id="main">
+		<div id="side">
+			<div id="menu">
+				<table align="left">
+					<tr>
+						<td><a href="./notice">공지사항</a></td>
+						<td><a href="./board">자유게시판</a></td>
+						<td><a href="./reportboard">신고게시판</a></td>
+					</tr>
+				</table>
+			</div>
+			<div>
+			
+			</div>
+		</div>
+	<div id="board">
 		<h1>신고자 게시판</h1>
 		<table>
 			<tr>
@@ -56,6 +71,6 @@ td {
 			<button type="button" onclick="location.href='./reportboardWrite'">글쓰기</button>
 		</c:if>
 	</div>
-
+	</div>
 </body>
 </html>

@@ -27,6 +27,9 @@ td{
 tr:hover{
 	background-color: #c1c1c1;
 }
+h1 {
+	text-align: center;
+}
 #col1{
 	width: 10%;
 }
@@ -48,6 +51,21 @@ a:visited, a:link {
 <body>
 	<%@include file="./menu.jsp"%>
 	<div id="main">
+		<div id="side">
+			<div id="menu">
+				<table align="left">
+					<tr>
+						<td><a href="./notice">공지사항</a></td>
+						<td><a href="./board">자유게시판</a></td>
+						<td><a href="./reportboard">신고게시판</a></td>
+					</tr>
+				</table>
+			</div>
+			<div>
+			
+			</div>
+		</div>
+	<div id="board">
 		<h1>공지사항</h1>
 		<table>
 			<tr>
@@ -72,7 +90,7 @@ a:visited, a:link {
 		<c:if test="${sessionScope.USER ne null && sessionScope.USER.user_type eq '관리자' }">
 			<button onclick="location.href='./noticeWrite.jsp'">글쓰기</button>
 		</c:if>
-		
+	</div>	
 	</div>
 </body>
 </html>
