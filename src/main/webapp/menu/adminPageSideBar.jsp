@@ -72,7 +72,8 @@
 				</div>
 				<ul class="sub-menu">
 					<li><a class="link_name" href="#">자유게시판관리</a></li>
-					<li><a href="#">자유게시판보기</a></li>
+					<li><a href="./adminPage_boardList">게시물보기</a></li>
+					<li><a href="./adminPage_boardRecoveryList">게시물복구</a></li>
 				</ul>
 			</li>
 			<li>

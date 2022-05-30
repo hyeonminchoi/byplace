@@ -48,13 +48,30 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	var urlSearch = new URLSearchParams(location.search);
+	urlSearch.set("pg", ${pg});
+	newUrl = location.pathname + '?' +urlSearch
+	history.pushState(null, null, newUrl);
+});
+function search(){
+	var searchColumn = $("#searchColumn").val();
+	var searchValue = $("#searchValue").val();
+	var urlSearch = new URLSearchParams(location.search);
+	urlSearch.set("pg", "1");
+	urlSearch.set("searchColumn", searchColumn);
+	urlSearch.set("searchValue", searchValue);
+	location.href="./adminPage_restaurantList?" + urlSearch;
+}
 function changed(){
 	var sort = $("#restaurant_sort").val();
+	var searchColumn = new URLSearchParams(location.search).get("searchColumn");
+	var searchValue = new URLSearchParams(location.search).get("searchValue");
 	$.ajax({
 		url: "./adminPage_restaurantList_JSON",
 		type: "GET",
 		dataType: "json",
-		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}},
+		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}, "searchColumn":searchColumn, "searchValue": searchValue},
 		success: function(restaurantList){
 			$("#restaurant_body").empty();
 			var temp = "";
@@ -68,7 +85,7 @@ function changed(){
 				temp += "	<td>" + restaurantList[i].restaurant_detailAddress + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_extraAddress + "</td>";
 				temp += "	<td>" + restaurantList[i].category_category + "</td>";
-				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantImage(\'" + restaurantList[i].restaurant_image + "\')\">사진보기</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantImage(" + restaurantList[i].restaurant_no + ",\'" + restaurantList[i].restaurant_image + "\')\">사진보기</button>" + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_joined + "</td>";
 				temp += "	<td>" + restaurantList[i].user_id + "</td>";
 				if(restaurantList[i].restaurant_del == 0){
@@ -84,6 +101,11 @@ function changed(){
 			}
 			$("#restaurant_body").append(temp);
 			$("#restaurant_sort").val(sort).prop("selected",true);
+			$("#searchValue").val(searchValue);
+			if(searchColumn != null)
+				$("#searchColumn").val(searchColumn).prop("selected",true);
+			else
+				$("#searchColumn option:eq(0)").prop("selected",true);
 		},
 		error: function(){
 			alert("서버가 동작하지 않습니다.");
@@ -148,13 +170,21 @@ window.onload = function(){
 				</tbody>
 			</table>
 			<my:pagination pageSize="${pageSize}" recordCount="${recordCount}" queryStringName="pg" />
+			<div class="search">
+				<select id="searchColumn">
+					<option value="restaurant_name" ${searchColumn eq 'restaurant_name' ? 'selected' : ''}>음식점 이름</option>
+					<option value="category_category" ${searchColumn eq 'category_category' ? 'selected' : ''}>카테고리</option>
+				</select>
+				<input type="text" id="searchValue">
+				<button type="button" onclick="search()">검색</button>
+			</div>
 		</div>
 	</section>
 
 <dialog id="restaurantEditDialog">
 	<div>
 		<h1>음식점 정보 수정</h1>
-		<form action="./adminRestaurantEdit" method="post" enctype="multipart/form-data">
+		<form action="./adminRestaurantEdit" method="post">
  			<div>
  				<label>no</label>
  				<input type="number" name="restaurant_no" id="restaurant_no" readonly="readonly">
@@ -185,10 +215,6 @@ window.onload = function(){
 				</select>
 			</div>
 			<div>
-				<label>이미지</label>
-				<input type="file" id="restaurant_image" name="restaurant_image">
-			</div>
-			<div>
 				<button type="submit">수정</button>
 				<button type="button" onclick="hideRestaurantEditDialog()">취소</button>
 			</div>
@@ -207,11 +233,22 @@ window.onload = function(){
 	<div>
 		<img id="image" alt="로딩 실패">
 	</div>
+	<button type="button" onclick="showRestaurantImageEdit()">수정</button>
 	<button type="button" onclick="hideRestaurantImage()">닫기</button>
 </dialog>
 
-<script>
+<dialog id="restaurantImageEditDialog">
+	<form action="./adminRestaurantImageEdit" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="restaurant_no" id="no">
+		<div>
+			<input type="file" name="restaurant_image">
+		</div>
+		<button type="submit">변경</button>
+		<button type="button" onclick="hideRestaurantImageEdit()">닫기</button>
+	</form>
+</dialog>
 
+<script>
 	function deleteRestaurant(no){
 		if(confirm("삭제하겠습니까?")){
 			location.href='./adminRestaurantDelete?restaurant_no=' + no;
@@ -231,13 +268,23 @@ window.onload = function(){
 	}
 	
 	var restaurantImageDialog = document.getElementById("restaurantImageDialog");
-	function showRestaurantImage(image){
+	function showRestaurantImage(no, image){
+		$("#no").attr("value", no);
 		$("#image").attr("src", "./restaurantImage/" + image);
 		restaurantImageDialog.showModal();
 	}
 	
 	function hideRestaurantImage(){
 		restaurantImageDialog.close();		
+	}
+	
+	var restaurantImageEditDialog = document.getElementById("restaurantImageEditDialog");
+	function showRestaurantImageEdit(){
+		restaurantImageEditDialog.showModal();
+	}
+	
+	function hideRestaurantImageEdit(){
+		restaurantImageEditDialog.close();		
 	}
 	
 	var restaurantEditDialog = document.getElementById("restaurantEditDialog");

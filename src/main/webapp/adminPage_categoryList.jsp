@@ -38,19 +38,34 @@
 		padding: 5px;
 		width: 80px;
 		height: auto;
-		
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-
+$(document).ready(function(){
+	var urlSearch = new URLSearchParams(location.search);
+	urlSearch.set("pg", ${pg});
+	newUrl = location.pathname + '?' +urlSearch
+	history.pushState(null, null, newUrl);
+});
+function search(){
+	var searchColumn = $("#searchColumn").val();
+	var searchValue = $("#searchValue").val();
+	var urlSearch = new URLSearchParams(location.search);
+	urlSearch.set("pg", "1");
+	urlSearch.set("searchColumn", searchColumn);
+	urlSearch.set("searchValue", searchValue);
+	location.href="./adminPage_categoryList?" + urlSearch;
+}
 function changed(){
 	var sort = $("#category_sort").val();
+	var searchColumn = new URLSearchParams(location.search).get("searchColumn");
+	var searchValue = new URLSearchParams(location.search).get("searchValue");
 	$.ajax({
 		url: "./adminPage_categoryList_JSON",
 		type: "GET",
 		dataType: "json",
-		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}},
+		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}, "searchColumn":searchColumn, "searchValue": searchValue},
 		success: function(categoryList){
 			$("#category_body").empty();
 			var temp = "";
@@ -65,6 +80,11 @@ function changed(){
 			}
 			$("#category_body").append(temp);
 			$("#category_sort").val(sort).prop("selected",true);
+			$("#searchValue").val(searchValue);
+			if(searchColumn != null)
+				$("#searchColumn").val(searchColumn).prop("selected",true);
+			else
+				$("#searchColumn option:eq(0)").prop("selected",true);
 		},
 		error: function(){
 			alert("서버가 동작하지 않습니다.");
@@ -115,6 +135,13 @@ window.onload = function(){
 				</tbody>
 			</table>
 			<my:pagination pageSize="${pageSize}" recordCount="${recordCount}" queryStringName="pg" />
+			<div class="search">
+				<select id="searchColumn">
+					<option value="category_category" ${searchColumn eq 'category_category' ? 'selected' : ''}>카테고리</option>
+				</select>
+				<input type="text" id="searchValue">
+				<button type="button" onclick="search()">검색</button>
+			</div>
 		</div>
 	</section>
 

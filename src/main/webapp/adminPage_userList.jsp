@@ -44,6 +44,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	var urlSearch = new URLSearchParams(location.search);
+	urlSearch.set("pg", ${pg});
+	newUrl = location.pathname + '?' +urlSearch
+	history.pushState(null, null, newUrl);
+});
+function search(){
+	var searchColumn = $("#searchColumn").val();
+	var searchValue = $("#searchValue").val();
+	var urlSearch = new URLSearchParams(location.search);
+	urlSearch.set("pg", "1");
+	urlSearch.set("searchColumn", searchColumn);
+	urlSearch.set("searchValue", searchValue);
+	location.href="./adminPage_userList?" + urlSearch;
+}
 function idCheck(){
 	var id = $("#user_id").val();
 	if(id == "" || id.lenght < 4){
@@ -105,11 +120,13 @@ function nicknameCheck(){
 
 function changed(){
 	var sort = $("#user_sort").val();
+	var searchColumn = new URLSearchParams(location.search).get("searchColumn");
+	var searchValue = new URLSearchParams(location.search).get("searchValue");
 	$.ajax({
 		url: "./adminPage_userList_JSON",
 		type: "GET",
 		dataType: "json",
-		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}},
+		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}, "searchColumn":searchColumn, "searchValue": searchValue},
 		success: function(userList){
 			$("#user_body").empty();
 			var temp = "";
@@ -136,17 +153,22 @@ function changed(){
 					temp += "	<td>" + "블랙" + "</td>";
 				}
 				if(userList[i].user_del == 0){
-					temp += "	<td>" + "N" + "</td>";
+					temp += "	<td>" + "회원" + "</td>";
 				} else{
-					temp += "	<td>" + "Y" + "</td>";
+					temp += "	<td>" + "탈퇴" + "</td>";
 				}
 				temp += "	<td>" + "<button type=\"button\" onclick=\'showUserEditDialog(" + user + ")\'>수정</button>" + "</td>";
-				temp += "	<td>" + "<button type=\"button\" onclick=\"deleteUser(" + userList[i].user_no + ")\">삭제</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"deleteUser(" + userList[i].user_no + ")\">탈퇴</button>" + "</td>";
 				temp += "	<td>" + "<button type=\"button\" onclick=\"blackList(" + userList[i].user_no + ")\">블랙</button>" + "</td>";
 				temp += "</tr>";
 			}
 			$("#user_body").append(temp);
 			$("#user_sort").val(sort).prop("selected",true);
+			$("#searchValue").val(searchValue);
+			if(searchColumn != null)
+				$("#searchColumn").val(searchColumn).prop("selected",true);
+			else
+				$("#searchColumn option:eq(0)").prop("selected",true);
 		},
 		error: function(){
 			alert("서버가 동작하지 않습니다.");
@@ -201,10 +223,10 @@ window.onload = function(){
 						<th>가입일</th>
 						<th>유형</th>
 						<th>전화번호</th>
+						<th>승인</th>
 						<th>상태</th>
-						<th>탈퇴</th>
 						<th>수정</th>
-						<th>삭제</th>
+						<th>탈퇴</th>
 						<th>블랙</th>
 					</tr>
 				</thead>
@@ -213,6 +235,15 @@ window.onload = function(){
 				</tbody>
 			</table>
 			<my:pagination pageSize="${pageSize}" recordCount="${recordCount}" queryStringName="pg" />
+			<div class="search">
+				<select id="searchColumn">
+					<option value="user_id" ${searchColumn eq 'user_id' ? 'selected' : ''}>ID</option>
+					<option value="user_name" ${searchColumn eq 'user_name' ? 'selected' : ''}>이름</option>
+					<option value="user_nickname" ${searchColumn eq 'user_nickname' ? 'selected' : ''}>닉네임</option>
+				</select>
+				<input type="text" id="searchValue">
+				<button type="button" onclick="search()">검색</button>
+			</div>
 		</div>
 	</section>
 
@@ -277,7 +308,7 @@ window.onload = function(){
 <script>
 
 	function deleteUser(no){
-		if(confirm("삭제하겠습니까?")){
+		if(confirm("탈퇴하겠습니까?")){
 			location.href='./adminUserDelete?user_no=' + no;
 		} else{
 			location.href='./adminPage_userList';
@@ -286,7 +317,7 @@ window.onload = function(){
 	
 	function blackList(no){
 		if(confirm("사용자를 블랙리스트에 추가하겠습니까?")){
-			location.href='./adminBlackListAdd?user_no=' + no;
+			location.href='./adminUserBlackListAdd?user_no=' + no;
 		} else{
 			location.href='./adminPage_userList';
 		}

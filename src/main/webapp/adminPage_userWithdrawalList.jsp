@@ -44,13 +44,30 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	var urlSearch = new URLSearchParams(location.search);
+	urlSearch.set("pg", ${pg});
+	newUrl = location.pathname + '?' +urlSearch
+	history.pushState(null, null, newUrl);
+});
+function search(){
+	var searchColumn = $("#searchColumn").val();
+	var searchValue = $("#searchValue").val();
+	var urlSearch = new URLSearchParams(location.search);
+	urlSearch.set("pg", "1");
+	urlSearch.set("searchColumn", searchColumn);
+	urlSearch.set("searchValue", searchValue);
+	location.href="./adminPage_userWithdrawalList?" + urlSearch;
+}
 function changed(){
 	var sort = $("#user_sort").val();
+	var searchColumn = new URLSearchParams(location.search).get("searchColumn");
+	var searchValue = new URLSearchParams(location.search).get("searchValue");
 	$.ajax({
 		url: "./adminPage_userWithdrawalList_JSON",
 		type: "GET",
 		dataType: "json",
-		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}},
+		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}, "searchColumn":searchColumn, "searchValue": searchValue},
 		success: function(userList){
 			$("#user_body").empty();
 			var temp = "";
@@ -74,6 +91,11 @@ function changed(){
 			}
 			$("#user_body").append(temp);
 			$("#user_sort").val(sort).prop("selected",true);
+			$("#searchValue").val(searchValue);
+			if(searchColumn != null)
+				$("#searchColumn").val(searchColumn).prop("selected",true);
+			else
+				$("#searchColumn option:eq(0)").prop("selected",true);
 		},
 		error: function(){
 			alert("서버가 동작하지 않습니다.");
@@ -136,6 +158,15 @@ window.onload = function(){
 				</tbody>
 			</table>
 			<my:pagination pageSize="${pageSize}" recordCount="${recordCount}" queryStringName="pg" />
+			<div class="search">
+				<select id="searchColumn">
+					<option value="user_id" ${searchColumn eq 'user_id' ? 'selected' : ''}>ID</option>
+					<option value="user_name" ${searchColumn eq 'user_name' ? 'selected' : ''}>이름</option>
+					<option value="user_nickname" ${searchColumn eq 'user_nickname' ? 'selected' : ''}>닉네임</option>
+				</select>
+				<input type="text" id="searchValue">
+				<button type="button" onclick="search()">검색</button>
+			</div>
 		</div>
 	</section>
 

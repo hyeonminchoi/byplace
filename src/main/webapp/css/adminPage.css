@@ -253,3 +253,11 @@
     left: 0;
   }
 }
+
+.search{
+	margin: 10px auto;
+	text-align: center;
+}
+table, th, tr, td, button, input, select, h1, label{
+	font-size: 1vmin;
+}
