@@ -1,4 +1,4 @@
-package com.byplace.admin.web.restaurant;
+package com.byplace.admin.web.food;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.byplace.admin.dao.AdminRestaurantDAO;
-import com.byplace.dto.RestaurantDTO;
+import com.byplace.admin.dao.AdminFoodDAO;
+import com.byplace.dto.FoodDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet("/adminRestaurantEdit")
-public class AdminRestaurantEdit extends HttpServlet {
+@WebServlet("/adminFoodEdit")
+public class AdminFoodEdit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminRestaurantEdit() {
+    public AdminFoodEdit() {
         super();
     }
 
@@ -35,26 +35,20 @@ public class AdminRestaurantEdit extends HttpServlet {
 		HttpSession session = request.getSession();
 //		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			long restaurant_no = Long.parseLong(request.getParameter("restaurant_no"));
-			String restaurant_name = request.getParameter("restaurant_name");
-			String restaurant_description = request.getParameter("restaurant_description");
-			String restaurant_postcode = request.getParameter("restaurant_postcode");
-			String restaurant_roadAddress = request.getParameter("restaurant_roadAddress");
-			String restaurant_detailAddress = request.getParameter("restaurant_detailAddress");
-			String restaurant_extraAddress = request.getParameter("restaurant_extraAddress");
-			String category_category = request.getParameter("category_category");
+			long food_no = Long.parseLong(request.getParameter("food_no"));
+			String food_name = request.getParameter("food_name");
+			String food_description = request.getParameter("food_description");
+			int food_price = Integer.parseInt(request.getParameter("food_price"));
 			
-			RestaurantDTO dto = new RestaurantDTO();
+			FoodDTO dto = new FoodDTO();
 			dto.setRestaurant_no(restaurant_no);
-			dto.setRestaurant_name(restaurant_name);
-			dto.setRestaurant_description(restaurant_description);
-			dto.setRestaurant_postcode(restaurant_postcode);
-			dto.setRestaurant_roadAddress(restaurant_roadAddress);
-			dto.setRestaurant_detailAddress(restaurant_detailAddress);
-			dto.setRestaurant_extraAddress(restaurant_extraAddress);
-			dto.setCategory_category(category_category);
+			dto.setFood_no(food_no);
+			dto.setFood_price(food_price);
+			dto.setFood_description(food_description);
+			dto.setFood_name(food_name);
 			
-			AdminRestaurantDAO adminRestaurantDAO = new AdminRestaurantDAO();
-			int result = adminRestaurantDAO.edit(dto);
+			AdminFoodDAO adminFoodDAO = new AdminFoodDAO();
+			int result = adminFoodDAO.edit(dto);
 			if(result==1) { //수정 성공
 				writer.println("<script>alert('" + "수정에 성공했습니다" + "'); window.location.href = document.referrer;</script>");
 			} else { //수정 실패
