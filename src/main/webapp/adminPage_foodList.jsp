@@ -129,6 +129,7 @@ window.onload = function(){
 	
 	<section class="home-section">
 		<div class="home-content">
+			<button type="button" onclick="window.history.go(-2)">뒤로가기</button>
 			<h1>대표메뉴 관리</h1>
 			<div>
 				<div>
