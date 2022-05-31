@@ -123,7 +123,7 @@ function nicknameCheck(){
 		<hr>
 			<h2>개인정보 입력</h2>
 			<form name="joinform" id="joinform" action="./join" method="post" onsubmit="return check()">
-			<table style="margin: 0px auto;">
+			<table>
 				<tr>
 					<td><label>아이디</label></td>
 					<td><input type="text" id="id" name="id" placeholder="아이디를 입력하세요." class="form-control" onchange="idCheck()" required="required"></td>
@@ -172,7 +172,7 @@ function nicknameCheck(){
 						<input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" required="required"><br>
 						<input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" required="required"><br>
 					</td>
-					<td>
+					<td valign="top">
 						<input id="postcodeBtn" type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
 					</td>
 				</tr>
@@ -193,13 +193,9 @@ function nicknameCheck(){
 					</td>
 					<td></td>
 				</tr>
-				<tr style="margin: 0px auto;">
-					<td colspan="3">
-						<button type="submit" id="joinBtn">Join</button>
-						<button type="button" id="joinBtn" onclick="location.href='./index.jsp'">취소하기</button>
-					</td>
-				</tr>
 			</table>
+			<button type="submit" id="joinBtn">Join</button>
+			<button type="button" id="joinBtn" onclick="location.href='./index.jsp'">취소하기</button>
 			</form>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
