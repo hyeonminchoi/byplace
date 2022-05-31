@@ -12,6 +12,11 @@
 	//		alert
 	//	}
 	//}
+	function a(){
+		if(confirm("탈퇴하시겠습니까?")){
+			location.href='./userquit?user_no=${sessionScope.USER.user_no}';
+		}
+	}
 </script>
 </head>
 <body>
@@ -26,8 +31,8 @@
 		도로명 주소 : ${sessionScope.USER.user_roadAddress }<br>
 		상세 주소 : ${sessionScope.USER.user_detailAddress }
 			${sessionScope.USER.user_extraAddress }<br>
-	<a href="#" onclick="showDialog()">수정하기</a>
-	<a href="./sonjul.jsp">탈퇴하기</a>
+	<button type="button" onclick="showDialog()">수정하기</button>
+	<button type="button" onclick="a()">탈퇴하기</button>
 	
 <dialog id="dialog">
 	<form action="./userInfofix" method="post">
@@ -38,7 +43,6 @@
 		<div>
            <label>아이디</label>
            <input type="text" id="user_id" name="user_id" placeholder="아이디를 입력하세요." class="form-control" onchange="idCheck()" disabled="disabled" value="${sessionScope.USER.user_id }">
-           <div id="checkResult">아이디를 확인중입니다.</div>
         </div>
         <div>
            <label>이름</label>
@@ -77,7 +81,7 @@
               <option value="사업자" ${sessionScope.USER.user_type eq '사업자' ? 'selected' : ''}>사업자</option>
            </select>
 		</div>
-		<button type="submit">수정</button>
+		<button type="submit" >수정</button>
 		<button type="button" onclick="hideDialog()">닫기</button>
 	</form>
 </dialog>
