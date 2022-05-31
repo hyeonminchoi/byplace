@@ -15,6 +15,7 @@
 	function a(){
 		if(confirm("탈퇴하시겠습니까?")){
 			location.href='./userquit?user_no=${sessionScope.USER.user_no}';
+			alert("관리자 승인 후 삭제됩니다.");
 		}
 	}
 </script>
