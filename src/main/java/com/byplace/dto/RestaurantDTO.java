@@ -9,6 +9,12 @@ public class RestaurantDTO {
 	
 	double rating;
 	
+	public double getRating() {
+		return rating;
+	}
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
 	public long getRestaurant_no() {
 		return restaurant_no;
 	}
