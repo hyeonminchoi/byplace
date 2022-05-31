@@ -21,6 +21,7 @@
 	<c:if test="${not empty error}">
 		${error }
 	</c:if>
+	<button type="button" onclick="location.href='./login.jsp'">로그인 하러가기</button>
    	</div>
      
       
