@@ -25,11 +25,11 @@ public class BoardDAO {
 		String sql = "SELECT * FROM boardview LIMIT ?, 10";
 
 		try {
-			con = DBConnection.dbConn();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, pageNo);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
+			con = DBConnection.dbConn(); //데이터베이스 연결
+			pstmt = con.prepareStatement(sql); //sql문 실행
+			pstmt.setInt(1, pageNo); //sql문 ? 자리 넣어주기
+			rs = pstmt.executeQuery(); //리턴
+			while (rs.next()) { //다음행으로 커서 이동
 				BoardDTO dto = new BoardDTO();
 				dto.setBoard_no(rs.getLong("board_no"));
 				dto.setBoard_title(rs.getString("board_title"));
@@ -44,7 +44,7 @@ public class BoardDAO {
 				dto.setUser_status(rs.getInt("user_status"));
 				list.add(dto);// 붙여넣기
 			}
-		} catch (Exception e) {
+		} catch (Exception e) {//무조건 예외처리
 			e.printStackTrace();
 		} finally {
 			try {

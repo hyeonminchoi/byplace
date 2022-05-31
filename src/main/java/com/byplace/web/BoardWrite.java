@@ -35,10 +35,10 @@ public class BoardWrite extends HttpServlet {
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
 		if(session.getAttribute("USER") !=null) {
-			if(request.getParameter("content") !=null && request.getParameter("title") !=null ) {
+			if(request.getParameter("comment") !=null && request.getParameter("title") !=null ) {
 				BoardDTO dto = new BoardDTO();
 				dto.setBoard_title(request.getParameter("title"));
-				dto.setBoard_comment(request.getParameter("content"));
+				dto.setBoard_comment(request.getParameter("comment"));
 				dto.setUser_no(((UserDTO)session.getAttribute("USER")).getUser_no());
 				BoardDAO dao = new BoardDAO();
 				dao.boardwrite(dto);

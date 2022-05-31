@@ -42,7 +42,7 @@
 <script type="text/javascript">
 function check(){
 	//alert("글쓰기를 눌렀습니다.");
-	var title = document.getElementById("title");
+	var title = document.getElementById("title"); //id를 가져다 사용한다
 	//alert(title);
 	//alert(title.value);
 	//alert(title.value.length);
@@ -51,8 +51,8 @@ function check(){
 		title.focus();
 		return false;
 	}
-	var textarea = document.getElementById("summernote");
-	if(textarea.value.length < 21){
+	var textarea = document.getElementById("summernote");//id를 가져다 사용한다
+	if(textarea.value.length < 21){//?
 		alert("내용은 10글자 이상입니다.");
 		textarea.focus();
 		return false;
@@ -65,7 +65,7 @@ function check(){
 		<h1>글쓰기</h1>
 		<form action="./boardWrite" method="post" onsubmit="return check()">
 			<input type="text" id="title" name="title" placeholder="제목을 입력하세요">
-			<textarea id="summernote" name="content"></textarea>
+			<textarea id="summernote" name="comment"></textarea>
 			<button id="btn" type="submit">글쓰기</button>
 		</form>
 	</div>

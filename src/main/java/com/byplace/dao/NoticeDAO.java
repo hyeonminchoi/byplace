@@ -47,15 +47,16 @@ public class NoticeDAO extends AbstractDAO {
 		}
 	}
 
-	public List<NoticeDTO> noticeList() {
+	public List<NoticeDTO> noticeList(int pageNo) {
 		List<NoticeDTO> list = new ArrayList<NoticeDTO>();
 		con = getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM notice";
+		String sql = "SELECT * FROM noticeview LIMIT ?, 10";
 
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pageNo);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				NoticeDTO dto = new NoticeDTO();
@@ -65,6 +66,7 @@ public class NoticeDAO extends AbstractDAO {
 				dto.setNotice_date(rs.getString("notice_date"));
 				dto.setNotice_orifilename(rs.getString("notice_orifilename"));
 				dto.setNotice_filename(rs.getString("notice_filename"));
+				dto.setTotalcount(rs.getInt("totalcount"));
 				dto.setUser_no(rs.getLong("user_no"));
 				list.add(dto);
 			}
