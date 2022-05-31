@@ -323,4 +323,18 @@ public class UserDAO {
 		}
 		return result;
 	}
+
+	public void quit(Long user_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE user SET user_del = 1 WHERE user_no = ?";
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, user_no);
+			pstmt.execute();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
