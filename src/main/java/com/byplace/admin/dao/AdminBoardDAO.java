@@ -14,14 +14,12 @@ import com.byplace.db.DBConnection;
 import com.byplace.dto.BoardDTO;
 
 public class AdminBoardDAO {
-	public void close(ResultSet rs, PreparedStatement pstmt, Connection con) {
+	public void close(ResultSet rs, PreparedStatement pstmt) {
 		try {
 			if (rs != null)
 				rs.close();
 			if (pstmt != null)
 				pstmt.close();
-			if(con!=null)
-				con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -58,7 +56,7 @@ public class AdminBoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rs, pstmt, con);
+			close(rs, pstmt);
 		}
 		return list;
 	}
@@ -76,7 +74,7 @@ public class AdminBoardDAO {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
-			close(null, pstmt, con);
+			close(null, pstmt);
 		}
 		return result;
 	}
@@ -95,7 +93,7 @@ public class AdminBoardDAO {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
-			close(null, pstmt, con);
+			close(null, pstmt);
 		}
 		return result;
 	}
@@ -112,7 +110,7 @@ public class AdminBoardDAO {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
-			close(null, pstmt, con);
+			close(null, pstmt);
 		}
 		return result;
 	}
@@ -134,7 +132,7 @@ public class AdminBoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rs, pstmt, con);
+			close(rs, pstmt);
 		}
 		return 0;
 	}
@@ -156,7 +154,7 @@ public class AdminBoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rs, pstmt, con);
+			close(rs, pstmt);
 		}
 		return 0;
 	}
@@ -174,7 +172,7 @@ public class AdminBoardDAO {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
-			close(null, pstmt, con);
+			close(null, pstmt);
 		}
 		return result;
 	}
@@ -210,7 +208,7 @@ public class AdminBoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rs, pstmt, con);
+			close(rs, pstmt);
 		}
 		return list;
 	}
@@ -228,7 +226,7 @@ public class AdminBoardDAO {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 		} finally {
-			close(null, pstmt, con);
+			close(null, pstmt);
 		}
 		return result;
 	}
