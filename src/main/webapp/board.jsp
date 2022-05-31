@@ -6,40 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
-<style type="text/css">
-th {
-	background-color: gray;
-}
 
-td {
-	border-bottom-style: 1px solid red;
-	text-align: center;
-}
-h1 {
-	text-align: center;
-}
-
-</style>
+<link href="./css/menu.css" rel="stylesheet">
+<link href="./css/board.css" rel="stylesheet">
 </head>
 <body>
+	<%@ include file="./menu.jsp" %>
 	<div id="main">
 		<div id="side">
-			<div id="menu">
-				<table align="left">
-					<tr>
-						<td><a href="./notice">공지사항</a></td>
-						<td><a href="#">자유게시판</a></td>
-						<td><a href="#">신고게시판</a></td>
-					</tr>
-				</table>
-			</div>
-			<div>
-			
+			<div id="mmenu">
+				<ul>
+					<li><a href="./notice">공지사항</a></li>
+					<li><a href="#">자유게시판</a></li>
+					<li><a href="#">신고게시판</a></li>
+				</ul>			
 			</div>
 		</div>
 		<div id="board">
-			<h1>BY Place</h1>
-			<table align="center">
+			<h1 style="text-align: left;">자유게시판</h1>
+			<table align="center" id="boardname">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -62,7 +47,7 @@ h1 {
 			
 			<c:if test="${not empty sessionScope.USER }">
 				<div style=" text-align: center;">
-				<button type="button" onclick="location.href='./boardWrite'">글쓰기</button>
+				<button type="button" onclick="location.href='./boardWrite'" id="whitebtn">글쓰기</button>
 				</div>
 			</c:if>
 		</div>

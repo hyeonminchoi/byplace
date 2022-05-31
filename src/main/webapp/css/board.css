@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+th {
+	background-color: gray;
+}
+
+td {
+	border-bottom-style: 1px solid red;
+	text-align: center;
+}
+h1 {
+	text-align: center;
+}
+
+img{
+	width: 50px;
+	height: 50px;
+}
+
+#boardname{
+	
+	width: 100%;
+	height: 450px;
+	text-align: center;
+		
+}
+
+#mmenu{
+	width: 100%;
+    margin: 10px;
+    border-style: solid solid none solid;
+    border-color: #D8D5D1;
+    border-size: 1px;
+    border-width: 1px;
+	
+}
+
+#mmenu li{
+	float: left;
+	margin: 10px 20px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+tr:nth-child(odd){
+	background-color: #E0EBFF;
+}
+
+tr:nth-child(even){
+	background-color: #D2D2FF;
+}
+
+#list{
+	border: solid 1px black;
+	width: 200px;
+	height: 200px;
+	
+}
+
+#board{
+	margin: 0px 300px;
+}
+
+whitebtn
