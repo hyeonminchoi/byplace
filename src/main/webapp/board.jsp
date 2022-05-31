@@ -59,6 +59,7 @@ h1 {
 					</tr>
 				</c:forEach>
 			</table>
+			
 			<c:if test="${not empty sessionScope.USER }">
 				<div style=" text-align: center;">
 				<button type="button" onclick="location.href='./boardWrite'">글쓰기</button>
