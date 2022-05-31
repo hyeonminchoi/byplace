@@ -17,8 +17,8 @@
 			<div id="mmenu">
 				<ul>
 					<li><a href="./notice">공지사항</a></li>
-					<li><a href="#">자유게시판</a></li>
-					<li><a href="#">신고게시판</a></li>
+					<li><a href="./board">자유게시판</a></li>
+					<li><a href="./reportboard">신고게시판</a></li>
 				</ul>			
 			</div>
 		</div>

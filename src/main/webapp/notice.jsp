@@ -6,73 +6,29 @@
 <meta charset="UTF-8">
 <title>공지</title>
 <link href="./css/menu.css" rel="stylesheet">
-<style type="text/css">
-#main{
-	margin: 0 auto;
-	width: 800px;
-	height: 100%;
-}
-table {
-	width: 100%;
-	min-height: 200px;
-	border-collapse: collapse;
-}
-th{
-	background-color: gray;
-}
-td{
-	border-bottom: 1px solid red;
-	text-align: center;
-}
-tr:hover{
-	background-color: #c1c1c1;
-}
-h1 {
-	text-align: center;
-}
-#col1{
-	width: 10%;
-}
-#col2{
-	width: 20%;
-}
-#col3{
-	width: 40%;
-}
-#tleft{
-	text-align: left;
-}
-a:visited, a:link {
-	color: black;
-	text-decoration: none;
-}
-</style>
+<link href="./css/board.css" rel="stylesheet">
+
 </head>
 <body>
 	<%@include file="./menu.jsp"%>
 	<div id="main">
 		<div id="side">
-			<div id="menu">
-				<table align="left">
-					<tr>
-						<td><a href="./notice">공지사항</a></td>
-						<td><a href="./board">자유게시판</a></td>
-						<td><a href="./reportboard">신고게시판</a></td>
-					</tr>
-				</table>
-			</div>
-			<div>
-			
+			<div id="mmenu">
+					<ul>
+						<li><a href="./notice">공지사항</a></li>
+						<li><a href="./board">자유게시판</a></li>
+						<li><a href="./reportboard">신고게시판</a></li>
+					</ul>
 			</div>
 		</div>
 	<div id="board">
-		<h1>공지사항</h1>
-		<table>
+		<h1 style="text-align: left;">공지사항</h1>
+		<table align="center" id="boardname">
 			<tr>
-				<th id="col1">번호</th>
-				<th id="col3">제목</th>
-				<th id="col1">쓴사람</th>
-				<th id="col2">쓴날짜</th>
+				<th>번호</th>
+				<th>제목</th>
+				<th>쓴사람</th>
+				<th>쓴날짜</th>
 			</tr><c:forEach items="${list }" var="i">
 			<tr>
 				<td>${i.notice_no }</td>

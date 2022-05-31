@@ -6,36 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>신고 게시판</title>
-<style type="text/css">
-th {
-	background-color: gray;
-}
-
-td {
-	border-bottom-style: 1px solid red;
-	text-align: center;
-}
-</style>
+<link href="./css/menu.css" rel="stylesheet">
+<link href="./css/board.css" rel="stylesheet">
 </head>
 <body>
-<div id="main">
+<%@ include file="./menu.jsp" %>
+	<div id="main">
 		<div id="side">
-			<div id="menu">
-				<table align="left">
-					<tr>
-						<td><a href="./notice">공지사항</a></td>
-						<td><a href="./board">자유게시판</a></td>
-						<td><a href="./reportboard">신고게시판</a></td>
-					</tr>
-				</table>
+			<div id="mmenu">
+				<ul>
+					<li><a href="./notice">공지사항</a></li>
+					<li><a href="./board">자유게시판</a></li>
+					<li><a href="./reportboard">신고게시판</a></li>
+				</ul>	
 			</div>
 			<div>
-			
-			</div>
-		</div>
+	</div>
+	</div>	
 	<div id="board">
-		<h1>신고자 게시판</h1>
-		<table>
+		<h1 style="text-align: left;">신고자 게시판</h1>
+		<table align="center" id="boardname">
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
