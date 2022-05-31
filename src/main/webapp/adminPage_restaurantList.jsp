@@ -83,13 +83,15 @@ function changed(){
 				var restaurant = JSON.stringify(restaurantList[i]);
 				temp += "<tr>";
 				temp += "	<td>" + restaurantList[i].restaurant_no + "</td>";
-				temp += "	<td><a href='./adminPage_foodList?restaurant_no=" + restaurantList[i].restaurant_no + "'>" + restaurantList[i].restaurant_name + "</a></td>";
-				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantDescription(\'" + restaurantList[i].restaurant_description + "\')\">설명보기</button>" + "</td>";
+				temp += "	<td>" + restaurantList[i].restaurant_name + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"showFoodList(" + restaurantList[i].restaurant_no + ")\">보기</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"showReviewList(" + restaurantList[i].restaurant_no + ")\">보기</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantDescription(\'" + restaurantList[i].restaurant_description + "\')\">보기</button>" + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_roadAddress + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_detailAddress + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_extraAddress + "</td>";
 				temp += "	<td>" + restaurantList[i].category_category + "</td>";
-				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantImage(" + restaurantList[i].restaurant_no + ",\'" + restaurantList[i].restaurant_image + "\')\">사진보기</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantImage(" + restaurantList[i].restaurant_no + ",\'" + restaurantList[i].restaurant_image + "\')\">보기</button>" + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_joined + "</td>";
 				temp += "	<td>" + restaurantList[i].user_id + "</td>";
 				if(restaurantList[i].restaurant_del == 0){
@@ -156,6 +158,8 @@ window.onload = function(){
 					<tr>
 						<th>번호</th>
 						<th>이름</th>
+						<th>메뉴</th>
+						<th>리뷰</th>
 						<th>설명</th>
 						<th>도로명주소</th>
 						<th>세부주소</th>
@@ -259,6 +263,14 @@ window.onload = function(){
 		} else{
 			location.href='./adminPage_restaurantList';
 		}
+	}
+	
+	function showFoodList(no){
+		location.href='./adminPage_foodList?restaurant_no=' + no;
+	}
+	
+	function showReviewList(no){
+		location.href='./adminPage_reviewList?restaurant_no=' + no;
 	}
 	
 	var restaurantDescriptionDialog = document.getElementById("restaurantDescriptionDialog");

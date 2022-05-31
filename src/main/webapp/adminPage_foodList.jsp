@@ -10,16 +10,16 @@
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="./css/adminPage.css">
 <style type="text/css">
-	#restaurantList{
+	#foodList{
 		margin: 0 auto;
 		width: 100%;
 		border-collapse: collapse;
 		border: 1px solid black;
 	}
-	#restaurantList tr, td, th{
+	#foodList tr, td, th{
 		border: 1px solid black;
 	}
-	#restaurantList td{
+	#foodList td{
 		text-align: center;
 	}  
 	table.pagination { border-collapse: collapse; margin: 20px auto; }
@@ -129,7 +129,7 @@ window.onload = function(){
 	
 	<section class="home-section">
 		<div class="home-content">
-			<button type="button" onclick="window.history.go(-2)">뒤로가기</button>
+			<button type="button" onclick="location.href='./adminPage_restaurantList'">뒤로가기</button>
 			<h1>대표메뉴 관리</h1>
 			<div>
 				<div>
@@ -148,7 +148,7 @@ window.onload = function(){
 					</select>
 				</div>
 			</div>
-			<table id="restaurantList">
+			<table id="foodList">
 				<thead>
 					<tr>
 						<th>번호</th>

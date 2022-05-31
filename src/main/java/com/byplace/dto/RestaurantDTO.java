@@ -7,6 +7,8 @@ public class RestaurantDTO {
 	       restaurant_image, restaurant_joined, user_id;
 	int restaurant_del;
 	
+	double rating;
+	
 	public long getRestaurant_no() {
 		return restaurant_no;
 	}
