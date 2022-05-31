@@ -51,11 +51,10 @@ $(function(){
 			<div id="categ">
 			<label>카테고리</label>
 			<select name="category_category" id="category_category" required="required">
-			<option value="선택">선택</option>
-			<option value="한식">한식</option>
-			<option value="양식">양식</option>
-			<option value="중식">중식</option>
-			<option value="일식">일식</option>
+			<option value="">선택</option>
+			<c:forEach items="${catelist }" var="i">
+			<option value="${i.category_category }">${i.category_category }</option>
+			</c:forEach>
 			</select>
 			</div>
 			<div id="resimg">

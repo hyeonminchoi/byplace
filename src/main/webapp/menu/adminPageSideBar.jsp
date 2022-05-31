@@ -42,17 +42,7 @@
 					<li><a class="link_name" href="#">음식점관리</a></li>
 					<li><a href="./adminPage_restaurantList">음식점보기</a></li>
 					<li><a href="./adminPage_restaurantApprovalList">음식점승인</a></li>
-					<li><a href="#">음식점복구</a></li>
-				</ul>
-			</li>
-			<li>
-				<div class="iocn-link">
-					<a href="#"> <span class="link_name">대표메뉴관리</span>
-					</a> <i class='bx bxs-chevron-down arrow'></i>
-				</div>
-				<ul class="sub-menu">
-					<li><a class="link_name" href="#">대표메뉴관리</a></li>
-					<li><a href="#">대표메뉴보기</a></li>
+					<li><a href="./adminPage_restaurantRecoveryList">음식점복구</a></li>
 				</ul>
 			</li>
 			<li>
@@ -72,7 +62,8 @@
 				</div>
 				<ul class="sub-menu">
 					<li><a class="link_name" href="#">자유게시판관리</a></li>
-					<li><a href="#">자유게시판보기</a></li>
+					<li><a href="./adminPage_boardList">게시물보기</a></li>
+					<li><a href="./adminPage_boardRecoveryList">게시물복구</a></li>
 				</ul>
 			</li>
 			<li>

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.byplace.db.DBConnection;
+import com.byplace.dto.CategoryDTO;
+import com.byplace.dto.FoodDTO;
 import com.byplace.dto.RestaurantDTO;
 
 public class RestaurantDAO {
@@ -79,7 +81,7 @@ public class RestaurantDAO {
 		return reslist;
 	}
 
-	public RestaurantDTO resdetail(int restaurant_no) {
+	public RestaurantDTO resdetail(long restaurant_no) {
 		RestaurantDTO dto = new RestaurantDTO();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -89,9 +91,10 @@ public class RestaurantDAO {
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, restaurant_no);
+			pstmt.setLong(1, restaurant_no);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
+				dto.setRestaurant_no(rs.getLong("restaurant_no"));
 				dto.setRestaurant_name(rs.getString("restaurant_name"));
 				dto.setRestaurant_image(rs.getString("restaurant_image"));
 				dto.setRestaurant_description(rs.getString("restaurant_description"));
@@ -111,6 +114,123 @@ public class RestaurantDAO {
 			}
 		}
 		return dto;
+	}
+
+	public List<CategoryDTO> categorylist() {
+		List<CategoryDTO> catelist = new ArrayList<CategoryDTO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM category";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				CategoryDTO dto = new CategoryDTO();
+				dto.setCategory_category(rs.getString("category_category"));
+				catelist.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt !=null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return catelist;
+	}
+
+	public void menuadd(FoodDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO food (restaurant_no, food_name, food_price, food_image, food_description) VALUES (? ,?, ?, ?, ?)";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, dto.getRestaurant_no());
+			pstmt.setString(2, dto.getFood_name());
+			pstmt.setInt(3, dto.getFood_price());
+			pstmt.setString(4, dto.getFood_image());
+			pstmt.setString(5, dto.getFood_description());
+			pstmt.setString(6, dto.getUser_id());
+			
+			pstmt.execute();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	public List<FoodDTO> menulist(long restaurant_no) {
+		List<FoodDTO> list = new ArrayList<FoodDTO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM food WHERE restaurant_no=?";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, restaurant_no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				FoodDTO dto = new FoodDTO();
+				dto.setFood_name(rs.getString("food_name"));
+				dto.setFood_description(rs.getString("food_description"));
+				dto.setFood_price(rs.getInt("food_price"));
+				dto.setFood_image(rs.getString("food_image"));
+				dto.setRestaurant_no(rs.getLong("restaurant_no"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+
+	public void menudelete(FoodDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE food SET food_del=1 WHERE food_no=?";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, dto.getFood_no());
+			pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 	}
 	
 }

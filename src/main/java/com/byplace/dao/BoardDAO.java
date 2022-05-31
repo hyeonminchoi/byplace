@@ -34,6 +34,7 @@ public class BoardDAO {
 				dto.setBoard_no(rs.getLong("board_no"));
 				dto.setBoard_title(rs.getString("board_title"));
 				dto.setBoard_comment(rs.getString("board_comment"));
+				dto.setBoard_commentcount(rs.getInt("board_commentcount"));
 				dto.setBoard_date(rs.getString("board_date"));
 				dto.setBoard_del(rs.getInt("board_del"));
 				dto.setBoard_count(rs.getInt("board_count"));

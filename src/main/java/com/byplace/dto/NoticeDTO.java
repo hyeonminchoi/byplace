@@ -3,11 +3,24 @@ package com.byplace.dto;
 public class NoticeDTO {
 	long notice_no, user_no;
 	String notice_title, notice_comment, notice_date;
-	int notice_del, notice_count;
+	int notice_del;
+	String notice_orifilename, notice_filename;
 	
 	String user_id;
 	int totalcount;
 	
+	public String getNotice_orifilename() {
+		return notice_orifilename;
+	}
+	public void setNotice_orifilename(String notice_orifilename) {
+		this.notice_orifilename = notice_orifilename;
+	}
+	public String getNotice_filename() {
+		return notice_filename;
+	}
+	public void setNotice_filename(String notice_filename) {
+		this.notice_filename = notice_filename;
+	}
 	public long getNotice_no() {
 		return notice_no;
 	}
@@ -43,12 +56,6 @@ public class NoticeDTO {
 	}
 	public void setNotice_del(int notice_del) {
 		this.notice_del = notice_del;
-	}
-	public int getNotice_count() {
-		return notice_count;
-	}
-	public void setNotice_count(int notice_count) {
-		this.notice_count = notice_count;
 	}
 	public String getUser_id() {
 		return user_id;

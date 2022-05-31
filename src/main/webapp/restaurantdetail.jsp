@@ -9,6 +9,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41c04e215b88583eb8be89a445ce294e&libraries=services"></script>
 <link href="./css/tabmenu.css" rel="stylesheet">
+<script type="text/javascript">
+$(function(){
+	$('#menuup').click(function(){
+		location.href = './index.jsp';
+	});
+});
+
+$(function(){
+	$('#menudel').click(function(){
+		if(confirm("삭제하시겠습니까?")){
+			location.href = './menudelete';
+		}
+	});
+});
+</script>
 <style type="text/css">
 #head {
 	width: 100%;
@@ -49,6 +64,8 @@
 		${resdetail.restaurant_extraAddress }<br>
 		────────────────────────────────────────────<br>
 		${resdetail.restaurant_description }
+		
+		
 		</div>
 	</div>
 	<div id="content">
@@ -63,7 +80,32 @@
 			<!-- 탭 메뉴 상단 끝 -->
 			<!-- 탭 메뉴 내용 시작 -->
 			<div id="tab-1" class="tab-content current">
-			
+			<c:if test="${sessionScope.USER ne null }">
+			<form action="./menuadd" method="post" enctype="multipart/form-data">
+			<label>음식 이름</label>
+			<input type="text" id="food_name" placeholder="음식 이름을 입력하시오." name="food_name" required="required"><br>
+			<label>음식 설명</label>
+			<input type="text" id="food_description" placeholder="음식 설명을 입력하시오." name="food_description" required="required"><br>
+			<label>음식 가격</label>
+			<input type="number" id="food_price" placeholder="음식 가격을 입력하시오." name="food_price" required="required"><br>
+			<label>음식 사진</label>
+			<input type="file" name="food_image" id="food_image" accept="image/*" required="required"><br>
+			<input type="hidden" name="restaurant_no" value="${resdetail.restaurant_no }">
+			<button>확인</button>
+			</form>
+			<button name="cancel" id="cancel">취소</button><br>
+			</c:if>
+			<c:forEach items="${menulist }" var="m">
+				<img src="./menuImage/${m.food_image }">
+				<c:if test="${sessionScope.USER ne null }">
+				<button name="menuup" id="menuup">수정</button>
+				<button name="menudel" id="menudel">삭제</button>
+				</c:if>
+				 <br>
+				${m.food_name } <br>
+				${m.food_price } <br>
+				${m.food_description } <br>
+			</c:forEach>
 			</div>
 			<div id="tab-2" class="tab-content">
 				<div id="map" style="width:100%;height:350px;"></div>

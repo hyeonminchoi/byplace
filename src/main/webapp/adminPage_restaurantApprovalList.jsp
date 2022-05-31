@@ -48,13 +48,30 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	var urlSearch = new URLSearchParams(location.search);
+	urlSearch.set("pg", ${pg});
+	newUrl = location.pathname + '?' +urlSearch
+	history.pushState(null, null, newUrl);
+});
+function search(){
+	var searchColumn = $("#searchColumn").val();
+	var searchValue = $("#searchValue").val();
+	var urlSearch = new URLSearchParams(location.search);
+	urlSearch.set("pg", "1");
+	urlSearch.set("searchColumn", searchColumn);
+	urlSearch.set("searchValue", searchValue);
+	location.href="./adminPage_restaurantApprovalList?" + urlSearch;
+}
 function changed(){
 	var sort = $("#restaurant_sort").val();
+	var searchColumn = new URLSearchParams(location.search).get("searchColumn");
+	var searchValue = new URLSearchParams(location.search).get("searchValue");
 	$.ajax({
 		url: "./adminPage_restaurantApprovalList_JSON",
 		type: "GET",
 		dataType: "json",
-		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}},
+		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}, "searchColumn":searchColumn, "searchValue": searchValue},
 		success: function(restaurantList){
 			$("#restaurant_body").empty();
 			var temp = "";
@@ -71,12 +88,17 @@ function changed(){
 				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantImage(\'" + restaurantList[i].restaurant_image + "\')\">사진보기</button>" + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_joined + "</td>";
 				temp += "	<td>" + restaurantList[i].user_id + "</td>";
-				temp += "	<td>" + "<button type=\"button\" onclick=\'accept(" + restaurant + ")\'>승인</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"accept(" + restaurantList[i].restaurant_no + ")\">승인</button>" + "</td>";
 				temp += "	<td>" + "<button type=\"button\" onclick=\"refuse(" + restaurantList[i].restaurant_no + ")\">거부</button>" + "</td>";
 				temp += "</tr>";
 			}
 			$("#restaurant_body").append(temp);
 			$("#restaurant_sort").val(sort).prop("selected",true);
+			$("#searchValue").val(searchValue);
+			if(searchColumn != null)
+				$("#searchColumn").val(searchColumn).prop("selected",true);
+			else
+				$("#searchColumn option:eq(0)").prop("selected",true);
 		},
 		error: function(){
 			alert("서버가 동작하지 않습니다.");
@@ -140,6 +162,14 @@ window.onload = function(){
 				</tbody>
 			</table>
 			<my:pagination pageSize="${pageSize}" recordCount="${recordCount}" queryStringName="pg" />
+			<div class="search">
+				<select id="searchColumn">
+					<option value="restaurant_name" ${searchColumn eq 'restaurant_name' ? 'selected' : ''}>음식점 이름</option>
+					<option value="category_category" ${searchColumn eq 'category_category' ? 'selected' : ''}>카테고리</option>
+				</select>
+				<input type="text" id="searchValue">
+				<button type="button" onclick="search()">검색</button>
+			</div>
 		</div>
 	</section>
 
