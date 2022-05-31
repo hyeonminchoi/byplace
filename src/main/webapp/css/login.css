@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+	#loginForm{
+		margin:0 auto;
+		width: 500px;
+		height: 300px;
+		box-sizing: border-box;
+		text-align: center;	
+	
+	}
+
+	table{
+	 margin: 20px auto;
+	 padding: 10px;
+	 border-spacing: 0 10px;
+	 border: 1px solid black;
+	 border-radius: 15px;
+	
+	}
+	
+	label{
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+	}
+	
+	

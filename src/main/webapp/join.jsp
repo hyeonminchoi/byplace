@@ -165,7 +165,7 @@ function nicknameCheck(){
 					<td></td>
 				</tr>
 				<tr>
-					<td><label id="ta">주소</label></td>
+					<td style="text-align: right;"><label id="ta">주소</label></td>
 					<td>
 						<input type="text" name="postcode" id="postcode" placeholder="우편번호" required="required"><br>
 						<input type="text" name="roadAddress" id="roadAddress" placeholder="도로명주소" required="required"><br>

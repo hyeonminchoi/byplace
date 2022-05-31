@@ -14,6 +14,7 @@
 #ta{
 	text-align: left;
 	width : 50px;
+	
 }
 label{
 	display: inline-block;
@@ -24,23 +25,27 @@ input, select{
 	width: 200px;
 }
 #joinBtn{
-	
+	margin-top : 10px;
+	height: 50px;
 	width: 80px;
-    padding: 10px 0 10px;
+    padding: 10px 0px 10px;
     border: 0;
     color: black;
     background-color: #76cdff;
     font-size: 20px;
     font-weight: 400;
+    
 }
 
 table{
 	 margin: 0px auto;
-	 border-spacing: 0 10px;
+	 border-spacing: 0 20px;
 	 border: 1px solid black;
 	 border-radius: 15px;
+	 
 }
 
 #postcodeBtn{
 	width: 100px;
+	
 }
