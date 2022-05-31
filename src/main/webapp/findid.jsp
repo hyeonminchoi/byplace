@@ -7,27 +7,28 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
-<style type="text/css">
-	#findidForm{
-		margin:0 auto;
-		width: 500px;
-		height: 300px;
-		box-sizing: border-box;
-		text-align: center;	
-	}
-</style>
+<link href="./css/findid.css" rel="stylesheet">
+
 </head>
 <body>
 	<div id="findidForm">
 	<h1>아이디 찾기</h1>
 		<hr>
 		<form action="./findid" method="post">
-			<div>
-				이름:<input type="text" name="name" placeholder="이름을 입력하세요." required="required"><br>
-			</div>
-			<div>
-				전화번호:<input type="text" name="phone" placeholder="전화번호를 입력하세요." required="required"><br>
-			</div>
+		<table>
+			<tr>
+				<td>
+				<label>이름</label>
+				<input type="text" name="name" placeholder="이름을 입력하세요." required="required">
+				<td>
+			</tr>
+			<tr>
+				<td>
+				<label>전화번호</label>
+				<input type="text" name="phone" placeholder="전화번호를 입력하세요." required="required">
+				</td>
+			</tr>
+		</table>
 			<button type="submit">찾기</button>
 			<button type="button" onclick="history.back()">취소</button>
 		</form>

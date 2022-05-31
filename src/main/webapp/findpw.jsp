@@ -7,15 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
-<style type="text/css">
-#findpwForm{
-		margin:0 auto;
-		width: 500px;
-		height: 300px;
-		box-sizing: border-box;
-		text-align: center;	
-	}
-</style>
+<link href="./css/findpw.css" rel="stylesheet">
 </head>
 <body>
 	<div id="findpwForm">
@@ -23,18 +15,28 @@
 	<hr>
 		<form action="./findpw" method="post">
 			<h3>등록한 정보로 인증</h3>
-		
-			<div>
-			<label>아이디</label> <input type="text" name="id" placeholder="아이디를 입력하세요." required="required"> <br>
-			</div>
-			<div>
-			<label>이름</label> <input type="text" name="name" placeholder="이름을 입력하세요." required="required"> <br>
-			</div>
-			<div>
-			<label>전화번호</label> <input type="text" name="phone" placeholder="전화번호를 입력하세요." required="required">
-			</div>
-			<button type="submit" >초기화</button>
-			<button type="submit" onClick="history.back()">취소</button>
+		<table>
+			<tr>
+			<td>
+			<label>아이디</label>
+			<input type="text" name="id" placeholder="아이디를 입력하세요." required="required">
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<label>이름</label>
+			<input type="text" name="name" placeholder="이름을 입력하세요." required="required">
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<label>전화번호</label>
+			<input type="text" name="phone" placeholder="전화번호를 입력하세요." required="required">
+			</td>
+			</tr>
+		</table>
+			<button type="submit" id="findpb">초기화</button>
+			<button type="submit" onClick="history.back()" id="findpb">취소</button>
 		</form>
 	</div>
 
