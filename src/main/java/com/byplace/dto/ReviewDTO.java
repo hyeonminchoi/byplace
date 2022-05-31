@@ -2,7 +2,7 @@ package com.byplace.dto;
 
 public class ReviewDTO {
 	long review_no, restaurant_no, user_no;
-	String review_comment, review_date, review_image;
+	String review_comment, review_date;
 	double review_rating;
 	int review_del;
 	
@@ -46,14 +46,6 @@ public class ReviewDTO {
 
 	public void setReview_date(String review_date) {
 		this.review_date = review_date;
-	}
-
-	public String getReview_image() {
-		return review_image;
-	}
-
-	public void setReview_image(String review_image) {
-		this.review_image = review_image;
 	}
 
 	public double getReview_rating() {

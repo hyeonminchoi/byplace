@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.byplace.dao.RestaurantDAO;
 import com.byplace.dto.FoodDTO;
 import com.byplace.dto.RestaurantDTO;
+import com.byplace.dto.ReviewDTO;
 import com.byplace.util.Util;
 
 
@@ -32,8 +33,10 @@ public class Restaurantdetail extends HttpServlet {
 			RestaurantDAO dao = new RestaurantDAO();
 			RestaurantDTO resdetail = dao.resdetail(restaurant_no);
 			List<FoodDTO> menulist = dao.menulist(restaurant_no);
+			List<ReviewDTO> reviewlist = dao.reviewlist(restaurant_no);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/restaurantdetail.jsp");
+			request.setAttribute("reviewlist", reviewlist);
 			request.setAttribute("menulist", menulist);
 			request.setAttribute("resdetail", resdetail);
 			rd.forward(request, response);

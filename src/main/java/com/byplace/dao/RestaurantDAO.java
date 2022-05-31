@@ -11,6 +11,7 @@ import com.byplace.db.DBConnection;
 import com.byplace.dto.CategoryDTO;
 import com.byplace.dto.FoodDTO;
 import com.byplace.dto.RestaurantDTO;
+import com.byplace.dto.ReviewDTO;
 
 public class RestaurantDAO {
 
@@ -231,6 +232,58 @@ public class RestaurantDAO {
 		}
 		
 		
+	}
+
+	public void review(ReviewDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO review (review_comment, review_date,  review_rating, user_no, restaurant_no) VALUES (?, ?, ?, ?, ?, ?)";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getReview_comment());
+			pstmt.setString(2, dto.getReview_date());
+			pstmt.setDouble(3, dto.getReview_rating());
+			pstmt.setLong(4, dto.getUser_no());
+			pstmt.setLong(5, dto.getRestaurant_no());
+			pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	public List<ReviewDTO> reviewlist(long restaurant_no) {
+		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM review WHERE restaurant_no=?";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, restaurant_no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewDTO dto = new ReviewDTO();
+				dto.setReview_comment(rs.getString("review_comment"));
+				dto.setReview_date(rs.getString("review_date"));
+				dto.setReview_rating(rs.getDouble("review_rating"));
+				dto.setRestaurant_no(rs.getLong("restaurant_no"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 	
 }

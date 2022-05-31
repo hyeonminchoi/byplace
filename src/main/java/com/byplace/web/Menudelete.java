@@ -23,13 +23,13 @@ public class Menudelete extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
 		if(session.getAttribute("USER") != null) {
-			long restaurant_no = Long.parseLong(request.getParameter("restaurant_no"));
 			FoodDTO dto = new FoodDTO();
 			dto.setFood_del(Integer.parseInt(request.getParameter("food_del")));
-			dto.setRestaurant_no(restaurant_no);
+			dto.setFood_no(Long.parseLong(request.getParameter("food_no")));
 			RestaurantDAO dao = new RestaurantDAO();
 			dao.menudelete(dto);
 			
+			response.sendRedirect("./restaurantdetail?restaurant_no=" + Long.parseLong(request.getParameter("restaurant_no")));
 		}
 		
 	}

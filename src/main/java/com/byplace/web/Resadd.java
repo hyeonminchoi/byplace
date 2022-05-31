@@ -30,8 +30,10 @@ public class Resadd extends HttpServlet {
 		RestaurantDAO dao = new RestaurantDAO();
 		List<CategoryDTO> categorylist = dao.categorylist();
 		RequestDispatcher rd = request.getRequestDispatcher("./restaurantadd.jsp");
+		RequestDispatcher rd2 = request.getRequestDispatcher("./index.jsp");
 		request.setAttribute("catelist",categorylist);
 		rd.forward(request, response);
+		rd2.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
