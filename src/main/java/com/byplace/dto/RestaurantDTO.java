@@ -7,13 +7,13 @@ public class RestaurantDTO {
 	       restaurant_image, restaurant_joined, user_id;
 	int restaurant_del;
 	
-	double rating;
+	double restaurant_rating;
 	
-	public double getRating() {
-		return rating;
+	public double getRestaurant_rating() {
+		return restaurant_rating;
 	}
-	public void setRating(double rating) {
-		this.rating = rating;
+	public void setRestaurant_rating(double restaurant_rating) {
+		this.restaurant_rating = restaurant_rating;
 	}
 	public long getRestaurant_no() {
 		return restaurant_no;

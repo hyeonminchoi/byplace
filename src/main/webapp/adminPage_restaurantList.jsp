@@ -84,6 +84,7 @@ function changed(){
 				temp += "<tr>";
 				temp += "	<td>" + restaurantList[i].restaurant_no + "</td>";
 				temp += "	<td>" + restaurantList[i].restaurant_name + "</td>";
+				temp += "	<td>" + restaurantList[i].restaurant_rating + "</td>";
 				temp += "	<td>" + "<button type=\"button\" onclick=\"showFoodList(" + restaurantList[i].restaurant_no + ")\">보기</button>" + "</td>";
 				temp += "	<td>" + "<button type=\"button\" onclick=\"showReviewList(" + restaurantList[i].restaurant_no + ")\">보기</button>" + "</td>";
 				temp += "	<td>" + "<button type=\"button\" onclick=\"showRestaurantDescription(\'" + restaurantList[i].restaurant_description + "\')\">보기</button>" + "</td>";
@@ -144,6 +145,8 @@ window.onload = function(){
 						<option value="restaurant_no desc" <c:if test="${sort eq 'restaurant_no desc'}">selected</c:if>>음식점 번호↓</option>
 						<option value="restaurant_name asc"  <c:if test="${sort eq 'restaurant_name asc'}">selected</c:if>>이름↑</option>
 						<option value="restaurant_name desc" <c:if test="${sort eq 'restaurant_name desc'}">selected</c:if>>이름↓</option>
+						<option value="restaurant_rating asc"  <c:if test="${sort eq 'restaurant_rating asc'}">selected</c:if>>평점↑</option>
+						<option value="restaurant_rating desc" <c:if test="${sort eq 'restaurant_rating desc'}">selected</c:if>>평점↓</option>
 						<option value="category_category asc"  <c:if test="${sort eq 'category_category asc'}">selected</c:if>>카테고리↑</option>
 						<option value="category_category desc" <c:if test="${sort eq 'category_category desc'}">selected</c:if>>카테고리↓</option>
 						<option value="restaurant_joined asc"  <c:if test="${sort eq 'restaurant_joined asc'}">selected</c:if>>가입일↑</option>
@@ -158,6 +161,7 @@ window.onload = function(){
 					<tr>
 						<th>번호</th>
 						<th>이름</th>
+						<th>평점</th>
 						<th>메뉴</th>
 						<th>리뷰</th>
 						<th>설명</th>

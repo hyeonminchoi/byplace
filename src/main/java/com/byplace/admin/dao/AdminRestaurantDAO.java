@@ -45,6 +45,7 @@ public class AdminRestaurantDAO {
 				RestaurantDTO restaurantDTO = new RestaurantDTO();
 				restaurantDTO.setRestaurant_no(rs.getLong("restaurant_no"));
 				restaurantDTO.setRestaurant_name(rs.getString("restaurant_name"));
+				restaurantDTO.setRestaurant_rating(rs.getDouble("rating"));
 				restaurantDTO.setRestaurant_description(rs.getString("restaurant_description"));
 				restaurantDTO.setRestaurant_postcode(rs.getString("restaurant_postcode"));
 				restaurantDTO.setRestaurant_roadAddress(rs.getString("restaurant_roadAddress"));
