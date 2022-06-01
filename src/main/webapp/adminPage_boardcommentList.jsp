@@ -10,16 +10,16 @@
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="./css/adminPage.css">
 <style type="text/css">
-	#reviewList{
+	#boardcommentList{
 		margin: 0 auto;
 		width: 100%;
 		border-collapse: collapse;
 		border: 1px solid black;
 	}
-	#reviewList tr, td, th{
+	#boardcommentList tr, td, th{
 		border: 1px solid black;
 	}
-	#reviewList td{
+	#boardcommentList td{
 		text-align: center;
 	}  
 	table.pagination { border-collapse: collapse; margin: 20px auto; }
@@ -64,39 +64,38 @@ function search(){
 	urlSearch.set("pg", "1");
 	urlSearch.set("searchColumn", searchColumn);
 	urlSearch.set("searchValue", searchValue);
-	location.href="./adminPage_reviewList?" + urlSearch;
+	location.href="./adminPage_boardcommentList?" + urlSearch;
 }
 function changed(){
-	var sort = $("#review_sort").val();
+	var sort = $("#boardcomment_sort").val();
 	var searchColumn = new URLSearchParams(location.search).get("searchColumn");
 	var searchValue = new URLSearchParams(location.search).get("searchValue");
 	$.ajax({
-		url: "./adminPage_reviewList_JSON",
+		url: "./adminPage_boardcommentList_JSON",
 		type: "GET",
 		dataType: "json",
-		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}, "searchColumn":searchColumn, "searchValue": searchValue, "restaurant_no":${restaurant_no}},
-		success: function(reviewList){
-			$("#review_body").empty();
+		data : {"sort" : sort, "pageSize" : ${pageSize}, "pg" : ${pg}, "searchColumn":searchColumn, "searchValue": searchValue, "board_no":${board_no}},
+		success: function(boardcommentList){
+			$("#boardcomment_body").empty();
 			var temp = "";
-			for(var i in reviewList){
-				var review = JSON.stringify(reviewList[i]);
+			for(var i in boardcommentList){
+				var boardcomment = JSON.stringify(boardcommentList[i]);
 				temp += "<tr>";
-				temp += "	<td>" + reviewList[i].review_no + "</td>";
-				temp += "	<td>" + reviewList[i].user_id + "</td>";
-				temp += "	<td>" + reviewList[i].review_comment + "</td>";
-				temp += "	<td>" + reviewList[i].review_date + "</td>";
-				temp += "	<td>" + reviewList[i].review_rating + "</td>";
-				if(reviewList[i].review_del == 0){
+				temp += "	<td>" + boardcommentList[i].boardcomment_no + "</td>";
+				temp += "	<td>" + boardcommentList[i].user_id + "</td>";
+				temp += "	<td>" + boardcommentList[i].boardcomment_comment + "</td>";
+				temp += "	<td>" + boardcommentList[i].boardcomment_date + "</td>";
+				if(boardcommentList[i].boardcomment_del == 0){
 					temp += "	<td>" + "게시" + "</td>";
-					temp += "	<td>" + "<button type=\"button\" onclick=\"deleteReview(" + reviewList[i].review_no + ")\">삭제</button>" + "</td>";
-				} else if(reviewList[i].review_del == 1){
+					temp += "	<td>" + "<button type=\"button\" onclick=\"deleteBoardcomment(" + boardcommentList[i].boardcomment_no + ")\">삭제</button>" + "</td>";
+				} else if(boardcommentList[i].boardcomment_del == 1){
 					temp += "	<td>" + "삭제" + "</td>";
-					temp += "	<td>" + "<button type=\"button\" onclick=\"recoveryReview(" + reviewList[i].review_no + ")\">복구</button>" + "</td>";
+					temp += "	<td>" + "<button type=\"button\" onclick=\"recoveryBoardcomment(" + boardcommentList[i].boardcomment_no + ")\">복구</button>" + "</td>";
 				}
 				temp += "</tr>";
 			}
-			$("#review_body").append(temp);
-			$("#review_sort").val(sort).prop("selected",true);
+			$("#boardcomment_body").append(temp);
+			$("#boardcomment_sort").val(sort).prop("selected",true);
 			$("#searchValue").val(searchValue);
 			if(searchColumn != null)
 				$("#searchColumn").val(searchColumn).prop("selected",true);
@@ -109,7 +108,7 @@ function changed(){
 	});
 }
 window.onload = function(){
-	$("#review_sort").trigger("change");
+	$("#boardcomment_sort").trigger("change");
 }
 </script>
 </head>
@@ -125,45 +124,42 @@ window.onload = function(){
 	
 	<section class="home-section">
 		<div class="home-content">
-			<button type="button" onclick="location.href='./adminPage_restaurantList?pg=${param.prevPg}'">뒤로가기</button>
+			<button type="button" onclick="location.href='./adminPage_boardList?pg=${param.prevPg}'">뒤로가기</button>
 			<h1>리뷰 관리</h1>
 			<div>
 				<div>
 					<label>정렬</label>
-					<select name="review_sort" id="review_sort" onchange="changed()">
-						<option value="review_no asc"  <c:if test="${sort eq 'review_no asc'}">selected</c:if>>리뷰 번호↑</option>
-						<option value="review_no desc" <c:if test="${sort eq 'review_no desc'}">selected</c:if>>리뷰 번호↓</option>
-						<option value="user_id asc"  <c:if test="${sort eq 'review_name asc'}">selected</c:if>>ID↑</option>
-						<option value="user_id desc" <c:if test="${sort eq 'review_name desc'}">selected</c:if>>ID↓</option>
-						<option value="review_date asc"  <c:if test="${sort eq 'review_joined asc'}">selected</c:if>>추가일↑</option>
-						<option value="review_date desc" <c:if test="${sort eq 'review_joined desc'}">selected</c:if>>추가일↓</option>
-						<option value="review_rating asc"  <c:if test="${sort eq 'review_joined asc'}">selected</c:if>>별점↑</option>
-						<option value="review_rating desc" <c:if test="${sort eq 'review_joined desc'}">selected</c:if>>별점↓</option>
-						<option value="review_del asc" <c:if test="${sort eq 'review_del asc'}">selected</c:if>>상태↑</option>
-						<option value="review_del desc" <c:if test="${sort eq 'review_del desc'}">selected</c:if>>상태↓</option>
+					<select name="boardcomment_sort" id="boardcomment_sort" onchange="changed()">
+						<option value="boardcomment_no asc"  <c:if test="${sort eq 'boardcomment_no asc'}">selected</c:if>>댓글 번호↑</option>
+						<option value="boardcomment_no desc" <c:if test="${sort eq 'boardcomment_no desc'}">selected</c:if>>댓글 번호↓</option>
+						<option value="user_id asc"  <c:if test="${sort eq 'user_id asc'}">selected</c:if>>ID↑</option>
+						<option value="user_id desc" <c:if test="${sort eq 'user_id desc'}">selected</c:if>>ID↓</option>
+						<option value="boardcomment_date asc"  <c:if test="${sort eq 'boardcomment_date asc'}">selected</c:if>>작성일↑</option>
+						<option value="boardcomment_date desc" <c:if test="${sort eq 'boardcomment_date desc'}">selected</c:if>>작성일↓</option>
+						<option value="boardcomment_del asc" <c:if test="${sort eq 'boardcomment_del asc'}">selected</c:if>>상태↑</option>
+						<option value="boardcomment_del desc" <c:if test="${sort eq 'boardcomment_del desc'}">selected</c:if>>상태↓</option>
 					</select>
 				</div>
 			</div>
-			<table id="reviewList">
+			<table id="boardcommentList">
 				<thead>
 					<tr>
 						<th>번호</th>
 						<th>ID</th>
 						<th>내용</th>
 						<th>추가일</th>
-						<th>별점</th>
 						<th>상태</th>
 						<th>관리</th>
 					</tr>
 				</thead>
-				<tbody id="review_body">
+				<tbody id="boardcomment_body">
 					
 				</tbody>
 			</table>
 			<my:pagination pageSize="${pageSize}" recordCount="${recordCount}" queryStringName="pg" />
 			<div class="search">
 				<select id="searchColumn">
-					<option value="review_comment" ${searchColumn eq 'review_comment' ? 'selected' : ''}>내용</option>
+					<option value="boardcomment_comment" ${searchColumn eq 'boardcomment_comment' ? 'selected' : ''}>내용</option>
 				</select>
 				<input type="text" id="searchValue">
 				<button type="button" onclick="search()">검색</button>
@@ -172,19 +168,19 @@ window.onload = function(){
 	</section>
 
 <script>
-	function deleteReview(no){
+	function deleteBoardcomment(no){
 		if(confirm("삭제하겠습니까?")){
-			location.href='./adminReviewDelete?review_no=' + no;
+			location.href='./adminBoardcommentDelete?boardcomment_no=' + no;
 		} else{
-			location.href='./adminPage_reviewList';
+			location.href='./adminPage_boardcommentList';
 		}
 	}
 	
-	function recoveryReview(no){
+	function recoveryBoardcomment(no){
 		if(confirm("복구하겠습니까?")){
-			location.href='./adminReviewRecovery?review_no=' + no;
+			location.href='./adminBoardcommentRecovery?boardcomment_no=' + no;
 		} else{
-			location.href='./adminPage_reviewList';
+			location.href='./adminPage_boardcommentList';
 		}
 	}
 	

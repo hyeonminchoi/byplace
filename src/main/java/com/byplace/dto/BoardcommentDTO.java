@@ -2,21 +2,19 @@ package com.byplace.dto;
 
 public class BoardcommentDTO {
 	long boardcomment_no, user_no;
-	String boardcomment_title, boardcomment_comment, boardcomment_date;
+	String boardcomment_comment, boardcomment_date;
 	int boardcomment_del;
 	int board_commentcount;
-	int board_no;	
+	long board_no;	
 
 	String user_id;
 	String user_name;
 
-	
-	
-	public int getBoard_no() {
+	public long getBoard_no() {
 		return board_no;
 	}
 
-	public void setBoard_no(int board_no) {
+	public void setBoard_no(long board_no) {
 		this.board_no = board_no;
 	}
 
@@ -41,14 +39,6 @@ public class BoardcommentDTO {
 
 	public void setUser_no(long user_no) {
 		this.user_no = user_no;
-	}
-
-	public String getBoardcomment_title() {
-		return boardcomment_title;
-	}
-
-	public void setBoardcomment_title(String boardcomment_title) {
-		this.boardcomment_title = boardcomment_title;
 	}
 
 	public String getBoardcomment_comment() {

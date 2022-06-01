@@ -3,21 +3,12 @@ package com.byplace.dto;
 public class ReportboardcommentDTO {
 	long reportboardcomment_no, user_no;
 	String reportboardcomment_comment, reportboardcomment_date;
-	String reportboardcomment_title, user_name;
+	String user_name;
 	String user_id;
 	int reportboardcomment_del;
 	int reportboard_commentcount;
 	int reportboard_no;
 	
-	
-	
-	
-	public String getReportboardcomment_title() {
-		return reportboardcomment_title;
-	}
-	public void setReportboardcomment_title(String reportboardcomment_title) {
-		this.reportboardcomment_title = reportboardcomment_title;
-	}
 	public String getUser_name() {
 		return user_name;
 	}

@@ -1,4 +1,4 @@
-package com.byplace.admin.web.food;
+package com.byplace.admin.web.boardcomment;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.byplace.admin.dao.AdminFoodDAO;
-import com.byplace.dto.FoodDTO;
+import com.byplace.admin.dao.AdminBoardcommentDAO;
+import com.byplace.dto.BoardcommentDTO;
 import com.google.gson.Gson;
 
-@WebServlet("/adminPage_foodList_JSON")
-public class AdminPage_foodList_JSON extends HttpServlet {
+@WebServlet("/adminPage_boardcommentList_JSON")
+public class AdminPage_boardcommentList_JSON extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminPage_foodList_JSON() {
+    public AdminPage_boardcommentList_JSON() {
         super();
     }
 
@@ -30,48 +30,41 @@ public class AdminPage_foodList_JSON extends HttpServlet {
 //		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			String sort = request.getParameter("sort");
 			String cmd = "";
-			
-			String searchColumn = "food_name";
+			String searchColumn = "boardcomment_comment";
 			if(request.getParameter("searchColumn")!=null && !request.getParameter("searchColumn").equals(""))
 				searchColumn = request.getParameter("searchColumn");
 			String searchValue = request.getParameter("searchValue");
 			String pg = request.getParameter("pg");
 			int currentPage = Integer.parseInt(pg);
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
-			
-			if(sort.equals("food_no desc"))
-				cmd = "food_no desc";
-			else if(sort.equals("food_no asc"))
-				cmd = "food_no asc";
-			else if(sort.equals("food_name desc"))
-				cmd = "food_name desc";
-			else if(sort.equals("food_name asc"))
-				cmd = "food_name asc";
-			else if(sort.equals("food_joined desc"))
-				cmd = "food_joined desc";
-			else if(sort.equals("food_joined asc"))
-				cmd = "food_joined asc";
-			else if(sort.equals("food_del desc"))
-				cmd = "food_del desc";
-			else if(sort.equals("food_del asc"))
-				cmd = "food_del asc";
-			else if(sort.equals("food_price desc"))
-				cmd = "food_price desc";
+			if(sort.equals("boardcomment_no desc"))
+				cmd = "boardcomment_no desc";
+			else if(sort.equals("boardcomment_no asc"))
+				cmd = "boardcomment_no asc";
+			else if(sort.equals("user_id desc"))
+				cmd = "user_id desc";
+			else if(sort.equals("user_id asc"))
+				cmd = "user_id asc";
+			else if(sort.equals("boardcomment_date desc"))
+				cmd = "boardcomment_date desc";
+			else if(sort.equals("boardcomment_date asc"))
+				cmd = "boardcomment_date asc";
+			else if(sort.equals("boardcomment_del desc"))
+				cmd = "boardcomment_del desc";
 			else
-				cmd = "food_price asc";
+				cmd = "boardcomment_del asc";
 			StringTokenizer st = new StringTokenizer(cmd, " ");
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("foodListColumn", st.nextToken());
+				Cookie cookie = new Cookie("boardcommentListColumn", st.nextToken());
 				response.addCookie(cookie);
 			}
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("foodListColumn_sort", st.nextToken());
+				Cookie cookie = new Cookie("boardcommentListColumn_sort", st.nextToken());
 				response.addCookie(cookie);
 			}
-
-			AdminFoodDAO dao = new AdminFoodDAO();
-			List<FoodDTO> foodList = dao.findFoodList(cmd, searchColumn, searchValue, currentPage, pageSize, Long.parseLong(request.getParameter("restaurant_no")));
-			String json = new Gson().toJson(foodList);
+			AdminBoardcommentDAO dao = new AdminBoardcommentDAO();
+			List<BoardcommentDTO> boardcommentList = dao.findBoardcommentList(cmd, searchColumn, searchValue, currentPage, pageSize, Long.parseLong(request.getParameter("board_no")));
+			String json = new Gson().toJson(boardcommentList);
 			
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");

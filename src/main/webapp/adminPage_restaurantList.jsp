@@ -270,11 +270,11 @@ window.onload = function(){
 	}
 	
 	function showFoodList(no){
-		location.href='./adminPage_foodList?restaurant_no=' + no;
+		location.href='./adminPage_foodList?restaurant_no=' + no +"&prevPg=" + ${pg};
 	}
 	
 	function showReviewList(no){
-		location.href='./adminPage_reviewList?restaurant_no=' + no;
+		location.href='./adminPage_reviewList?restaurant_no=' + no +"&prevPg=" + ${pg};
 	}
 	
 	var restaurantDescriptionDialog = document.getElementById("restaurantDescriptionDialog");

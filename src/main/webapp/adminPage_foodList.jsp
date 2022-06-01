@@ -129,7 +129,7 @@ window.onload = function(){
 	
 	<section class="home-section">
 		<div class="home-content">
-			<button type="button" onclick="location.href='./adminPage_restaurantList'">뒤로가기</button>
+			<button type="button" onclick="location.href='./adminPage_restaurantList?pg=${param.prevPg}'">뒤로가기</button>
 			<h1>대표메뉴 관리</h1>
 			<div>
 				<div>

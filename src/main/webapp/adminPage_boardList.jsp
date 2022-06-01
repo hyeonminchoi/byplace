@@ -8,7 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
-<link rel="stylesheet" href="./css/adminPage.css">
 <style type="text/css">
 	#boardList{
 		margin: 0 auto;
@@ -59,6 +58,7 @@
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<link rel="stylesheet" href="./css/adminPage.css">
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#summernote').summernote({
@@ -94,7 +94,7 @@ function changed(){
 				var board = JSON.stringify(boardList[i]);
 				temp += "<tr>";
 				temp += "	<td>" + boardList[i].board_no + "</td>";
-				temp += "	<td>" + boardList[i].board_title + "</td>";
+				temp += "	<td><a href='./adminPage_boardcommentList?board_no=" + boardList[i].board_no + "&prevPg=" + ${pg} + "'>" + boardList[i].board_title + "</a></td>";
 				temp += "	<td>" + "<button type=\"button\" onclick=\'showComment(" + board + ")\'>본분보기</button>" + "</td>";
 				temp += "	<td>" + boardList[i].board_commentcount + "</td>";
 				temp += "	<td>" + boardList[i].board_date + "</td>";

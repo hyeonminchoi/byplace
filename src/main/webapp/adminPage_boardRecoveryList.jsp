@@ -8,7 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
-<link rel="stylesheet" href="./css/adminPage.css">
 <style type="text/css">
 	#boardList{
 		margin: 0 auto;
@@ -63,7 +62,7 @@
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
+<link rel="stylesheet" href="./css/adminPage.css">
 <script type="text/javascript">
 $(document).ready(function(){
 	var urlSearch = new URLSearchParams(location.search);
