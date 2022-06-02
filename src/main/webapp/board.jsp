@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +13,7 @@
 <link href="./css/board.css" rel="stylesheet">
 </head>
 <body>
-	<%@ include file="./menu.jsp" %>
+	<%@ include file="./menu.jsp"%>
 	<div id="main">
 		<div id="side">
 			<div id="mmenu">
@@ -19,7 +21,7 @@
 					<li><a href="./notice">공지사항</a></li>
 					<li><a href="./board">자유게시판</a></li>
 					<li><a href="./reportboard">신고게시판</a></li>
-				</ul>			
+				</ul>
 			</div>
 		</div>
 		<div id="board">
@@ -44,12 +46,65 @@
 					</tr>
 				</c:forEach>
 			</table>
-			
+
 			<c:if test="${not empty sessionScope.USER }">
-				<div style=" text-align: center;">
-				<button type="button" onclick="location.href='./boardWrite'" id="whitebtn">글쓰기</button>
+				<div style="text-align: center;">
+					<button type="button" onclick="location.href='./boardWrite'"
+						id="whitebtn">글쓰기</button>
 				</div>
 			</c:if>
+
+			<hr>
+
+			<fmt:parseNumber integerOnly="true" var="totalpage"
+				value="${totalcount / 10 }" />
+			<c:if test="${(totalcount % 10) > 0 }">
+				<c:set var="totalpage" value="${totalpage + 1}" />
+			</c:if>
+
+			<c:if test="${pageNo % 10 ne 0 }">
+				<fmt:parseNumber integerOnly="true" var="startpage"
+					value="${pageNo / 10 }" />
+				<c:set var="startpage" value="${startpage * 10 + 1 }" />
+			</c:if>
+			<c:if test="${pageNo % 10 eq 0 }">
+				<c:set var="startpage" value="${pageNo - 9 }" />
+			</c:if>
+
+
+			<c:set var="endpage" value="${startpage + 9 }" />
+			<c:if test="${startpage + 10 gt totalpage }">
+				<c:set var="endpage" value="${totalpage }" />
+			</c:if>
+
+
+			<button onclick="location.href='./board?pageNo=1'">앞으로</button>
+			<c:if test="${pageNo eq 1 }">
+				<button disabled="disabled"
+					onclick="location.href='./board?pageNo=${pageNo - 1}'">
+					left</button>
+			</c:if>
+			<c:if test="${pageNo ne 1 }">
+				<button onclick="location.href='./board?pageNo=${pageNo - 1}'">
+					left</button>
+			</c:if>
+
+			<c:forEach begin="${startpage }" end="${endpage }" var="n">
+				<button onclick="location.href='./board?pageNo=${n }'">${n }</button>
+			</c:forEach>
+
+			<c:if test="${pageNo eq totalpage }">
+				<button disabled="disabled"
+					onclick="location.href='./board?pageNo=${pageNo + 1}'">
+					right</button>
+			</c:if>
+			<c:if test="${pageNo ne totalpage }">
+				<button onclick="location.href='./board?pageNo=${pageNo + 1}'">
+					right</button>
+			</c:if>
+
+			<button onclick="location.href='./board?pageNo=${totalpage}'">뒤로</button>
+
 		</div>
 	</div>
 
