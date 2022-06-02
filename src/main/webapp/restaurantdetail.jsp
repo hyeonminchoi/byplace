@@ -145,12 +145,12 @@ $('.starRev span').click(function(){
 				<label>리뷰내용</label>
 				<input type="text" id="review_comment" placeholder="내용" name="review_comment" required="required"><br>
 				<label>리뷰평가</label>
-				<div class="starRev" data-rate="0.5">
-					<span class="starR1 on">별1_왼쪽</span> <span class="starR2">별1_오른쪽</span>
-					<span class="starR1">별2_왼쪽</span> <span class="starR2">별2_오른쪽</span>
-					<span class="starR1">별3_왼쪽</span> <span class="starR2">별3_오른쪽</span>
-					<span class="starR1">별4_왼쪽</span> <span class="starR2">별4_오른쪽</span>
-					<span class="starR1">별5_왼쪽</span> <span class="starR2">별5_오른쪽</span>
+				<div class="starRev" >
+					<span class="starR1 on" data-rate="0.5">별1_왼쪽</span> <span class="starR2" data-rate="0.5">별1_오른쪽</span>
+					<span class="starR1" data-rate="0.5">별2_왼쪽</span> <span class="starR2" data-rate="0.5">별2_오른쪽</span>
+					<span class="starR1" data-rate="0.5">별3_왼쪽</span> <span class="starR2" data-rate="0.5">별3_오른쪽</span>
+					<span class="starR1" data-rate="0.5">별4_왼쪽</span> <span class="starR2" data-rate="0.5">별4_오른쪽</span>
+					<span class="starR1" data-rate="0.5">별5_왼쪽</span> <span class="starR2" data-rate="0.5">별5_오른쪽</span>
 				</div>
 				<input type="hidden" name="restaurant_no" value="${resdetail.restaurant_no }">
 				<input type="hidden" name="user_no" value="${sessionScope.USER.user_no }">
@@ -191,7 +191,7 @@ $('.starRev span').click(function(){
 			<div id="restaurantinfo" style="text-align: center;">
 				사업자 번호 : ${infodetail.restaurantinfo_businessnumber } <br>
 				오픈 시간 : ${infodetail.restaurantinfo_openinghours } <br>
-				음식점 설명 : ${infodetail.restaurantinfo_description } <br>		
+				음식점 설명 : ${infodetail.restaurantinfo_description } <br>	
 			</div>
 			</div>
 			<!-- 탭 메뉴 내용 끝 -->

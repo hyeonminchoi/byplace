@@ -28,7 +28,6 @@ public class Review extends HttpServlet {
 		//doGet(request, response);
 		HttpSession session = request.getSession();
 		if(session.getAttribute("USER") != null) {
-			
 			String review_comment = request.getParameter("review_comment");
 			String review_date = request.getParameter("review_date");
 			double review_rating = Double.parseDouble(request.getParameter("review_rating"));
