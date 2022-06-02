@@ -52,7 +52,7 @@ public class NoticeDAO extends AbstractDAO {
 		con = getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM notice LIMIT ?, 10";
+		String sql = "SELECT * FROM noticeview LIMIT ?, 10";
 
 		try {
 			pstmt = con.prepareStatement(sql);
