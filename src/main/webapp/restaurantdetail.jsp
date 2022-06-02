@@ -26,6 +26,7 @@ $(function(){
 
 $(function(){
 $('.starRev span').click(function(){
+	  $('#starRev').val($(this).text());
 	  $(this).parent().children('span').removeClass('on');
 	  $(this).addClass('on').prevAll('span').addClass('on');
 	  return false;
@@ -92,6 +93,7 @@ $('.starRev span').click(function(){
 		${resdetail.restaurant_detailAddress }<br>
 		${resdetail.restaurant_extraAddress }<br>
 		────────────────────────────────────────────<br>
+		평점: ${resdetail.restaurant_rating }<br>
 		${resdetail.restaurant_description }
 		
 		
@@ -145,12 +147,18 @@ $('.starRev span').click(function(){
 				<label>리뷰내용</label>
 				<input type="text" id="review_comment" placeholder="내용" name="review_comment" required="required"><br>
 				<label>리뷰평가</label>
-				<div class="starRev" >
-					<span class="starR1 on" data-rate="0.5">별1_왼쪽</span> <span class="starR2" data-rate="0.5">별1_오른쪽</span>
-					<span class="starR1" data-rate="0.5">별2_왼쪽</span> <span class="starR2" data-rate="0.5">별2_오른쪽</span>
-					<span class="starR1" data-rate="0.5">별3_왼쪽</span> <span class="starR2" data-rate="0.5">별3_오른쪽</span>
-					<span class="starR1" data-rate="0.5">별4_왼쪽</span> <span class="starR2" data-rate="0.5">별4_오른쪽</span>
-					<span class="starR1" data-rate="0.5">별5_왼쪽</span> <span class="starR2" data-rate="0.5">별5_오른쪽</span>
+				<div class="starRev">
+					<input type="hidden" value="" id="starRev" name="starRev">
+					<span class="starR1 on">0.5</span>
+					<span class="starR2">1</span>
+					<span class="starR1">1.5</span>
+					<span class="starR2">2</span>
+					<span class="starR1">2.5</span>
+					<span class="starR2">3</span>
+					<span class="starR1">3.5</span>
+					<span class="starR2">4</span>
+					<span class="starR1">4.5</span>
+					<span class="starR2">5</span>
 				</div>
 				<input type="hidden" name="restaurant_no" value="${resdetail.restaurant_no }">
 				<input type="hidden" name="user_no" value="${sessionScope.USER.user_no }">
@@ -158,19 +166,19 @@ $('.starRev span').click(function(){
 			</form>
 			</c:if>
 			<table style="float: center;">
-			<tr>
-			<th id=col1>리뷰내용</th>
-			<th id=col2>리뷰날짜</th>
-			<th id=col3>리뷰평점</th>
-			<th id=col4>소비자</th>
-			</tr>
+				<tr>
+					<th id=col1>리뷰내용</th>
+					<th id=col2>리뷰날짜</th>
+					<th id=col3>리뷰평점</th>
+					<th id=col4>소비자</th>
+				</tr>
 			<c:forEach items="${reviewlist }" var="r">
-			<tr>
-				<th>${r.review_comment }</th>
-				<th>${r.review_date }</th>
-				<th>${r.review_rating }</th>
-				<th>${r.user_id }</th>
-			<tr>
+				<tr>
+					<th>${r.review_comment }</th>
+					<th>${r.review_date }</th>
+					<th>${r.review_rating }</th>
+					<th>${r.user_id }</th>
+				<tr>
 			</c:forEach>
 			</table>
 			</div>

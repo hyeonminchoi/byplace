@@ -25,16 +25,15 @@ public class Review extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//doGet(request, response);
+		//doGet(request, response)
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		if(session.getAttribute("USER") != null) {
 			String review_comment = request.getParameter("review_comment");
 			String review_date = request.getParameter("review_date");
-			double review_rating = Double.parseDouble(request.getParameter("review_rating"));
+			double review_rating = Double.parseDouble(request.getParameter("starRev"));
 			long restaurant_no = Long.parseLong(request.getParameter("restaurant_no"));
 			long user_no = Long.parseLong(request.getParameter("user_no"));
-			System.out.println(review_date);
-			System.out.println(restaurant_no);
 			ReviewDTO dto = new ReviewDTO();
 			dto.setRestaurant_no(restaurant_no);
 			dto.setUser_no(user_no);

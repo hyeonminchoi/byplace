@@ -88,7 +88,7 @@ public class RestaurantDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM restaurant WHERE restaurant_no=?";
+		String sql = "SELECT * FROM restaurantView WHERE restaurant_no=?";
 		
 		try {
 			con = DBConnection.dbConn();
@@ -104,6 +104,7 @@ public class RestaurantDAO {
 				dto.setRestaurant_roadAddress(rs.getString("restaurant_roadAddress"));
 				dto.setRestaurant_detailAddress(rs.getString("restaurant_detailAddress"));
 				dto.setRestaurant_extraAddress(rs.getString("restaurant_extraAddress"));
+				dto.setRestaurant_rating(rs.getDouble("restaurant_rating"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -238,7 +239,7 @@ public class RestaurantDAO {
 	public void review(ReviewDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO review (review_comment,  review_rating, user_no, restaurant_no) VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO review (review_comment,  review_rating, user_no, restaurant_no) VALUES (?, ?, ?, ?)";
 		
 		try {
 			con = DBConnection.dbConn();
@@ -265,7 +266,7 @@ public class RestaurantDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM review WHERE restaurant_no=?";
+		String sql = "SELECT * FROM reviewview WHERE restaurant_no=?";
 		
 		try {
 			con = DBConnection.dbConn();
@@ -278,6 +279,8 @@ public class RestaurantDAO {
 				dto.setReview_date(rs.getString("review_date"));
 				dto.setReview_rating(rs.getDouble("review_rating"));
 				dto.setRestaurant_no(rs.getLong("restaurant_no"));
+				dto.setUser_id(rs.getString("user_id"));
+				list.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
