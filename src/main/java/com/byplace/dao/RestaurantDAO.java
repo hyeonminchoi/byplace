@@ -193,6 +193,7 @@ public class RestaurantDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				FoodDTO dto = new FoodDTO();
+				dto.setFood_no(rs.getLong("food_no"));
 				dto.setFood_name(rs.getString("food_name"));
 				dto.setFood_description(rs.getString("food_description"));
 				dto.setFood_price(rs.getInt("food_price"));
@@ -275,6 +276,7 @@ public class RestaurantDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ReviewDTO dto = new ReviewDTO();
+				dto.setReview_no(rs.getLong("review_no"));
 				dto.setReview_comment(rs.getString("review_comment"));
 				dto.setReview_date(rs.getString("review_date"));
 				dto.setReview_rating(rs.getDouble("review_rating"));
@@ -354,6 +356,28 @@ public class RestaurantDAO {
 			}
 		}
 		return dto;
+	}
+
+	public void reviewdelete(ReviewDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE review SET review_del=1 WHERE review_no=?";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, dto.getReview_no());
+			pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 	
 }

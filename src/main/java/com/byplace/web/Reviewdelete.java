@@ -9,14 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.byplace.dao.RestaurantDAO;
-import com.byplace.dto.FoodDTO;
-import com.byplace.dto.UserDTO;
+import com.byplace.dto.ReviewDTO;
 
-@WebServlet("/menudelete")
-public class Menudelete extends HttpServlet {
+@WebServlet("/reviewdelete")
+public class Reviewdelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Menudelete() {
+    public Reviewdelete() {
         super();
     }
 
@@ -24,17 +23,17 @@ public class Menudelete extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
 		if(session.getAttribute("USER") != null) {
-			FoodDTO dto = new FoodDTO();
+			ReviewDTO dto = new ReviewDTO();
 			
-			dto.setFood_no(Long.parseLong(request.getParameter("food_no")));
+			dto.setReview_no(Long.parseLong(request.getParameter("review_no")));
 			
 			RestaurantDAO dao = new RestaurantDAO();
-			dao.menudelete(dto);
+			dao.reviewdelete(dto);
 			
-		}else {
+		} else {
 			response.sendRedirect("./login.jsp");
 		}
-		response.sendRedirect("./restaurantdetail?restaurant_no=" + request.getParameter("restaurant_no"));
+		response.sendRedirect("./restaurantdetail?restaurant_no="+request.getParameter("restaurant_no"));
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

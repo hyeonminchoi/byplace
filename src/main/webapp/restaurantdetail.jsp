@@ -10,20 +10,27 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41c04e215b88583eb8be89a445ce294e&libraries=services"></script>
 <link href="./css/tabmenu.css" rel="stylesheet">
 <script type="text/javascript">
-$(function(){
-	$('#menuup').click(function(){
-		location.href = './index.jsp';
-	});
-});
+function menuup(n1, n2){
+	location.href = './index.jsp';
+}
 
-$(function(){
-	$('#menudel').click(function(){
-		if(confirm("삭제하시겠습니까?")){
-			location.href = './menudelete';
-		}
-	});
-});
+function menudel(n1, n2){
+	if(confirm("삭제하시겠습니까?")){
+		location.href = './menudelete?food_no='+n2 + "&restaurant_no=" + n1;
+	}
+}
 
+function reviewdel(n1, n2){
+	if(confirm("삭제하시겠습니까?")){
+		location.href='./reviewdelete?review_no='+n1 + "&restaurant_no=" + n2;
+	}
+}
+
+function resdel(){
+	if(confirm("삭제하시겠습니까?")){
+		location.href=''
+	}
+}
 $(function(){
 $('.starRev span').click(function(){
 	  $('#starRev').val($(this).text());
@@ -74,9 +81,9 @@ $('.starRev span').click(function(){
 <body>
 	<div id="head">
 		<div id="headoption" style="float: left;">
-		<button onclick="back">뒤로가기</button>
-		<button onclick="update">수정</button>
-		<button onclick="delete">삭제</button>
+		<button onclick="resback()">뒤로가기</button>
+		<button onclick="resup()">수정</button>
+		<button onclick="resdel()">삭제</button>
 		</div>
 		<div id="headtitle" style="text-align: center;">
 			<h1>BY PLACE</h1>
@@ -129,8 +136,8 @@ $('.starRev span').click(function(){
 			<c:forEach items="${menulist }" var="m">
 				<img src="./menuImage/${m.food_image }">
 				<c:if test="${sessionScope.USER ne null }">
-				<button name="menuup" id="menuup">수정</button>
-				<button name="menudel" id="menudel">삭제</button>
+				<button name="menuup" id="menuup" onclick="menuup(${resdetail.restaurant_no},${m.food_no})">수정</button>
+				<button name="menudel" id="menudel" onclick="menudel(${resdetail.restaurant_no},${m.food_no})">삭제</button>
 				</c:if>
 				 <br>
 				메뉴 : ${m.food_name } <br>
@@ -177,7 +184,7 @@ $('.starRev span').click(function(){
 					<th>${r.review_comment }</th>
 					<th>${r.review_date }</th>
 					<th>${r.review_rating }</th>
-					<th>${r.user_id }</th>
+					<th>${r.user_id } <button onclick="reviewdel(${r.review_no }, ${resdetail.restaurant_no })">삭제</button></th>
 				<tr>
 			</c:forEach>
 			</table>
