@@ -1,4 +1,4 @@
-package com.byplace.admin.web.board;
+package com.byplace.admin.web.reportboard;
 
 import java.io.IOException;
 
@@ -11,40 +11,40 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminCategoryDAO;
-import com.byplace.admin.dao.AdminBoardDAO;
+import com.byplace.admin.dao.AdminReportboardDAO;
 import com.byplace.admin.util.pageConfigure;
 
-@WebServlet("/adminPage_boardRecoveryList")
-public class AdminPage_boardRecoveryList extends HttpServlet {
+@WebServlet("/adminPage_reportboardRecoveryList")
+public class AdminPage_reportboardRecoveryList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminPage_boardRecoveryList() {
+    public AdminPage_reportboardRecoveryList() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 //		if(session.getAttribute("USER")!=null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
-			String searchColumn = "board_title";
+			String searchColumn = "reportboard_title";
 			if(request.getParameter("searchColumn")!=null)
 				searchColumn = request.getParameter("searchColumn");
 			String searchValue = "";
 			if(request.getParameter("searchValue")!=null)
 				searchValue = request.getParameter("searchValue");
-			AdminBoardDAO dao = new AdminBoardDAO();
+			AdminReportboardDAO dao = new AdminReportboardDAO();
 			int recordCount = dao.count(searchColumn, searchValue);
 			request.setAttribute("recordCount", recordCount);
 			request.setAttribute("pageSize", pageConfigure.pageSize);
 			
 			Cookie cookie[] = request.getCookies();
-			String sort = "board_no asc";
+			String sort = "reportboard_no asc";
 			String column="", column_sort=""; 
 			if(cookie != null) {
 				for(int i=0;i<cookie.length;i++) {
-					if(cookie[i].getName().equals("boardRecoveryListColumn")) {
+					if(cookie[i].getName().equals("reportboardRecoveryListColumn")) {
 						column = cookie[i].getValue(); 
 					}
-					if(cookie[i].getName().equals("boardRecoveryListColumn_sort")) {
+					if(cookie[i].getName().equals("reportboardRecoveryListColumn_sort")) {
 						column_sort = cookie[i].getValue();
 					}
 				}
@@ -61,7 +61,7 @@ public class AdminPage_boardRecoveryList extends HttpServlet {
 			} else
 				request.setAttribute("pg", pg);
 			request.setAttribute("sort", sort);
-			request.getRequestDispatcher("./adminPage_boardRecoveryList.jsp").forward(request, response);
+			request.getRequestDispatcher("./adminPage_reportboardRecoveryList.jsp").forward(request, response);
 //		} else {
 //			response.sendRedirect("./index.jsp");
 //		}

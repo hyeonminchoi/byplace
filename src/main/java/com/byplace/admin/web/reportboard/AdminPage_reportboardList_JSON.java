@@ -1,4 +1,4 @@
-package com.byplace.admin.web.board;
+package com.byplace.admin.web.reportboard;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.byplace.admin.dao.AdminBoardDAO;
-import com.byplace.dto.BoardDTO;
+import com.byplace.admin.dao.AdminReportboardDAO;
+import com.byplace.dto.ReportboardDTO;
 import com.google.gson.Gson;
 
-@WebServlet("/adminPage_boardRecoveryList_JSON")
-public class AdminPage_boardRecoveryList_JSON extends HttpServlet {
+@WebServlet("/adminPage_reportboardList_JSON")
+public class AdminPage_reportboardList_JSON extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminPage_boardRecoveryList_JSON() {
+    public AdminPage_reportboardList_JSON() {
         super();
     }
 
@@ -29,7 +29,7 @@ public class AdminPage_boardRecoveryList_JSON extends HttpServlet {
 //		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			String sort = request.getParameter("sort");
 			String cmd = "";
-			String searchColumn = "board_title";
+			String searchColumn = "reportboard_title";
 			if(request.getParameter("searchColumn")!=null && !request.getParameter("searchColumn").equals(""))
 				searchColumn = request.getParameter("searchColumn");
 			String searchValue = request.getParameter("searchValue");
@@ -38,39 +38,39 @@ public class AdminPage_boardRecoveryList_JSON extends HttpServlet {
 			int currentPage = Integer.parseInt(pg);
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
 
-			if(sort.equals("board_no asc"))
-				cmd = "board_no asc";
-			else if(sort.equals("board_no desc"))
-				cmd = "board_no desc";
-			else if(sort.equals("board_title asc"))
-				cmd = "board_title asc";
-			else if(sort.equals("board_title desc"))
-				cmd = "board_title desc";
-			else if(sort.equals("board_date asc"))
-				cmd = "board_date asc";
-			else if(sort.equals("board_date desc"))
-				cmd = "board_date desc";
-			else if(sort.equals("board_count asc"))
-				cmd = "board_count asc";
-			else if(sort.equals("board_count desc"))
-				cmd = "board_count desc";
-			else if(sort.equals("board_del asc"))
-				cmd = "board_del asc";
-			else if(sort.equals("board_del desc"))
-				cmd = "board_del desc";
+			if(sort.equals("reportboard_no asc"))
+				cmd = "reportboard_no asc";
+			else if(sort.equals("reportboard_no desc"))
+				cmd = "reportboard_no desc";
+			else if(sort.equals("reportboard_title asc"))
+				cmd = "reportboard_title asc";
+			else if(sort.equals("reportboard_title desc"))
+				cmd = "reportboard_title desc";
+			else if(sort.equals("reportboard_date asc"))
+				cmd = "reportboard_date asc";
+			else if(sort.equals("reportboard_date desc"))
+				cmd = "reportboard_date desc";
+			else if(sort.equals("reportboard_comment desc"))
+				cmd = "reportboard_comment desc";
+			else if(sort.equals("reportboard_comment asc"))
+				cmd = "reportboard_comment asc";
+			else if(sort.equals("user_id desc"))
+				cmd = "user_id desc";
+			else if(sort.equals("user_id asc"))
+				cmd = "user_id asc";
 			StringTokenizer st = new StringTokenizer(cmd, " ");
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("boardRecoveryListColumn", st.nextToken());
+				Cookie cookie = new Cookie("reportboardListColumn", st.nextToken());
 				response.addCookie(cookie);
 			}
 			if(st.hasMoreTokens()) {
-				Cookie cookie = new Cookie("boardRecoveryListColumn_sort", st.nextToken());
+				Cookie cookie = new Cookie("reportboardListColumn_sort", st.nextToken());
 				response.addCookie(cookie);
 			}
 			
-			AdminBoardDAO boardDAO = new AdminBoardDAO();
-			List<BoardDTO> boardList = boardDAO.findRecovery(cmd, searchColumn, searchValue, currentPage, pageSize);
-			String json = new Gson().toJson(boardList);
+			AdminReportboardDAO reportboardDAO = new AdminReportboardDAO();
+			List<ReportboardDTO> reportboardList = reportboardDAO.findAll(cmd, searchColumn, searchValue, currentPage, pageSize);
+			String json = new Gson().toJson(reportboardList);
 			
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");

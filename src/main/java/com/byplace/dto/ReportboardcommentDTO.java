@@ -7,7 +7,7 @@ public class ReportboardcommentDTO {
 	String user_id;
 	int reportboardcomment_del;
 	int reportboard_commentcount;
-	int reportboard_no;
+	long reportboard_no;
 	
 	public String getUser_name() {
 		return user_name;
@@ -27,10 +27,10 @@ public class ReportboardcommentDTO {
 	public void setReportboard_commentcount(int reportboard_commentcount) {
 		this.reportboard_commentcount = reportboard_commentcount;
 	}
-	public int getReportboard_no() {
+	public long getReportboard_no() {
 		return reportboard_no;
 	}
-	public void setReportboard_no(int reportboard_no) {
+	public void setReportboard_no(long reportboard_no) {
 		this.reportboard_no = reportboard_no;
 	}
 	public long getReportboardcomment_no() {

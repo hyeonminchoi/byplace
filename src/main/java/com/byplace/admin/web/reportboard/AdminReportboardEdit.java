@@ -1,4 +1,4 @@
-package com.byplace.admin.web.board;
+package com.byplace.admin.web.reportboard;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,16 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.byplace.admin.dao.AdminBoardDAO;
-import com.byplace.dto.BoardDTO;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.byplace.admin.dao.AdminReportboardDAO;
+import com.byplace.dto.ReportboardDTO;
 
-@WebServlet("/adminBoardEdit")
-public class AdminBoardEdit extends HttpServlet {
+@WebServlet("/adminReportboardEdit")
+public class AdminReportboardEdit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminBoardEdit() {
+    public AdminReportboardEdit() {
         super();
     }
 
@@ -34,17 +32,17 @@ public class AdminBoardEdit extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
 //		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
-			long board_no = Long.parseLong(request.getParameter("board_no"));
-			String board_title = request.getParameter("board_title");
-			String board_comment = request.getParameter("board_comment");
+			long reportboard_no = Long.parseLong(request.getParameter("reportboard_no"));
+			String reportboard_title = request.getParameter("reportboard_title");
+			String reportboard_comment = request.getParameter("reportboard_comment");
 			
-			BoardDTO dto = new BoardDTO();
-			dto.setBoard_no(board_no);
-			dto.setBoard_title(board_title);
-			dto.setBoard_comment(board_comment);
+			ReportboardDTO dto = new ReportboardDTO();
+			dto.setReportboard_no(reportboard_no);
+			dto.setReportboard_title(reportboard_title);
+			dto.setReportboard_comment(reportboard_comment);
 			
-			AdminBoardDAO adminBoardDAO = new AdminBoardDAO();
-			int result = adminBoardDAO.edit(dto);
+			AdminReportboardDAO adminReportboardDAO = new AdminReportboardDAO();
+			int result = adminReportboardDAO.edit(dto);
 			if(result==1) { //수정 성공
 				writer.println("<script>alert('" + "수정에 성공했습니다" + "'); window.location.href = document.referrer;</script>");
 			} else { //수정 실패
