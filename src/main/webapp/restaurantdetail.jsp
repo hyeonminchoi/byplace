@@ -131,9 +131,9 @@ $('.starRev span').click(function(){
 				<button name="menudel" id="menudel">삭제</button>
 				</c:if>
 				 <br>
-				${m.food_name } <br>
-				${m.food_price } <br>
-				${m.food_description } <br>
+				메뉴 : ${m.food_name } <br>
+				가격 : ${m.food_price } <br>
+				설명 : ${m.food_description } <br>
 			</c:forEach>
 			</div>
 			<div id="tab-2" class="tab-content">
