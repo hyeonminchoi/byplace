@@ -11,6 +11,7 @@ import com.byplace.db.DBConnection;
 import com.byplace.dto.CategoryDTO;
 import com.byplace.dto.FoodDTO;
 import com.byplace.dto.RestaurantDTO;
+import com.byplace.dto.RestaurantinfoDTO;
 import com.byplace.dto.ReviewDTO;
 
 public class RestaurantDAO {
@@ -237,16 +238,15 @@ public class RestaurantDAO {
 	public void review(ReviewDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO review (review_comment, review_date,  review_rating, user_no, restaurant_no) VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO review (review_comment,  review_rating, user_no, restaurant_no) VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getReview_comment());
-			pstmt.setString(2, dto.getReview_date());
-			pstmt.setDouble(3, dto.getReview_rating());
-			pstmt.setLong(4, dto.getUser_no());
-			pstmt.setLong(5, dto.getRestaurant_no());
+			pstmt.setDouble(2, dto.getReview_rating());
+			pstmt.setLong(3, dto.getUser_no());
+			pstmt.setLong(4, dto.getRestaurant_no());
 			pstmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -284,6 +284,65 @@ public class RestaurantDAO {
 		}
 		
 		return list;
+	}
+
+	public void infoadd(RestaurantinfoDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO restaurantinfo (restaurantinfo_businessnumber, restaurantinfo_openinghours, restaurantinfo_description, restaurant_no) VALUES (?, ?, ?, ?)";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getRestaurantinfo_businessnumber());
+			pstmt.setString(2, dto.getRestaurantinfo_openinghours());
+			pstmt.setString(3, dto.getRestaurantinfo_description());
+			pstmt.setLong(4, dto.getRestaurant_no());
+			pstmt.execute();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	public RestaurantinfoDTO infodetail(long restaurant_no) {
+		RestaurantinfoDTO dto = new RestaurantinfoDTO();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM restaurantinfo WHERE restaurant_no=?";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, restaurant_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				dto.setRestaurantinfo_no(rs.getLong("restaurantinfo_no"));
+				dto.setRestaurantinfo_businessnumber(rs.getString("restaurantinfo_businessnumber"));
+				dto.setRestaurantinfo_openinghours(rs.getString("restaurantinfo_openinghours"));
+				dto.setRestaurantinfo_description(rs.getString("restaurantinfo_description"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
 	}
 	
 }

@@ -2,7 +2,7 @@ package com.byplace.dto;
 
 public class RestaurantinfoDTO {
 	long restaurantinfo_no, restaurant_no;
-	String restaurantinfo_businessnumber, restaurantinfo_openinghours, restaurantinfo_descrpition;
+	String restaurantinfo_businessnumber, restaurantinfo_openinghours, restaurantinfo_description;
 	
 	public long getRestaurantinfo_no() {
 		return restaurantinfo_no;
@@ -28,10 +28,10 @@ public class RestaurantinfoDTO {
 	public void setRestaurantinfo_openinghours(String restaurantinfo_openinghours) {
 		this.restaurantinfo_openinghours = restaurantinfo_openinghours;
 	}
-	public String getRestaurantinfo_descrpition() {
-		return restaurantinfo_descrpition;
+	public String getRestaurantinfo_description() {
+		return restaurantinfo_description;
 	}
-	public void setRestaurantinfo_descrpition(String restaurantinfo_descrpition) {
-		this.restaurantinfo_descrpition = restaurantinfo_descrpition;
+	public void setRestaurantinfo_description(String restaurantinfo_descrpition) {
+		this.restaurantinfo_description = restaurantinfo_descrpition;
 	}
 }

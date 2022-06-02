@@ -145,7 +145,7 @@ $('.starRev span').click(function(){
 				<label>리뷰내용</label>
 				<input type="text" id="review_comment" placeholder="내용" name="review_comment" required="required"><br>
 				<label>리뷰평가</label>
-				<div class="starRev">
+				<div class="starRev" data-rate="0.5">
 					<span class="starR1 on">별1_왼쪽</span> <span class="starR2">별1_오른쪽</span>
 					<span class="starR1">별2_왼쪽</span> <span class="starR2">별2_오른쪽</span>
 					<span class="starR1">별3_왼쪽</span> <span class="starR2">별3_오른쪽</span>
@@ -154,7 +154,6 @@ $('.starRev span').click(function(){
 				</div>
 				<input type="hidden" name="restaurant_no" value="${resdetail.restaurant_no }">
 				<input type="hidden" name="user_no" value="${sessionScope.USER.user_no }">
-				<input type="hidden" name="review_date" value="${sessionScope.review.review_date }"><br>
 				<button>확인</button>
 			</form>
 			</c:if>
@@ -176,7 +175,24 @@ $('.starRev span').click(function(){
 			</table>
 			</div>
 			<div id="tab-4" class="tab-content">
-			
+			<c:if test="${sessionScope.USER ne null }">
+			<form action="./infoadd" method="post">
+			<label>사업자 번호</label>
+			<input type="text" id="restaurantinfo_businessnumber" placeholder="사업자 번호를 입력하시오." name="restaurantinfo_businessnumber" required="required"><br>
+			<label>오픈 시간</label>
+			<input type="text" id="restaurantinfo_openinghours" placeholder="오픈 시간을 입력하시오." name="restaurantinfo_openinghours" required="required"><br>
+			<label>음식점 설명</label>
+			<input type="text" id="restaurantinfo_description" placeholder="음식점 설명을 입력하시오." name="restaurantinfo_description" required="required"><br>
+			<input type="hidden" name="restaurant_no" value="${resdetail.restaurant_no }">
+			<button>확인</button>
+			</form>
+			<button name="cancel" id="cancel">취소</button><br>
+			</c:if>
+			<div id="restaurantinfo" style="text-align: center;">
+				사업자 번호 : ${infodetail.restaurantinfo_businessnumber } <br>
+				오픈 시간 : ${infodetail.restaurantinfo_openinghours } <br>
+				음식점 설명 : ${infodetail.restaurantinfo_description } <br>		
+			</div>
 			</div>
 			<!-- 탭 메뉴 내용 끝 -->
 		</div>
