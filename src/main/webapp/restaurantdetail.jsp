@@ -108,7 +108,7 @@ $('.starRev span').click(function(){
 			</ul>
 			<!-- 탭 메뉴 상단 끝 -->
 			<!-- 탭 메뉴 내용 시작 -->
-			<div id="tab-1" class="tab-content current">
+			<div id="tab-1" class="tab-content current" style="text-align: center;">
 			<c:if test="${sessionScope.USER ne null }">
 			<form action="./menuadd" method="post" enctype="multipart/form-data">
 			<label>음식 이름</label>
@@ -139,7 +139,7 @@ $('.starRev span').click(function(){
 			<div id="tab-2" class="tab-content">
 				<div id="map" style="width:100%;height:350px;"></div>
 			</div>
-			<div id="tab-3" class="tab-content">
+			<div id="tab-3" class="tab-content" style="text-align: center;">
 			<c:if test="${sessionScope.USER ne null }">
 			<form action="./review" method="post">
 				<label>리뷰내용</label>
@@ -157,7 +157,7 @@ $('.starRev span').click(function(){
 				<button>확인</button>
 			</form>
 			</c:if>
-			<table style="float: left;">
+			<table style="float: center;">
 			<tr>
 			<th id=col1>리뷰내용</th>
 			<th id=col2>리뷰날짜</th>
@@ -174,7 +174,7 @@ $('.starRev span').click(function(){
 			</c:forEach>
 			</table>
 			</div>
-			<div id="tab-4" class="tab-content">
+			<div id="tab-4" class="tab-content" style="text-align: center; ">
 			<c:if test="${sessionScope.USER ne null }">
 			<form action="./infoadd" method="post">
 			<label>사업자 번호</label>
