@@ -27,7 +27,7 @@ public class Update extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// http://localhost:8080/jspProject/update?b_no=8
+		// http://localhost:8080/jspProject/update?b_no=22
 		if (request.getParameter("board_no") != null) {
 			if (Util.str2Int(request.getParameter("board_no"))) {
 				int board_no = Integer.parseInt(request.getParameter("board_no"));
