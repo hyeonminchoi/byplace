@@ -46,7 +46,7 @@
 		<div id="noticeWriteFrom">
 			<form action="./noticeWrite" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 				<input type="text" name="title" required="required">
-				<textarea name="content"></textarea>
+				<textarea name="comment"></textarea>
 				<input type="file" name="file" accept="image/*">
 				<button type="submit">공지등록</button>
 			</form>

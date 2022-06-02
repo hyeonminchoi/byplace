@@ -42,9 +42,9 @@ public class NoticeWrite extends HttpServlet {
 		
 		String title = multi.getParameter("title");
 		title = new String(title.getBytes("8859_1"),"utf-8");//?
-		String content = multi.getParameter("content");
+		String comment = multi.getParameter("comment");
 		System.out.println(title);
-		System.out.println(content);//?
+		System.out.println(comment);//?
 		//파일l
 		String file = multi.getFilesystemName("file");
 		System.out.println(file);
@@ -54,7 +54,7 @@ public class NoticeWrite extends HttpServlet {
 		//DTO
 		NoticeDTO dto = new NoticeDTO();
 		dto.setNotice_title(title);
-		dto.setNotice_comment(content);
+		dto.setNotice_comment(comment);
 		dto.setNotice_orifilename(oriFileName);
 		dto.setNotice_filename(file);
 		HttpSession session = request.getSession();
