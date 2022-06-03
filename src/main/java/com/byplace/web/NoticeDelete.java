@@ -39,6 +39,8 @@ public class NoticeDelete extends HttpServlet {
 			
 		} else {
 			response.sendRedirect("./index.jsp");
+			System.out.println(request.getParameter("notice_no"));
+			System.out.println(session.getAttribute("USER"));
 		}
 	}
 

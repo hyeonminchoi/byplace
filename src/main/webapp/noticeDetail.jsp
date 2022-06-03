@@ -39,12 +39,11 @@ $(document).ready(function(){
 			location.replace("./noticeupdate?notice_no="+notice_no);
 		}
 	});
-	
+	var notice_no1 = ${noticedetail.notice_no };
 	$("#del").click(function(){
 		if(confirm("해당 글을 삭제하시겠습니까?")){
-			var notice_no = $("#notice_no").text();
 			//alert(b_no2 + "번글을 삭제합니다.");
-			location.replace("./noticedelete?notice_no="+notice_no);
+			location.replace("./noticedelete?notice_no="+notice_no1);
 		}
 	});
 });

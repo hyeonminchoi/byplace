@@ -48,10 +48,10 @@
 			</table>
 
 			<c:if test="${not empty sessionScope.USER }">
-				<div style="text-align: center;">
+				
 					<button type="button" onclick="location.href='./boardWrite'"
 						id="whitebtn">글쓰기</button>
-				</div>
+				
 			</c:if>
 
 			<hr>
