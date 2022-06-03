@@ -463,4 +463,29 @@ public class RestaurantDAO {
 			
 		}
 	}
+	
+	public void review(ReviewDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO review (review_comment,  review_rating, user_no, restaurant_no) VALUES (?, ?, ?, ?)";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getReview_comment());
+			pstmt.setDouble(2, dto.getReview_rating());
+			pstmt.setLong(3, dto.getUser_no());
+			pstmt.setLong(4, dto.getRestaurant_no());
+			pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 }
