@@ -35,7 +35,7 @@ function resdel(n1){
 }
 
 function resback(){
-	location.href='./restaurantList';
+	location.href='./index.jsp';
 }
 
 function resup(n1){
@@ -105,7 +105,7 @@ table, td, th {
 	<div id="head">
 		<div id="headoption" style="float: left;">
 		<button onclick="resback()">뒤로가기</button>
-		<c:if test="${sessionScope.USER ne null }">
+		<c:if test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
 		<button onclick="resup(${resdetail.restaurant_no})">수정</button>
 		<button onclick="resdel(${resdetail.restaurant_no})">삭제</button>
 		</c:if>
@@ -145,7 +145,7 @@ table, td, th {
 			<!-- 탭 메뉴 상단 끝 -->
 			<!-- 탭 메뉴 내용 시작 -->
 			<div id="tab-1" class="tab-content current" style="text-align: center;">
-			<c:if test="${sessionScope.USER ne null }">
+			<c:if test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
 			<form action="./menuadd" method="post" enctype="multipart/form-data">
 			<label>음식 이름</label>
 			<input type="text" id="food_name" placeholder="음식 이름을 입력하시오." name="food_name" required="required"><br>
@@ -162,7 +162,7 @@ table, td, th {
 			</c:if>
 			<c:forEach items="${menulist }" var="m">
 				<img src="./menuImage/${m.food_image }">
-				<c:if test="${sessionScope.USER ne null }">
+				<c:if test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
 				<button name="menuup" id="menuup" onclick="menuup(${resdetail.restaurant_no},${m.food_no})">수정</button>
 				<button name="menudel" id="menudel" onclick="menudel(${resdetail.restaurant_no},${m.food_no})">삭제</button>
 				</c:if>
@@ -181,8 +181,8 @@ table, td, th {
 				<label>리뷰내용</label>
 				<input type="text" id="review_comment" placeholder="내용" name="review_comment" required="required"><br>
 				<label>리뷰평가</label>
-				<div class="starRev">
-					<input type="hidden" value="" id="starRev" name="starRev">
+				<div class="starRev" style="margin: auto; text-align: center;">
+					<input type="hidden" value="" id="starRev" name="starRev" style="margin: auto; text-align: center;">
 					<span class="starR1 on">0.5</span>
 					<span class="starR2">1</span>
 					<span class="starR1">1.5</span>
@@ -219,7 +219,7 @@ table, td, th {
 			</table>
 			</div>
 			<div id="tab-4" class="tab-content" style="text-align: center; ">
-			<c:if test="${sessionScope.USER ne null }">
+			<c:if test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
 			<form action="./infoadd" method="post">
 			<label>사업자 번호</label>
 			<input type="text" id="restaurantinfo_businessnumber" placeholder="사업자 번호를 입력하시오." name="restaurantinfo_businessnumber" required="required"><br>

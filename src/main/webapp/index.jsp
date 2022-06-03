@@ -187,6 +187,9 @@ function logout(){
 								<div class="collapse navbar-collapse"
 									id="bs-example-navbar-collapse-1" >
 									<ul class="nav navbar-nav navbar-right" id="top-nav">
+										<c:if test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
+											<li><a href="./resadd">Add</a></li>
+										</c:if>
 										<li><a href="./index.jsp">Home</a></li>
 										<li><a href="./notice">Notice</a></li>
 										<li><a href="./board">Community</a></li>
