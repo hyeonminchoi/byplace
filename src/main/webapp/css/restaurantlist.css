@@ -1,0 +1,89 @@
+@charset "UTF-8";
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  background-color: white;
+}
+
+body {
+  margin: 0
+}
+a {
+  background: 0 0
+}
+
+a:active,
+a:hover {
+  outline: 0
+}
+h1 {
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-size: 50px;
+}
+img {
+  border: 0
+}
+textarea {
+  overflow: auto
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse
+}
+
+td,
+th {
+  padding: 0;
+  border-collapse : collapse;
+  border : 1px solid black;
+}
+table {
+  background-color: transparent;
+  text-align: center;
+  margin-left:auto; 
+  margin-right:auto;
+  border-collapse : collapse;
+  border : 1px solid black;
+}
+
+th {
+  text-align: left
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px
+}
+ #list {
+	width: 500px;
+	border: 1px solid black;
+	/*겉테두리와 안테두리를 하나로 합쳐준다. */
+	border-collapse: collapse;
+	margin-left:auto; 
+  	margin-right:auto;
+}
+
+/* 누구 자식인지 반드시 명시해 준다.*/
+#list td, #list th {
+	font-size: 12px;
+	padding: 3px;
+	border-collapse : collapse;
+  	border : 1px solid black;
+  	font-size: 16px;
+}
+
+#list th {
+	background-color: black;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+
+hr{
+	border-collapse : collapse;
+  	border : 1px solid black;
+}
