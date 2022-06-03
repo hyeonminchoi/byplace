@@ -38,13 +38,11 @@ public class Restaurantdetail extends HttpServlet {
 			RestaurantinfoDTO infodetail = dao.infodetail(restaurant_no);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/restaurantdetail.jsp");
-			RequestDispatcher rd1 = request.getRequestDispatcher("./restaurantupdate.jsp");
 			request.setAttribute("infodetail", infodetail);
 			request.setAttribute("reviewlist", reviewlist);
 			request.setAttribute("menulist", menulist);
 			request.setAttribute("resdetail", resdetail);
 			rd.forward(request, response);
-			rd1.forward(request, response);
 			
 		}else {
 			response.sendRedirect("./restaurantlist");

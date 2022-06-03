@@ -31,17 +31,16 @@ public class Resup extends HttpServlet {
 		RestaurantDAO dao = new RestaurantDAO();
 		List<CategoryDTO> categorylist = dao.categorylist();
 		RequestDispatcher rd = request.getRequestDispatcher("./restaurantupdate.jsp");
+		request.setAttribute("restaurant_no", request.getParameter("restaurant_no"));
 		request.setAttribute("catelist",categorylist);
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//doGet(request, response);
-		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		if(session.getAttribute("USER") != null) {
 			String url = session.getServletContext().getRealPath("/restaurantImage");
-			System.out.println(url);
 			MultipartRequest mr = new MultipartRequest(
 					request, url, 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 			
@@ -65,11 +64,11 @@ public class Resup extends HttpServlet {
 			dto.setRestaurant_extraAddress(restaurant_extraAddress);
 			dto.setCategory_category(category_category);
 			dto.setRestaurant_image(restaurant_image);
-			dto.setUser_id(((UserDTO)session.getAttribute("USER")).getUser_id());
+			dto.setRestaurant_no(restaurant_no);
 			
 			RestaurantDAO dao = new RestaurantDAO();
 			dao.resup(dto);
-			response.sendRedirect("./restaurantdetail?restaurant=" + restaurant_no);
+			response.sendRedirect("./restaurantdetail?restaurant_no=" + restaurant_no);
 		} else {
 			response.sendRedirect("./login.jsp");
 		}

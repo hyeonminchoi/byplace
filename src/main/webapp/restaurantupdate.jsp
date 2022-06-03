@@ -20,7 +20,7 @@ function goSubmit(){
 } */
 
 function cancel(n1){
-	location.href='restaurantdetail?restaurant_no='+n1;
+	location.href='./restaurantdetail?restaurant_no='+n1;
 }
 
 </script>
@@ -30,39 +30,40 @@ function cancel(n1){
 		<div id="resup" style="text-align: center;">
 			<h1>음식점수정</h1>
 			<hr>
-			<form action="./resup" method="post"  name="resup" enctype="multipart/form-data">
-			<div>
-			<label>음식점 이름</label> 
-			<input type="text" id="restaurant_name" placeholder="음식점 이름을 쓰시오." name="restaurant_name" required="required"><br>
-			</div>
-			<div>
-			<label>음식점 소개</label>
-			<input type="text" id="restaurant_description" placeholder="음식점 설명을 쓰시오." name="restaurant_description" required="required"><br>
-			</div>
-			<div>
-			<label>음식점 주소</label>
-			<input type="text" id="restaurant_postcode" placeholder="우편번호" name="restaurant_postcode" required="required">
-			<input type="button" onclick="restaurant_findpostcode()" value="우편번호 찾기" name="findPostcode"><br>
-			<input type="text" id="restaurant_roadAddress" placeholder="도로명주소" name="restaurant_roadAddress" required="required"><br>
-			<input type="text" id="restaurant_detailAddress" placeholder="상세주소" name="restaurant_detailAddress"><br>
-			<input type="text" id="restaurant_extraAddress" placeholder="참고항목" name="restaurant_extraAddress"><br>
-			</div>
-			<div id="categ">
-			<label>카테고리</label>
-			<select name="category_category" id="category_category" required="required">
-			<option value="">선택</option>
-			<c:forEach items="${catelist }" var="i">
-			<option value="${i.category_category }">${i.category_category }</option>
-			</c:forEach>
-			</select>
-			</div>
-			<div id="resimg">
-			<label>음식점 사진</label>
-			<input type="file" name="restaurant_image" id="restaurant_image" accept="image/*" required="required">
-			</div>
-			<button>확인</button>
+			<form action="./resup" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="restaurant_no" value="${restaurant_no}">
+				<div>
+					<label>음식점 이름</label> 
+					<input type="text" id="restaurant_name" placeholder="음식점 이름을 쓰시오." name="restaurant_name" required="required"><br>
+				</div>
+				<div>
+					<label>음식점 소개</label>
+					<input type="text" id="restaurant_description" placeholder="음식점 설명을 쓰시오." name="restaurant_description" required="required"><br>
+				</div>
+				<div>
+					<label>음식점 주소</label>
+					<input type="text" id="restaurant_postcode" placeholder="우편번호" name="restaurant_postcode" required="required">
+					<input type="button" onclick="restaurant_findpostcode()" value="우편번호 찾기" name="findPostcode"><br>
+					<input type="text" id="restaurant_roadAddress" placeholder="도로명주소" name="restaurant_roadAddress" required="required"><br>
+					<input type="text" id="restaurant_detailAddress" placeholder="상세주소" name="restaurant_detailAddress"><br>
+					<input type="text" id="restaurant_extraAddress" placeholder="참고항목" name="restaurant_extraAddress"><br>
+				</div>
+				<div id="categ">
+					<label>카테고리</label>
+					<select name="category_category" id="category_category" required="required">
+						<option value="">선택</option>
+						<c:forEach items="${catelist }" var="i">
+							<option value="${i.category_category }">${i.category_category }</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div id="resimg">
+					<label>음식점 사진</label>
+					<input type="file" name="restaurant_image" id="restaurant_image" accept="image/*" required="required">
+				</div>
+				<button type="submit">확인</button>
 			</form>
-			<button onclick="cancel(${resdetail.restaurant_no})">취소</button>
+			<button onclick="cancel(${restaurant_no})">취소</button>
 		</div>
 	</div>
 <script>
