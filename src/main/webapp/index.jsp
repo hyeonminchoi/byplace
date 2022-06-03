@@ -179,9 +179,9 @@ ul.tabs li.current{
 									<ul class="nav navbar-nav navbar-right" id="top-nav">
 										<li><a href="./index.jsp">Home</a></li>
 										<li><a href="./notice">Notice</a></li>
-										<li><a href="./board.jsp">Community</a></li>
-										<li><a href="./reportboard.jsp">Report</a></li>
-										<li><a href="./introduce.jsp">Contacts</a></li>
+										<li><a href="./board">Community</a></li>
+										<li><a href="./reportboard">Report</a></li>
+										<li><a href="./contact.jsp">Contacts</a></li>
 										<c:if test="${sessionScope.USER eq null }">
 											<li class="dropdown"><a href="./login.jsp">
 													<button class="dropbtn" href="./login.jsp">Login</button>

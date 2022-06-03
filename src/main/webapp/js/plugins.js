@@ -1571,7 +1571,7 @@ if (typeof Object.create !== "function") {
  *   scrollSpeed: 750
  * });
  */
-
+/*
 ;(function($, window, document, undefined){
 
     // our plugin constructor
@@ -1777,7 +1777,7 @@ if (typeof Object.create !== "function") {
     
 })( jQuery, window , document );
 
-
+*/
 
 
 
