@@ -30,11 +30,9 @@ public class Resup extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		RestaurantDAO dao = new RestaurantDAO();
 		List<CategoryDTO> categorylist = dao.categorylist();
-		RequestDispatcher rd = request.getRequestDispatcher("./restaurantadd.jsp");
-		RequestDispatcher rd2 = request.getRequestDispatcher("./index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./restaurantupdate.jsp");
 		request.setAttribute("catelist",categorylist);
 		rd.forward(request, response);
-		rd2.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,6 +45,7 @@ public class Resup extends HttpServlet {
 			MultipartRequest mr = new MultipartRequest(
 					request, url, 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 			
+			long restaurant_no = Long.parseLong(mr.getParameter("restaurant_no"));
 			String restaurant_image = mr.getFilesystemName("restaurant_image");
 			String restaurant_name = mr.getParameter("restaurant_name");
 			String restaurant_description = mr.getParameter("restaurant_description");
@@ -70,10 +69,10 @@ public class Resup extends HttpServlet {
 			
 			RestaurantDAO dao = new RestaurantDAO();
 			dao.resup(dto);
+			response.sendRedirect("./restaurantdetail?restaurant=" + restaurant_no);
 		} else {
 			response.sendRedirect("./login.jsp");
 		}
-		response.sendRedirect("./restaurantdetail?" + request.getParameter("restaurant_no"));
 		
 	}
 
