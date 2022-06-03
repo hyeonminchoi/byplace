@@ -139,7 +139,12 @@ ul.tabs li.current{
 <script>
 	window.jQuery
 			|| document
-					.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
+					.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>');
+function logout(){
+	if(confirm("로그아웃 하겠습니까?")){
+		location.href='./logout';
+	}
+}
 </script>
 <script src="js/jquery.nav.js"></script>
 <script src="js/jquery.sticky.js"></script>
@@ -177,6 +182,9 @@ ul.tabs li.current{
 								<div class="collapse navbar-collapse"
 									id="bs-example-navbar-collapse-1">
 									<ul class="nav navbar-nav navbar-right" id="top-nav">
+										<c:if test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
+											<li><a href="./resadd">Add</a></li>
+										</c:if>
 										<li><a href="./index.jsp">Home</a></li>
 										<li><a href="./notice">Notice</a></li>
 										<li><a href="./board">Community</a></li>
