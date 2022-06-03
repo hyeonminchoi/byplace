@@ -7,8 +7,16 @@ public class NoticeDTO {
 	String notice_orifilename, notice_filename;
 	
 	String user_id;
+	String user_name;
 	int totalcount;
 	
+	
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
 	public String getNotice_orifilename() {
 		return notice_orifilename;
 	}

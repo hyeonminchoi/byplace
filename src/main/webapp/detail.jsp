@@ -74,14 +74,14 @@ $(document).ready(function(){
 				<td colspan="2">
 				${detail.board_title }
 				<c:if test="${detail.user_id eq sessionScope.USER.user_id}">
-						<img id="up" alt="수정" src="" title="수정">
-						<img id="del" alt="삭제" src="" title="삭제">
+						<img id="up" alt="" src="./img/update.png" title="수정">
+						<img id="del" alt="" src="./img/del.png" title="삭제">
 				</c:if>
 				</td>
 			</tr>
 			<tr>
 				<td>${detail.user_name } / ${detail.user_id }</td>
-				<td><img alt="조회수" src="" title="조회수" width="25px;"> ${detail.board_count }</td>
+				<td><img alt="조회수" src="./img/view.png" title="조회수" width="25px;"> ${detail.board_count }</td>
 			</tr>
 			<tr>
 				<td colspan="3">${detail.board_date }</td>
@@ -109,8 +109,8 @@ $(document).ready(function(){
 				<div id="comment_id">
 					${c.boardcomment_no } / ${c.user_no } / ${c.user_id } / ${c.user_name }
 					<c:if test="${sessionScope.USER.user_id eq c.user_id }">
-						<img alt="수정" src="" title="수정" onclick="cup(${c.boardcomment_no })">
-						<img alt="삭제" src="" title="삭제" onclick="cdel(${c.boardcomment_no })">
+						<img alt="수정" src="./img/update.png" title="수정" onclick="cup(${c.boardcomment_no })">
+						<img alt="삭제" src="./img/del.png" title="삭제" onclick="cdel(${c.boardcomment_no })">
 					</c:if>
 				</div>
 				<div id="comment_date">${c.boardcomment_date }</div>	

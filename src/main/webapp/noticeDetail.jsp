@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>공지 상세보기</title>
 <link href="./css/menu.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
 #main{
 	margin: 0 auto;
@@ -29,20 +30,50 @@ td{
 	width : calc(100% - 100px);
 }
 </style>
+<c:if test="${noticedetail.user_id eq sessionScope.USER.user_id}">
+<script type="text/javascript">
+$(document).ready(function(){
+	var notice_no = ${noticedetail.notice_no };
+	$("#up").click(function(){
+		if(confirm("해당 글을 수정하시겠습니까?")){
+			location.replace("./noticeupdate?notice_no="+notice_no);
+		}
+	});
+	
+	$("#del").click(function(){
+		if(confirm("해당 글을 삭제하시겠습니까?")){
+			var notice_no = $("#notice_no").text();
+			//alert(b_no2 + "번글을 삭제합니다.");
+			location.replace("./noticedelete?notice_no="+notice_no);
+		}
+	});
+});
+</script>
+</c:if>
 </head>
 <body>
 	<%@include file="./menu.jsp"%>
 	<div id="main">
 		<h1>공지 상세 보기</h1>
-		notice_no : ${dto.notice_no }<br>
-		notice_title : ${dto.notice_title }<br>
-		notice_comment : ${dto.notice_comment }<br>
-		notice_date : ${dto.notice_date }<br>
-		notice_orifilename : ${dto.notice_orifilename }<br>
-		notice_filename : ${dto.notice_filename }<br>
-		user_no : ${dto.user_no }<br>
+		<table>
+			<tr>
+				<td colspan="2">
+				${noticedetail.notice_title }
+				<c:if test="${noticedetail.user_id eq sessionScope.USER.user_id}">
+						<img id="up" alt="" src="./img/update.png" title="수정">
+						<img id="del" alt="" src="./img/del.png" title="삭제">
+				</c:if>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">${noticedetail.notice_date }</td>
+			</tr>
+			<tr>
+				<td colspan="4">${noticedetail.notice_comment }</td>
+			</tr>
+		</table>
 		<hr>
-		<img alt="업로드된 파일" src="./upload/${dto.notice_filename }">
+		<img alt="업로드된 파일" src="./upload/${noticedetail.notice_filename }">
 		
 		
 	<button onclick="location.href='./notice'">게시판으로</button>

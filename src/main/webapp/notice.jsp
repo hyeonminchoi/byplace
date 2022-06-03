@@ -38,7 +38,7 @@
 						<td id="tleft"><a
 							href="./noticeDetail?notice_no=${i.notice_no }"> <c:if
 									test="${i.notice_filename ne null }">
-									<img alt="file" src="" height="15px;">
+									<img alt="" src="./img/img.png" height="15px;">
 								</c:if> ${i.notice_title  }
 						</a></td>
 						<td>${i.user_no }</td>

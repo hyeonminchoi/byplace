@@ -2,6 +2,7 @@ package com.byplace.web;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.byplace.dao.NoticeDAO;
 import com.byplace.dto.NoticeDTO;
+import com.byplace.dto.UserDTO;
+import com.byplace.util.Util;
 
 
 
@@ -23,18 +26,25 @@ public class NoticeDetail extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//System.out.println(request.getParameter("n_no"));
-		int notice_no = Integer.parseInt(request.getParameter("notice_no"));
-		//dao에게 일 시키기
-		NoticeDAO dao = new NoticeDAO();
-		NoticeDTO dto = dao.detail(notice_no);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/noticeDetail.jsp");
-		request.setAttribute("dto", dto);
-		rd.forward(request, response);
-	}
+		if (request.getSession().getAttribute("USER") != null
+				&& (((UserDTO) request.getSession().getAttribute("USER")).getUser_type().equals("관리자")
+						|| ((UserDTO) request.getSession().getAttribute("USER")).getUser_no() == Long
+								.parseLong(request.getParameter("user_no")))) {
+			if (request.getParameter("notice_no") != null
+					&& Util.str2Int(request.getParameter("notice_no"))) {
+				int notice_no = Integer.parseInt(request.getParameter("notice_no"));
+				NoticeDAO dao = new NoticeDAO();
+				NoticeDTO detail = dao.detail(notice_no);
+				RequestDispatcher rd = request.getRequestDispatcher("/noticeDetail.jsp");
+				request.setAttribute("noticedetail", detail);
+				rd.forward(request, response);
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			} else {
+				response.sendRedirect("./notice");
+			}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
-
 }
