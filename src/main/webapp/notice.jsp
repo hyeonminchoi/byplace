@@ -41,7 +41,7 @@
 									<img alt="" src="./img/img.png" height="15px;">
 								</c:if> ${i.notice_title  }
 						</a></td>
-						<td>${i.user_no }</td>
+						<td>${i.user_id }</td>
 						<td>${i.notice_date }</td>
 					</tr>
 				</c:forEach>
