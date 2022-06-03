@@ -2,11 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="/favicon.jsp"%>
 <!DOCTYPE html>
+<%@ include file="/favicon.jsp"%>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>공지</title>
 <link href="./css/menu.css" rel="stylesheet">
 <link href="./css/board.css" rel="stylesheet">
