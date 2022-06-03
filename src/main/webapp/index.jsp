@@ -191,19 +191,24 @@ function logout(){
 										<li><a href="./reportboard">Report</a></li>
 										<li><a href="./contact.jsp">Contacts</a></li>
 										<c:if test="${sessionScope.USER eq null }">
-											<li class="dropdown"><a href="./login.jsp">
-													<button class="dropbtn" href="./login.jsp">Login</button>
-													<div class="dropdown-content">
-														<a href="./findid.jsp">아이디 찾기</a> <a href="./findpw.jsp">비밀번호
-															찾기</a>
-													</div></li>
+											<li class="dropdown">
+												<a href="./login.jsp">
+												<button class="dropbtn" href="./login.jsp">Login</button>
+												<div class="dropdown-content">
+													<a href="./findid.jsp">아이디 찾기</a>
+													<a href="./findpw.jsp">비밀번호	초기화</a>
+												</div>
+											</li>
 										</c:if>
 										<c:if test="${sessionScope.USER ne null }">
-											<li class="dropdown"><a href="./logout.jsp">
-													<button class="dropbtn" href="./login.jsp">Logout</button>
+											<li class="dropdown">
+													<button class="dropbtn" onclick="logout()">Logout</button>
 													<div class="dropdown-content">
-														<a href="./userInfo.jsp">개인정보</a> <a href="./findpw.jsp">비밀번호
-															찾기</a>
+														<c:if test="${sessionScope.USER.user_type eq '관리자' }">
+															<a href="./adminPage_userlogList">관리자페이지</a>
+														</c:if>
+														<a href="./userInfo.jsp">개인정보</a>
+														<a href="./findpw.jsp">비밀번호 초기화</a>
 													</div></li>
 										</c:if>
 									</ul>
@@ -416,7 +421,7 @@ function logout(){
 					<div class="block">
 						<h1 class="heading wow fadeInUp" data-wow-duration="300ms"
 							data-wow-delay="300ms">
-							<span>register</span> your <span>secret</span> restaurant
+							<span>Register</span> your <span>secret</span> restaurant
 						</h1>
 						<p class="wow fadeInUp" data-wow-duration="300ms"
 							data-wow-delay="400ms">Recommend your own restaurant</p>
@@ -447,7 +452,7 @@ function logout(){
 	<!--
     CONTACT US  start
     ============================= -->
-	<section id="contact-us">
+	<!-- <section id="contact-us">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -482,13 +487,13 @@ function logout(){
 							message</a>
 					</div>
 				</div>
-				<!-- .col-md-12 close -->
+				.col-md-12 close
 			</div>
-			<!-- .row close -->
+			.row close
 		</div>
-		<!-- .container close -->
+		.container close
 	</section>
-	<!-- #contact-us close -->
+	#contact-us close -->
 	<!--
     footer  start
     ============================= -->
@@ -559,13 +564,13 @@ function logout(){
 								PHOTO <span>STREAM</span>
 							</h3>
 							<ul>
-								<li><a href="./menu.jsp"><img src="img/poto1.png"
+								<li><a href="#"><img src="img/poto1.png"
 										alt="photo" width="100" height="100"></a></li>
-								<li><a href="./menu.jsp"><img src="img/poto.png"
+								<li><a href="#"><img src="img/poto.png"
 										alt="photo" width="100" height="100"></a></li>
-								<li><a href="./menu.jsp"><img src="img/deuch.png"
+								<li><a href="#"><img src="img/deuch.png"
 										alt="photo" width="100" height="100"></a></li>
-								<li><a href="./menu.jsp"><img src="img/kimchi.png"
+								<li><a href="#"><img src="img/kimchi.png"
 										alt="photo" width="100" height="100"></a></li>
 							</ul>
 						</div>
