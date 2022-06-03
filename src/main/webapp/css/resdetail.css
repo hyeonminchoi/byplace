@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+#detailmenu{
+	width: 800px;
+	height: 500px;
+	margin: 0 auto;
+	padding: 0;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 15px;
+	 border-spacing: 0 20px;
+	
+	
+}
+
+#mlist{
+	width: 800px;
+	height: 500px;
+	margin: 0 auto;
+	padding: 0;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 15px;
+	border-spacing: 0 20px;
+	
+}
+
+#ta{
+	text-align: left;
+	width : 50px;
+	
+}
+label{
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+}
+input{
+	width: 200px;
+}
+#yes, #menuup, #menudel{
+	margin-top : 10px;
+	height: 50px;
+	width: 80px;
+    padding: 10px 0px 10px;
+    border: 0;
+    color: black;
+    background-color: #76cdff;
+    font-size: 20px;
+    font-weight: 400;
+    
+}
+
+#food_image{
+	width: 100%;
+}
+.starRev{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}

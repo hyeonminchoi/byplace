@@ -13,6 +13,7 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41c04e215b88583eb8be89a445ce294e&libraries=services"></script>
 <link href="./css/tabmenu.css" rel="stylesheet">
 <link href="./css/menu.css" rel="stylesheet">
+<link rel="stylesheet" href="./css/resdetail.css">
 <script type="text/javascript">
 function menuup(n1, n2){
 	location.href = './index.jsp';
@@ -165,37 +166,73 @@ table, td, th {
 					test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
 					<form action="./menuadd" method="post"
 						enctype="multipart/form-data">
-						<label>음식 이름</label> <input type="text" id="food_name"
-							placeholder="음식 이름을 입력하시오." name="food_name" required="required"><br>
-						<label>음식 설명</label> <input type="text" id="food_description"
-							placeholder="음식 설명을 입력하시오." name="food_description"
-							required="required"><br> <label>음식 가격</label> <input
-							type="number" id="food_price" placeholder="음식 가격을 입력하시오."
-							name="food_price" required="required"><br> <label>음식
-							사진</label> <input type="file" name="food_image" id="food_image"
-							accept="image/*" required="required"><br> <input
-							type="hidden" name="restaurant_no"
-							value="${resdetail.restaurant_no }">
-						<button>확인</button>
+						<table id="detailmenu">
+							<tr>
+								<td><label>음식 이름</label></td>
+								<td><input type="text" id="food_name"
+									placeholder="음식 이름을 입력하시오." name="food_name"
+									required="required"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><label>음식 설명</label></td>
+								<td><input type="text" id="food_description"
+									placeholder="음식 설명을 입력하시오." name="food_description"
+									required="required"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><label>음식 가격</label></td>
+								<td><input type="number" id="food_price"
+									placeholder="음식 가격을 입력하시오." name="food_price"
+									required="required"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><label>음식 사진</label></td>
+								<td><input type="file" name="food_image" id="food_image"
+									accept="image/*" required="required"></td>
+								<td><input type="hidden" name="restaurant_no"
+									value="${resdetail.restaurant_no }"></td>
+								<td></td>
+							</tr>
+						</table>
+						<button id="yes" name="yes">확인</button>
 					</form>
-					<button name="cancel" id="cancel">취소</button>
 					<br>
 				</c:if>
 				<c:forEach items="${menulist }" var="m">
-					<img src="./menuImage/${m.food_image }"
-						style="width: 200px; height: 200px;">
-					<br>
+				<table id="mlist">
+					<tr>
+						<td><img src="./menuImage/${m.food_image }"
+						style="width: 200px; height: 200px;"></td><td></td>
+					</tr>
+					<tr>	
 					<c:if
 						test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
-						<button name="menuup" id="menuup"
-							onclick="menuup(${resdetail.restaurant_no},${m.food_no})">수정</button>
-						<button name="menudel" id="menudel"
-							onclick="menudel(${resdetail.restaurant_no},${m.food_no})">삭제</button>
+						<td><button name="menuup" id="menuup"
+							onclick="menuup(${resdetail.restaurant_no},${m.food_no})">수정</button></td>
+							<td></td>
+						<td><button name="menudel" id="menudel"
+							onclick="menudel(${resdetail.restaurant_no},${m.food_no})">삭제</button></td>
+							<td></td>
 					</c:if>
-					<br>
-				메뉴 : ${m.food_name } <br>
-				가격 : ${m.food_price } <br>
-				설명 : ${m.food_description } <br>
+					</tr>
+						<tr>
+							<td><label>메뉴 : </label></td>
+							<td>${m.food_name }</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><label>가격 : </label></td>
+							<td>${m.food_price }</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><label>설명 : </label></td>
+							<td>${m.food_description }</td>
+							<td></td>
+					</table>
 				</c:forEach>
 			</div>
 			<div id="tab-2" class="tab-content">
@@ -219,7 +256,7 @@ table, td, th {
 						<input type="hidden" name="restaurant_no"
 							value="${resdetail.restaurant_no }"> <input type="hidden"
 							name="user_no" value="${sessionScope.USER.user_no }">
-						<button>확인</button>
+						<button id="yes">확인</button>
 					</form>
 				</c:if>
 				<table style="margin: auto;">
@@ -259,9 +296,8 @@ table, td, th {
 							name="restaurantinfo_description" required="required"><br>
 						<input type="hidden" name="restaurant_no"
 							value="${resdetail.restaurant_no }">
-						<button>확인</button>
+						<button id="yes">확인</button>
 					</form>
-					<button name="cancel" id="cancel">취소</button>
 					<br>
 				</c:if>
 				<div id="restaurantinfo" style="text-align: center;">
