@@ -153,7 +153,7 @@ ul.tabs li.current{
 	header-img start 
 	============================== -->
 	<section id="hero-area">
-		<img class="img-responsive" src="./img/kfood3.gif"  width="100%" height="auto"alt="headphoto">
+		<video src="./img/foodv.mp4"  width="100%" height="auto"  autoplay muted loop></video>
 	</section>
 	<!--
     Header start 
