@@ -12,6 +12,16 @@
 		<ul class="nav-links">
 			<li>
 				<div class="iocn-link">
+					<a href="#"> <span class="link_name">HOME</span>
+					</a> <i class='bx bxs-chevron-down arrow'></i>
+				</div>
+				<ul class="sub-menu">
+					<li><a class="link_name" href="#">HOME</a></li>
+					<li><a href="./index.jsp">HOME</a></li>
+				</ul>
+			</li>
+			<li>
+				<div class="iocn-link">
 					<a href="#"> <span class="link_name">사이트관리</span>
 					</a> <i class='bx bxs-chevron-down arrow'></i>
 				</div>
