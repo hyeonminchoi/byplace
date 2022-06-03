@@ -89,11 +89,13 @@ ul.tabs li.current{
 
 .tab-content{
   	display: none;
+  	background-color: rgba(255,255,255,0.4);
   	border: 1px solid black;
 }
 
 .tab-content.current{
 	border: 1px solid black;
+	background-color: rgba(255,255,255,0.4);
  	display: block;
  	height: 350px;
 	width: 100%;
@@ -109,6 +111,9 @@ ul.tabs li.current{
 #img img{
 	width: 100%;
 	height: 200px;
+}
+section{
+	margin-top: 100px;
 }
 </style>
 
@@ -157,9 +162,9 @@ function logout(){
 	<!--
 	header-img start 
 	============================== -->
-	<section id="hero-area">
-		<video src="./img/foodv.mp4"  width="100%" height="auto"  autoplay muted loop></video>
-	</section>
+	<div id="hero-area" style="position: fixed; top: 0; width: 100%; height: 100%">
+		<video src="./img/foodv1.mp4"  width="100%" height="100%"  autoplay muted loop style="opacity: 0.3;"></video>
+	</div>
 	<!--
     Header start 
 	============================== -->
@@ -167,11 +172,11 @@ function logout(){
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="block" style="background-color: white;">
+					<div class="block" style="background-color: rgba(255,255,255,0.4);">
 						<nav class="navbar navbar-default">
 							<div class="container-fluid">
 								<!-- Brand and toggle get grouped for better mobile display -->
-								<div class="navbar-header">
+								<div class="navbar-header" style="width: 100px; height: 100px;">
 									<a class="navbar-brand" href="./index.jsp"> <img
 										src="./img/android-icon-96x96.png" alt="Logo">
 									</a>
@@ -180,7 +185,7 @@ function logout(){
 
 								<!-- Collect the nav links, forms, and other content for toggling -->
 								<div class="collapse navbar-collapse"
-									id="bs-example-navbar-collapse-1">
+									id="bs-example-navbar-collapse-1" >
 									<ul class="nav navbar-nav navbar-right" id="top-nav">
 										<li><a href="./index.jsp">Home</a></li>
 										<li><a href="./notice">Notice</a></li>
@@ -266,11 +271,10 @@ function logout(){
 							</c:forEach>
 						</div>
 					</div>
-				</div>
 				<!-- .col-md-12 close -->
-			</div>
+				</div>
 			<!-- .row close -->
-		</div>
+			</div>
 		<!-- .container close -->
 	</section>
 	<!-- slider close -->
@@ -289,9 +293,9 @@ function logout(){
 							Find <span>Your</span> </br> Favorite <span>Restaurant</span>
 						</h1>
 						<p class="wow fadeInUp" data-wow-duration="300ms"
-							data-wow-delay="600ms">
-							if u want<br> imagination.<br> delight.<br>
-							flavor.<br> together.<br> join us!
+							data-wow-delay="600ms" style="color: black; font-size: 30px;">
+							If U want<br><br> Imagination.<br><br> Delight.<br><br>
+							Flavor.<br><br> Together.<br><br> Join with us!
 						</p>
 					</div>
 				</div>
@@ -405,7 +409,7 @@ function logout(){
 			</div>
 			<!-- .row close -->
 		</div>
-		<!-- .containe close -->
+		<!-- .container close -->
 	</section>
 	<!-- #blog close -->
 	<!--
