@@ -29,7 +29,7 @@ public class AdminRestaurantDAO {
 	public List<RestaurantDTO> findAll(String sort, String searchColumn, String searchValue, int currentPage, int pageSize) {
 		String sql = "";
 		if(EnumUtils.isValidEnumIgnoreCase(restaurantSearchColumn.class, searchColumn))
-				sql = "SELECT * FROM restaurantView WHERE " + searchColumn + " LIKE ? ORDER BY " + sort + " LIMIT ?, ?";
+				sql = "SELECT * FROM adminrestaurantview WHERE " + searchColumn + " LIKE ? ORDER BY " + sort + " LIMIT ?, ?";
 		List<RestaurantDTO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -129,7 +129,7 @@ public class AdminRestaurantDAO {
 	public List<RestaurantDTO> findByApprovalList(String sort, String searchColumn, String searchValue, int currentPage, int pageSize) {
 		String sql = "";
 		if(EnumUtils.isValidEnumIgnoreCase(restaurantSearchColumn.class, searchColumn))
-				sql = "SELECT * FROM restaurantView WHERE restaurant_del = -1 AND " + searchColumn + " LIKE ? ORDER BY " + sort + " LIMIT ?, ?";
+				sql = "SELECT * FROM adminrestaurantview WHERE restaurant_del = -1 AND " + searchColumn + " LIKE ? ORDER BY " + sort + " LIMIT ?, ?";
 		List<RestaurantDTO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -186,7 +186,7 @@ public class AdminRestaurantDAO {
 	public List<RestaurantDTO> findByRecoveryList(String sort, String searchColumn, String searchValue, int currentPage, int pageSize) {
 		String sql = "";
 		if(EnumUtils.isValidEnumIgnoreCase(restaurantSearchColumn.class, searchColumn))
-				sql = "SELECT * FROM restaurantView WHERE restaurant_del = 1 AND  " + searchColumn + " LIKE ? ORDER BY " + sort + " LIMIT ?, ?";
+				sql = "SELECT * FROM adminrestaurantview WHERE restaurant_del = 1 AND  " + searchColumn + " LIKE ? ORDER BY " + sort + " LIMIT ?, ?";
 		List<RestaurantDTO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;

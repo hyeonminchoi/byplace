@@ -15,8 +15,8 @@ request.setAttribute("restaurantList", restaurantList);
 List<List<RestaurantDTO>> restaurants = RestaurantDAO.findByCategoryRestaurantList();
 request.setAttribute("restaurants", restaurants);
 %>
-<%@ include file="/favicon.jsp"%>
 <!DOCTYPE html>
+<%@ include file="/favicon.jsp"%>
 <html class="no-js">
 <head>
 <style type="text/css">

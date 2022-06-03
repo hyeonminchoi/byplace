@@ -4,6 +4,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 
 <!DOCTYPE html>
+<%@ include file="/favicon.jsp"%>
 <html>
 <head>
 <meta charset="UTF-8">
