@@ -42,6 +42,7 @@ public class Login extends HttpServlet {
 			
 
 			if (userDTO != null) {
+				dao.userlog(userDTO.getUser_no(), "login");
 				request.getSession().setAttribute("USER", userDTO);
 				response.sendRedirect("./index.jsp");
 			} else {
