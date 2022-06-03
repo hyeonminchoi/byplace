@@ -1,8 +1,8 @@
 <%@page import="com.byplace.dao.UserDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/favicon.jsp"%>
 <!DOCTYPE html>
+<%@ include file="/favicon.jsp"%>
 <html>
 <head>
 <meta charset="UTF-8">
