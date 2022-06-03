@@ -42,7 +42,7 @@
 <script src="js/main.js"></script>
 </head>
 <body>
-<section id="contact-us">
+<section id="contact-us" >
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">

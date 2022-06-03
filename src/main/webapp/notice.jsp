@@ -6,7 +6,6 @@
 <%@ include file="/favicon.jsp"%>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>공지</title>
 <link href="./css/menu.css" rel="stylesheet">
 <link href="./css/board.css" rel="stylesheet">

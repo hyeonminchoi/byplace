@@ -438,7 +438,6 @@ public class RestaurantDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE restaurant SET restaurant_name=?, restaurant_description=?, restaurant_postcode=?, restaurant_roadAddress=?, restaurant_detailAddress=?, restaurant_extraAddress=?, category_category=?, restaurant_image=? WHERE restaurant_no=?";
-		
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);

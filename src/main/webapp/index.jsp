@@ -153,7 +153,7 @@ ul.tabs li.current{
 	header-img start 
 	============================== -->
 	<section id="hero-area">
-		<img class="img-responsive" src="./img/kfood3.gif"  width="100%" height="auto"alt="headphoto">
+		<video src="./img/foodv.mp4"  width="100%" height="auto"  autoplay muted loop></video>
 	</section>
 	<!--
     Header start 
@@ -234,7 +234,7 @@ ul.tabs li.current{
 											<div id="img">
 												<img src="./restaurantImage/${i.restaurant_image}" alt="로드 실패"/><br>
 											</div>
-											<a href="./restaurantInfo?restaurant_no=${i.restaurant_no}">${i.restaurant_name}</a><br>
+											<a href="./restaurantdetail?restaurant_no=${i.restaurant_no}">${i.restaurant_name}</a><br>
 											${i.restaurant_roadAddress }, ${i.restaurant_detailAddress }${i.restaurant_extraAddress }<br>
 											<br>평점: ${i.restaurant_rating } / 5.0
 										</div>
