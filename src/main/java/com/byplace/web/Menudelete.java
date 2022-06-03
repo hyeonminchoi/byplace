@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.dao.RestaurantDAO;
 import com.byplace.dto.FoodDTO;
-import com.byplace.dto.UserDTO;
 
 @WebServlet("/menudelete")
 public class Menudelete extends HttpServlet {

@@ -26,10 +26,18 @@ function reviewdel(n1, n2){
 	}
 }
 
-function resdel(){
+function resdel(n1){
 	if(confirm("삭제하시겠습니까?")){
-		location.href=''
+		location.href='./resdel?restaurant_no='+n1;
 	}
+}
+
+function resback(){
+	location.href='./restaurantList';
+}
+
+function resup(){
+	location.href='./resup';
 }
 $(function(){
 $('.starRev span').click(function(){
@@ -82,8 +90,10 @@ $('.starRev span').click(function(){
 	<div id="head">
 		<div id="headoption" style="float: left;">
 		<button onclick="resback()">뒤로가기</button>
+		<c:if test="${sessionScope.USER ne null }">
 		<button onclick="resup()">수정</button>
-		<button onclick="resdel()">삭제</button>
+		<button onclick="resdel(${resdetail.restaurant_no})">삭제</button>
+		</c:if>
 		</div>
 		<div id="headtitle" style="text-align: center;">
 			<h1>BY PLACE</h1>

@@ -18,11 +18,11 @@ import com.byplace.dto.UserDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet("/resadd")
-public class Resadd extends HttpServlet {
+@WebServlet("/resup")
+public class Resup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Resadd() {
+    public Resup() {
         super();
     }
 
@@ -69,11 +69,11 @@ public class Resadd extends HttpServlet {
 			dto.setUser_id(((UserDTO)session.getAttribute("USER")).getUser_id());
 			
 			RestaurantDAO dao = new RestaurantDAO();
-			dao.restboard(dto);
-			response.sendRedirect("./index.jsp");
+			dao.resup(dto);
 		} else {
 			response.sendRedirect("./login.jsp");
 		}
+		response.sendRedirect("./restaurantdetail?" + request.getParameter("restaurant_no"));
 		
 	}
 

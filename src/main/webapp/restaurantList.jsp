@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <title>음식점 목록</title>
 <style type="text/css">
-h1{
+#main{
 	text-align: center;
 }
-main{
+h1{
 	text-align: center;
 }
 </style>

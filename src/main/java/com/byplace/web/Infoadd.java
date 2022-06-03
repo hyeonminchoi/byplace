@@ -25,6 +25,7 @@ public class Infoadd extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		if(session.getAttribute("USER") != null
 				&& request.getParameter("restaurant_no") != null) {
