@@ -11,6 +11,8 @@ import com.byplace.db.DBConnection;
 import com.byplace.dto.CategoryDTO;
 import com.byplace.dto.FoodDTO;
 import com.byplace.dto.RestaurantDTO;
+import com.byplace.dto.RestaurantinfoDTO;
+import com.byplace.dto.ReviewDTO;
 
 public class RestaurantDAO {
 
@@ -291,7 +293,6 @@ public class RestaurantDAO {
 		}
 		return restaurantList;
 	}
-<<<<<<< HEAD
 
 	public List<ReviewDTO> reviewlist(long restaurant_no) {
 		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
@@ -462,7 +463,4 @@ public class RestaurantDAO {
 			
 		}
 	}
-	
-=======
->>>>>>> branch 'main' of https://github.com/hyeonminchoi/byplace.git
 }
