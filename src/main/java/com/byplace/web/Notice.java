@@ -23,6 +23,7 @@ public class Notice extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		int pageNo = 1;
 		if (request.getParameter("pageNo") != null) {
 			pageNo = Integer.parseInt(request.getParameter("pageNo"));
@@ -44,6 +45,7 @@ public class Notice extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 	}
 
 }

@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.byplace.dao.NoticeDAO;
 import com.byplace.dto.NoticeDTO;
-import com.byplace.dto.UserDTO;
 import com.byplace.util.Util;
 
 
@@ -26,7 +25,6 @@ public class NoticeDetail extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 			if (request.getParameter("notice_no") != null
 					&& Util.str2Int(request.getParameter("notice_no"))) {
