@@ -69,7 +69,7 @@ public class NoticeDAO extends AbstractDAO {
 				dto.setNotice_orifilename(rs.getString("notice_orifilename"));
 				dto.setNotice_filename(rs.getString("notice_filename"));
 				dto.setTotalcount(rs.getInt("totalcount"));
-				dto.setUser_no(rs.getLong("user_no"));
+				dto.setUser_id(rs.getString("user_id"));
 				
 				list.add(dto);
 			}

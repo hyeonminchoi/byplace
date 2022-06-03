@@ -27,10 +27,7 @@ public class NoticeDetail extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if (request.getSession().getAttribute("USER") != null
-				&& (((UserDTO) request.getSession().getAttribute("USER")).getUser_type().equals("관리자")
-						|| ((UserDTO) request.getSession().getAttribute("USER")).getUser_no() == Long
-								.parseLong(request.getParameter("user_no")))) {
+		
 			if (request.getParameter("notice_no") != null
 					&& Util.str2Int(request.getParameter("notice_no"))) {
 				int notice_no = Integer.parseInt(request.getParameter("notice_no"));
@@ -43,8 +40,6 @@ public class NoticeDetail extends HttpServlet {
 			} else {
 				response.sendRedirect("./notice");
 			}
-		} else {
-			response.sendRedirect("./index.jsp");
-		}
+		} 
 	}
-}
+
