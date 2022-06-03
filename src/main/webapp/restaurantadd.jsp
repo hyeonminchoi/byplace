@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <%@ include file="/favicon.jsp"%>
@@ -6,8 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>음식점 추가</title>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">></script>
+<link rel="stylesheet" href="./css/resadd.css">
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">></script>
 <script type="text/javascript">
 
 /* function cancel(){
@@ -26,48 +30,84 @@ $(function(){
 });
 
 </script>
+<style type="text/css">
+
+div{
+	margin: auto;
+	text-align: center;
+}
+#fp{
+	width: 100px;
+}
+</style>
 </head>
 <body>
 	<div id="main">
 		<div id="resadd" style="text-align: center;">
 			<h1>음식점추가</h1>
 			<hr>
-			<form action="./resadd" method="post"  name="resadd" enctype="multipart/form-data">
-			<div>
-			<label>음식점 이름</label> 
-			<input type="text" id="restaurant_name" placeholder="음식점 이름을 쓰시오." name="restaurant_name" required="required"><br>
-			</div>
-			<div>
-			<label>음식점 소개</label>
-			<input type="text" id="restaurant_description" placeholder="음식점 설명을 쓰시오." name="restaurant_description" required="required"><br>
-			</div>
-			<div>
-			<label>음식점 주소</label>
-			<input type="text" id="restaurant_postcode" placeholder="우편번호" name="restaurant_postcode" required="required">
-			<input type="button" onclick="restaurant_findpostcode()" value="우편번호 찾기" name="findPostcode"><br>
-			<input type="text" id="restaurant_roadAddress" placeholder="도로명주소" name="restaurant_roadAddress" required="required"><br>
-			<input type="text" id="restaurant_detailAddress" placeholder="상세주소" name="restaurant_detailAddress"><br>
-			<input type="text" id="restaurant_extraAddress" placeholder="참고항목" name="restaurant_extraAddress"><br>
-			</div>
-			<div id="categ">
-			<label>카테고리</label>
-			<select name="category_category" id="category_category" required="required">
-			<option value="">선택</option>
-			<c:forEach items="${catelist }" var="i">
-			<option value="${i.category_category }">${i.category_category }</option>
-			</c:forEach>
-			</select>
-			</div>
-			<div id="resimg">
-			<label>음식점 사진</label>
-			<input type="file" name="restaurant_image" id="restaurant_image" accept="image/*" required="required">
-			</div>
-			<button>확인</button>
+			<form action="./resadd" method="post" name="resadd"
+				enctype="multipart/form-data" id="qwer">
+				<table>
+					<tr>
+						<td><label>음식점 이름</label></td>
+						<td><input type="text" id="restaurant_name"
+							placeholder="음식점 이름을 쓰시오." name="restaurant_name"
+							required="required">
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><label>음식점 소개</label></td>
+						<td><input type="text" id="restaurant_description"
+							placeholder="음식점 설명을 쓰시오." name="restaurant_description"
+							required="required"></td>
+							<td></td>
+					</tr>
+
+					<tr>
+						<td><label>음식점 주소</label></td>
+						<td>
+							<input type="text" id="restaurant_postcode"
+							placeholder="우편번호" name="restaurant_postcode" required="required"><br>
+							<input type="text" id="restaurant_roadAddress"
+							placeholder="도로명주소" name="restaurant_roadAddress"
+							required="required"><br>
+							<input type="text" id="restaurant_detailAddress"
+							placeholder="상세주소" name="restaurant_detailAddress"><br>
+							<input type="text" id="restaurant_extraAddress"
+							placeholder="참고항목" name="restaurant_extraAddress">
+						</td>
+						<td valign="top">
+							<input type="button" id="fp"
+							onclick="restaurant_findpostcode()" value="우편번호 찾기"
+							name="findPostcode">
+						</td>
+					</tr>
+					<tr>
+						<td><label>카테고리</label></td>
+						<td><select name="category_category" id="category_category"
+							required="required">
+								<option value="">선택</option>
+								<c:forEach items="${catelist }" var="i">
+									<option value="${i.category_category }">${i.category_category }</option>
+								</c:forEach>
+						</select></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><label>음식점 사진</label></td>
+						<td><input type="file" name="restaurant_image"
+							id="restaurant_image" accept="image/*" required="required"></td>
+							<td></td>
+					</tr>
+				</table>
+				<button id="addbtn">확인</button>
+				<button name="cancel" id="addbtn" onclick="location.href='./index.jsp'">취소</button>
 			</form>
-			<button name="cancel" id="cancel">취소</button>
 		</div>
 	</div>
-<script>
+	<script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function restaurant_findpostcode() {
         new daum.Postcode({

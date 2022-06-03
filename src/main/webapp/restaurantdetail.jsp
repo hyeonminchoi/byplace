@@ -161,7 +161,7 @@ table, td, th {
 			<button name="cancel" id="cancel">취소</button><br>
 			</c:if>
 			<c:forEach items="${menulist }" var="m">
-				<img src="./menuImage/${m.food_image }">
+				<img src="./menuImage/${m.food_image }" style="width: 200px; height: 200px;"><br>
 				<c:if test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
 				<button name="menuup" id="menuup" onclick="menuup(${resdetail.restaurant_no},${m.food_no})">수정</button>
 				<button name="menudel" id="menudel" onclick="menudel(${resdetail.restaurant_no},${m.food_no})">삭제</button>

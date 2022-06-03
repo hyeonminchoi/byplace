@@ -199,7 +199,7 @@ public class RestaurantDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM food WHERE restaurant_no=?";
+		String sql = "SELECT * FROM food WHERE restaurant_no=? AND food_del = 0";
 
 		try {
 			con = DBConnection.dbConn();
@@ -213,6 +213,7 @@ public class RestaurantDAO {
 				dto.setFood_price(rs.getInt("food_price"));
 				dto.setFood_image(rs.getString("food_image"));
 				dto.setRestaurant_no(rs.getLong("restaurant_no"));
+				dto.setFood_no(rs.getLong("food_no"));
 				list.add(dto);
 			}
 		} catch (Exception e) {
