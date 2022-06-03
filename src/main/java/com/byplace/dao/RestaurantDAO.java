@@ -11,8 +11,6 @@ import com.byplace.db.DBConnection;
 import com.byplace.dto.CategoryDTO;
 import com.byplace.dto.FoodDTO;
 import com.byplace.dto.RestaurantDTO;
-import com.byplace.dto.RestaurantinfoDTO;
-import com.byplace.dto.ReviewDTO;
 
 public class RestaurantDAO {
 
@@ -20,7 +18,7 @@ public class RestaurantDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "INSERT INTO restaurant(restaurant_name, restaurant_description, restaurant_postcode, restaurant_roadAddress, restaurant_detailAddress, restaurant_extraAddress, category_category, restaurant_image, user_no) VALUES(?, ?, ?, ?, ?, ?, ?, ?, (SELECT user_no FROM user WHERE user_id=?)) ";
-		
+
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
@@ -33,13 +31,15 @@ public class RestaurantDAO {
 			pstmt.setString(7, dto.getCategory_category());
 			pstmt.setString(8, dto.getRestaurant_image());
 			pstmt.setString(9, dto.getUser_id());
-			
+
 			pstmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstmt != null) {pstmt.close();}
+				if (pstmt != null) {
+					pstmt.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -52,14 +52,14 @@ public class RestaurantDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM restaurant";
-		
+		String sql = "SELECT * FROM restaurantView";
+
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				RestaurantDTO dto = new RestaurantDTO();
 				dto.setRestaurant_no(rs.getLong("restaurant_no"));
 				dto.setRestaurant_name(rs.getString("restaurant_name"));
@@ -68,14 +68,19 @@ public class RestaurantDAO {
 				dto.setRestaurant_detailAddress(rs.getString("restaurant_detailAddress"));
 				dto.setRestaurant_extraAddress(rs.getString("restaurant_extraAddress"));
 				dto.setRestaurant_image(rs.getString("restaurant_image"));
+				dto.setRestaurant_rating(rs.getDouble("restaurant_rating"));
 				reslist.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(rs != null) {rs.close();}
-				if(pstmt != null) {pstmt.close();}
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -88,14 +93,14 @@ public class RestaurantDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM restaurantView WHERE restaurant_no=?";
-		
+		String sql = "SELECT * FROM restaurant WHERE restaurant_no=?";
+
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, restaurant_no);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				dto.setRestaurant_no(rs.getLong("restaurant_no"));
 				dto.setRestaurant_name(rs.getString("restaurant_name"));
 				dto.setRestaurant_image(rs.getString("restaurant_image"));
@@ -104,14 +109,17 @@ public class RestaurantDAO {
 				dto.setRestaurant_roadAddress(rs.getString("restaurant_roadAddress"));
 				dto.setRestaurant_detailAddress(rs.getString("restaurant_detailAddress"));
 				dto.setRestaurant_extraAddress(rs.getString("restaurant_extraAddress"));
-				dto.setRestaurant_rating(rs.getDouble("restaurant_rating"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(rs != null) {rs.close();}
-				if(pstmt != null) {pstmt.close();}
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -125,12 +133,12 @@ public class RestaurantDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM category";
-		
+
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				CategoryDTO dto = new CategoryDTO();
 				dto.setCategory_category(rs.getString("category_category"));
 				catelist.add(dto);
@@ -139,14 +147,17 @@ public class RestaurantDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(rs != null) {rs.close();}
-				if(pstmt !=null) {pstmt.close();}
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		
+
 		return catelist;
 	}
 
@@ -154,7 +165,7 @@ public class RestaurantDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "INSERT INTO food (restaurant_no, food_name, food_price, food_image, food_description) VALUES (? ,?, ?, ?, ?)";
-		
+
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
@@ -164,19 +175,21 @@ public class RestaurantDAO {
 			pstmt.setString(4, dto.getFood_image());
 			pstmt.setString(5, dto.getFood_description());
 			pstmt.setString(6, dto.getUser_id());
-			
+
 			pstmt.execute();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstmt != null) {pstmt.close();}
+				if (pstmt != null) {
+					pstmt.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
 	public List<FoodDTO> menulist(long restaurant_no) {
@@ -185,15 +198,14 @@ public class RestaurantDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM food WHERE restaurant_no=?";
-		
+
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, restaurant_no);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				FoodDTO dto = new FoodDTO();
-				dto.setFood_no(rs.getLong("food_no"));
 				dto.setFood_name(rs.getString("food_name"));
 				dto.setFood_description(rs.getString("food_description"));
 				dto.setFood_price(rs.getInt("food_price"));
@@ -205,8 +217,12 @@ public class RestaurantDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(rs != null) {rs.close();}
-				if(pstmt != null) {pstmt.close();}
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -218,7 +234,7 @@ public class RestaurantDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE food SET food_del=1 WHERE food_no=?";
-		
+
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
@@ -228,39 +244,54 @@ public class RestaurantDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstmt != null) {pstmt.close();}
+				if (pstmt != null) {
+					pstmt.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		
+
 	}
 
-	public void review(ReviewDTO dto) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO review (review_comment,  review_rating, user_no, restaurant_no) VALUES (?, ?, ?, ?)";
-		
-		try {
-			con = DBConnection.dbConn();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getReview_comment());
-			pstmt.setDouble(2, dto.getReview_rating());
-			pstmt.setLong(3, dto.getUser_no());
-			pstmt.setLong(4, dto.getRestaurant_no());
-			pstmt.execute();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
+	public static List<List<RestaurantDTO>> findByCategoryRestaurantList() {
+		RestaurantDAO dao = new RestaurantDAO();
+		List<CategoryDTO> categoryList = dao.categorylist();
+		List<List<RestaurantDTO>> restaurantList = new ArrayList<>();
+		for (int i = 0; i < categoryList.size(); i++) {
+			List<RestaurantDTO> list = new ArrayList<>();
+			String sql = "SELECT * FROM restaurantView WHERE category_category=? ORDER BY restaurant_rating DESC";
 			try {
-				if(pstmt != null) {pstmt.close();}
-			} catch (SQLException e) {
+				Connection connection = DBConnection.dbConn();
+				PreparedStatement pstmt = connection.prepareStatement(sql);
+				pstmt.setString(1, categoryList.get(i).getCategory_category());
+				ResultSet rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					RestaurantDTO restaurant = new RestaurantDTO();
+					restaurant.setRestaurant_no(rs.getLong("restaurant_no"));
+					restaurant.setRestaurant_joined(rs.getString("restaurant_joined"));
+					restaurant.setRestaurant_postcode(rs.getString("restaurant_postcode"));
+					restaurant.setRestaurant_roadAddress(rs.getString("restaurant_roadAddress"));
+					restaurant.setRestaurant_detailAddress(rs.getString("restaurant_detailAddress"));
+					restaurant.setRestaurant_extraAddress(rs.getString("restaurant_extraAddress"));
+					restaurant.setCategory_category(rs.getString("category_category"));
+					restaurant.setRestaurant_description(rs.getString("restaurant_description"));
+					restaurant.setRestaurant_image(rs.getString("restaurant_image"));
+					restaurant.setRestaurant_name(rs.getString("restaurant_name"));
+					restaurant.setRestaurant_rating(rs.getDouble("restaurant_rating"));
+					restaurant.setUser_no(rs.getLong("user_no"));
+
+					list.add(restaurant);
+				}
+				restaurantList.add(list);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
+		return restaurantList;
 	}
+<<<<<<< HEAD
 
 	public List<ReviewDTO> reviewlist(long restaurant_no) {
 		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
@@ -432,4 +463,6 @@ public class RestaurantDAO {
 		}
 	}
 	
+=======
+>>>>>>> branch 'main' of https://github.com/hyeonminchoi/byplace.git
 }
