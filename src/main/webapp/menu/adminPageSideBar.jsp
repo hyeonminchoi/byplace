@@ -12,6 +12,16 @@
 		<ul class="nav-links">
 			<li>
 				<div class="iocn-link">
+					<a href="#"> <span class="link_name">사이트관리</span>
+					</a> <i class='bx bxs-chevron-down arrow'></i>
+				</div>
+				<ul class="sub-menu">
+					<li><a class="link_name" href="#">사이트관리</a></li>
+					<li><a href="./adminPage_userlogList">접속기록</a></li>
+				</ul>
+			</li>
+			<li>
+				<div class="iocn-link">
 					<a href="#"> <span class="link_name">카테고리관리</span>
 					</a> <i class='bx bxs-chevron-down arrow'></i>
 				</div>
@@ -47,12 +57,12 @@
 			</li>
 			<li>
 				<div class="iocn-link">
-					<a href="#"> <span class="link_name">공지사항관리</span>
+					<a href="#"> <span class="link_name">리뷰관리</span>
 					</a> <i class='bx bxs-chevron-down arrow'></i>
 				</div>
 				<ul class="sub-menu">
-					<li><a class="link_name" href="#">공지사항관리</a></li>
-					<li><a href="./adminPage_noticeList">공지사항보기</a></li>
+					<li><a class="link_name" href="#">리뷰관리</a></li>
+					<li><a href="#">리뷰보기</a></li>
 				</ul>
 			</li>
 			<li>
@@ -68,13 +78,12 @@
 			</li>
 			<li>
 				<div class="iocn-link">
-					<a href="#"> <span class="link_name">신고게시판관리</span>
+					<a href="#"> <span class="link_name">공지사항관리</span>
 					</a> <i class='bx bxs-chevron-down arrow'></i>
 				</div>
 				<ul class="sub-menu">
-					<li><a class="link_name" href="#">신고게시판관리</a></li>
-					<li><a href="./adminPage_reportboardList">게시물보기</a></li>
-					<li><a href="./adminPage_reportboardRecoveryList">게시물복구</a></li>
+					<li><a class="link_name" href="#">공지사항관리</a></li>
+					<li><a href="#">공지사항보기</a></li>
 				</ul>
 			</li>
 		</ul>

@@ -337,4 +337,19 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void userlog(long user_no, String status) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO userlog(user_no, userlog_status) VALUES(?, ?)";
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, user_no);
+			pstmt.setString(2, status);
+			pstmt.execute();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -9,8 +9,10 @@ import java.util.List;
 import org.apache.commons.lang3.EnumUtils;
 
 import com.byplace.admin.util.userSearchColumn;
+import com.byplace.admin.util.userlogSearchColumn;
 import com.byplace.db.DBConnection;
 import com.byplace.dto.UserDTO;
+import com.byplace.dto.UserlogDTO;
 
 public class AdminUserDAO {
 	public void close(ResultSet rs, PreparedStatement pstmt) {
@@ -394,5 +396,59 @@ public class AdminUserDAO {
 			close(rs, pstmt);
 		}
 		return 0;
+	}
+	
+	public int countlog(String searchColumn, String searchValue) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		if(EnumUtils.isValidEnumIgnoreCase(userlogSearchColumn.class, searchColumn))
+				sql = "SELECT COUNT(*) FROM adminuserlogview WHERE " + searchColumn + " LIKE ?";
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + searchValue + "%");
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt);
+		}
+		return 0;
+	}
+	
+	public List<UserlogDTO> findLogAll(String sort, String searchColumn, String searchValue, int currentPage, int pageSize) {
+		String sql = "";
+		if(EnumUtils.isValidEnumIgnoreCase(userlogSearchColumn.class, searchColumn))
+				sql = "SELECT * FROM adminuserlogview WHERE " + searchColumn + " LIKE ? ORDER BY " + sort + " LIMIT ?, ?";
+		List<UserlogDTO> list = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + searchValue + "%");
+			pstmt.setInt(2, (currentPage - 1) * pageSize);
+			pstmt.setInt(3, pageSize);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				UserlogDTO userlogDTO = new UserlogDTO();
+				userlogDTO.setUser_no(rs.getLong("user_no"));
+				userlogDTO.setUserlog_no(rs.getLong("userlog_no"));
+				userlogDTO.setUser_id(rs.getString("user_id"));
+				userlogDTO.setUserlog_date(rs.getString("userlog_date"));
+				userlogDTO.setUserlog_status(rs.getString("userlog_status"));
+				list.add(userlogDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt);
+		}
+		return list;
 	}
 }
