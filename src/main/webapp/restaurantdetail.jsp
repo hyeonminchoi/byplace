@@ -36,8 +36,10 @@ function resback(){
 	location.href='./restaurantList';
 }
 
-function resup(){
-	location.href='./resup';
+function resup(n1){
+	if(confirm("수정하시겠습니까?")){
+		location.href='./resup?restaurant_no='+n1;	
+	}
 }
 $(function(){
 $('.starRev span').click(function(){
@@ -91,7 +93,7 @@ $('.starRev span').click(function(){
 		<div id="headoption" style="float: left;">
 		<button onclick="resback()">뒤로가기</button>
 		<c:if test="${sessionScope.USER ne null }">
-		<button onclick="resup()">수정</button>
+		<button onclick="resup(${resdetail.restaurant_no})">수정</button>
 		<button onclick="resdel(${resdetail.restaurant_no})">삭제</button>
 		</c:if>
 		</div>

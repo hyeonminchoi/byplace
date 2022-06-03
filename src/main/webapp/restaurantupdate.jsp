@@ -18,11 +18,9 @@ function goSubmit(){
 	location.href="resadd";
 } */
 
-$(function(){
-	$('#cancel').click(function(){
-		location.href = './index.jsp';
-	});
-});
+function cancel(n1){
+	location.href='restaurantdetail?restaurant_no='+n1;
+}
 
 </script>
 </head>
@@ -63,7 +61,7 @@ $(function(){
 			</div>
 			<button>확인</button>
 			</form>
-			<button name="cancel" id="cancel">취소</button>
+			<button onclick="cancel(${resdetail.restaurant_no})">취소</button>
 		</div>
 	</div>
 <script>
