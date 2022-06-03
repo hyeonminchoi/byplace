@@ -13,9 +13,6 @@
 	          	</li>
           	</c:if>
           	<c:if test="${not empty sessionScope.USER}">
-	            <li class="mainbutton2">
-	               <img src="" alt="안녕">
-	            </li>
 	            <li class="mainbutton1">
 	               <img src="./img/logout.png" onclick="logout()">
 	           	</li>
