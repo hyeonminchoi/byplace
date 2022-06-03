@@ -10,6 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41c04e215b88583eb8be89a445ce294e&libraries=services"></script>
 <link href="./css/tabmenu.css" rel="stylesheet">
+<link href="./css/menu.css" rel="stylesheet">
 <script type="text/javascript">
 function menuup(n1, n2){
 	location.href = './index.jsp';
@@ -55,16 +56,24 @@ $('.starRev span').click(function(){
 #head {
 	width: 100%;
 	height: 100px;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	text-align: center;
 }
 
 #middle {
 	width: 100%;
 	height: 300px;
+	font-size: 20px;
+	text-align: center;
 }
 
 #content {
 	width: 100%;
-	height: 450px;
+	height: 500px;
+	font-size: 20px;
+	text-align: center;
 }
 
 .starR1{
@@ -87,6 +96,9 @@ $('.starRev span').click(function(){
 }
 .starR1.on{background-position:0 0;}
 .starR2.on{background-position:-15px 0;}
+table, td, th {
+    border-collapse : collapse;
+};
 </style>
 </head>
 <body>
@@ -104,17 +116,19 @@ $('.starRev span').click(function(){
 	</div>
 	<div id="middle">
 		<div id="resimage" style="float: left;">
-		<img alt="${resdetail.restaurant_name }" src="./restaurantImage/${resdetail.restaurant_image }">
+		<img alt="" src="./restaurantImage/${resdetail.restaurant_image }" style="width: 400px; height: 400px;">
 		</div>
 		<div id="title" style="text-align: center;">
+		점포명<br>
 		${resdetail.restaurant_name }<br>
+		주소<br>
 		${resdetail.restaurant_postcode }<br>
 		${resdetail.restaurant_roadAddress }<br>
 		${resdetail.restaurant_detailAddress }<br>
 		${resdetail.restaurant_extraAddress }<br>
 		────────────────────────────────────────────<br>
 		평점: ${resdetail.restaurant_rating }<br>
-		${resdetail.restaurant_description }
+		설명: ${resdetail.restaurant_description }<br>
 		
 		
 		</div>
@@ -185,19 +199,21 @@ $('.starRev span').click(function(){
 				<button>확인</button>
 			</form>
 			</c:if>
-			<table style="float: center;">
-				<tr>
+			<table style="margin: auto;">
+				<tr style="margin-left: auto; margin-right: auto; border-collapse : collapse;">
 					<th id=col1>리뷰내용</th>
 					<th id=col2>리뷰날짜</th>
 					<th id=col3>리뷰평점</th>
 					<th id=col4>소비자</th>
 				</tr>
 			<c:forEach items="${reviewlist }" var="r">
-				<tr>
+				<tr style="margin-left: auto; margin-right: auto; border-collapse : collapse;" >
 					<th>${r.review_comment }</th>
 					<th>${r.review_date }</th>
 					<th>${r.review_rating }</th>
-					<th>${r.user_id } <button onclick="reviewdel(${r.review_no }, ${resdetail.restaurant_no })">삭제</button></th>
+					<th>${r.user_id } 
+					<c:if test="${sessionScope.USER ne null }">
+					<button onclick="reviewdel(${r.review_no }, ${resdetail.restaurant_no })">삭제</button></c:if></th>
 				<tr>
 			</c:forEach>
 			</table>

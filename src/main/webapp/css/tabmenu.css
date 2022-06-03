@@ -48,9 +48,8 @@ ul.tabs li.current{
 
 .tab-content{
 	display: none;
-	background: #ededed;
 	padding: 15px;
-	height: 100px;
+	height: 100%;
 }
 
 .tab-content.current{
