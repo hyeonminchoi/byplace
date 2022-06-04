@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminNoticeDAO;
 import com.byplace.dto.NoticeDTO;
+import com.byplace.dto.UserDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -33,7 +34,7 @@ public class AdminNoticeImageEdit extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
 		String url = session.getServletContext().getRealPath("/noticeImage");
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			MultipartRequest multipartRequest = new MultipartRequest(
 					request, url, 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 			long notice_no = Long.parseLong(multipartRequest.getParameter("notice_no"));
@@ -52,9 +53,9 @@ public class AdminNoticeImageEdit extends HttpServlet {
 			} else { //추가 실패
 				writer.println("<script>alert('" + "수정에 실패했습니다" + "'); window.location.href = document.referrer;</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 }

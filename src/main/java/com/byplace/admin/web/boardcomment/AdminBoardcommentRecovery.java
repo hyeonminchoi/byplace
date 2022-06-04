@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminBoardcommentDAO;
+import com.byplace.dto.UserDTO;
 
 @WebServlet("/adminBoardcommentRecovery")
 public class AdminBoardcommentRecovery extends HttpServlet {
@@ -26,7 +27,7 @@ public class AdminBoardcommentRecovery extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			long boardcomment_no = Long.parseLong(request.getParameter("boardcomment_no"));
 			AdminBoardcommentDAO adminBoardcommentDAO = new AdminBoardcommentDAO();
 			
@@ -36,9 +37,9 @@ public class AdminBoardcommentRecovery extends HttpServlet {
 			} else { //실패
 				writer.println("<script>alert('" + "복구에 실패했습니다" + "'); window.location.href = document.referrer;</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

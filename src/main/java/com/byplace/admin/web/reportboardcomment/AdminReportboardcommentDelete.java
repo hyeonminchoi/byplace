@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminReportboardcommentDAO;
+import com.byplace.dto.UserDTO;
 
 @WebServlet("/adminReportboardcommentDelete")
 public class AdminReportboardcommentDelete extends HttpServlet {
@@ -26,7 +27,7 @@ public class AdminReportboardcommentDelete extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			long reportboardcomment_no = Long.parseLong(request.getParameter("reportboardcomment_no"));
 			AdminReportboardcommentDAO adminReportboardcommentDAO = new AdminReportboardcommentDAO();
 			int result = adminReportboardcommentDAO.delete(reportboardcomment_no);
@@ -35,9 +36,9 @@ public class AdminReportboardcommentDelete extends HttpServlet {
 			} else { //삭제 실패
 				writer.println("<script>alert('" + "삭제에 실패했습니다" + "'); window.location.href = document.referrer;</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

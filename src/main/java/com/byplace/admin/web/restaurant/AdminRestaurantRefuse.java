@@ -27,7 +27,7 @@ public class AdminRestaurantRefuse extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			long restaurant_no = Long.parseLong(request.getParameter("restaurant_no"));
 			AdminRestaurantDAO adminRestaurantDAO = new AdminRestaurantDAO();
 			
@@ -37,9 +37,9 @@ public class AdminRestaurantRefuse extends HttpServlet {
 			} else { //실패
 				writer.println("<script>alert('" + "음식점 거부에 실패했습니다" + "'); window.location.href = document.referrer;</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

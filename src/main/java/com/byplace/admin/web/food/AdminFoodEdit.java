@@ -12,8 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminFoodDAO;
 import com.byplace.dto.FoodDTO;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.byplace.dto.UserDTO;
 
 @WebServlet("/adminFoodEdit")
 public class AdminFoodEdit extends HttpServlet {
@@ -33,7 +32,7 @@ public class AdminFoodEdit extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			long restaurant_no = Long.parseLong(request.getParameter("restaurant_no"));
 			long food_no = Long.parseLong(request.getParameter("food_no"));
 			String food_name = request.getParameter("food_name");
@@ -54,9 +53,9 @@ public class AdminFoodEdit extends HttpServlet {
 			} else { //수정 실패
 				writer.println("<script>alert('" + "수정에 실패했습니다" + "'); window.location.href = document.referrer;</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 }

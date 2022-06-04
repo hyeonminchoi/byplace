@@ -126,11 +126,11 @@ window.onload = function(){
 </head>
 <body>
 	<!-- 관리자 권한 있는 사람만 접속 가능 -->
-	<%-- <c:if test="${sessionScope.USER.user_type ne '관리자' }">
+	<c:if test="${sessionScope.USER.user_type ne '관리자' }">
 		<script>
 			location.href="./index.jsp";
 		</script>
-	</c:if> --%>
+	</c:if>
 	
 	<%@ include file="./menu/adminPageSideBar.jsp"%>
 	

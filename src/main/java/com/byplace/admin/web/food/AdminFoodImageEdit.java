@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminFoodDAO;
 import com.byplace.dto.FoodDTO;
+import com.byplace.dto.UserDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -33,7 +34,7 @@ public class AdminFoodImageEdit extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
 		String url = session.getServletContext().getRealPath("/foodImage");
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			MultipartRequest multipartRequest = new MultipartRequest(
 					request, url, 10*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 			long food_no = Long.parseLong(multipartRequest.getParameter("food_no"));
@@ -50,9 +51,9 @@ public class AdminFoodImageEdit extends HttpServlet {
 			} else { //추가 실패
 				writer.println("<script>alert('" + "수정에 실패했습니다" + "'); window.location.href = document.referrer;</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 }

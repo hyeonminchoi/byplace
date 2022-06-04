@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminFoodDAO;
 import com.byplace.admin.util.pageConfigure;
+import com.byplace.dto.UserDTO;
 
 @WebServlet("/adminPage_foodList")
 public class AdminPage_foodList extends HttpServlet {
@@ -23,7 +24,7 @@ public class AdminPage_foodList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER")!=null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER")!=null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			Long restaurant_no = Long.parseLong(request.getParameter("restaurant_no"));
 			String searchColumn = "food_name";
 			if(request.getParameter("searchColumn")!=null)
@@ -64,9 +65,9 @@ public class AdminPage_foodList extends HttpServlet {
 			request.setAttribute("restaurant_no", restaurant_no);
 			request.setAttribute("sort", sort);
 			request.getRequestDispatcher("./adminPage_foodList.jsp").forward(request, response);
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

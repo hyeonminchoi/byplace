@@ -12,8 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminNoticeDAO;
 import com.byplace.dto.NoticeDTO;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.byplace.dto.UserDTO;
 
 @WebServlet("/adminNoticeEdit")
 public class AdminNoticeEdit extends HttpServlet {
@@ -33,7 +32,7 @@ public class AdminNoticeEdit extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			long notice_no = Long.parseLong(request.getParameter("notice_no"));
 			String notice_title = request.getParameter("notice_title");
 			String notice_comment = request.getParameter("notice_comment");
@@ -50,9 +49,9 @@ public class AdminNoticeEdit extends HttpServlet {
 			} else { //수정 실패
 				writer.println("<script>alert('" + "수정에 실패했습니다" + "'); window.location.href = document.referrer;</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 }

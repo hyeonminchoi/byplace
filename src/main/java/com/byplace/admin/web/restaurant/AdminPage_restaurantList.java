@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.byplace.admin.dao.AdminCategoryDAO;
 import com.byplace.admin.dao.AdminRestaurantDAO;
 import com.byplace.admin.util.pageConfigure;
+import com.byplace.dto.UserDTO;
 
 @WebServlet("/adminPage_restaurantList")
 public class AdminPage_restaurantList extends HttpServlet {
@@ -24,7 +25,7 @@ public class AdminPage_restaurantList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER")!=null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER")!=null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			String searchColumn = "category_category";
 			if(request.getParameter("searchColumn")!=null)
 				searchColumn = request.getParameter("searchColumn");
@@ -64,9 +65,9 @@ public class AdminPage_restaurantList extends HttpServlet {
 			AdminCategoryDAO adminCategoryDAO = new AdminCategoryDAO();
 			request.setAttribute("categoryList", adminCategoryDAO.findAll());
 			request.getRequestDispatcher("./adminPage_restaurantList.jsp").forward(request, response);
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

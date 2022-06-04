@@ -27,7 +27,7 @@ public class AdminUserBlackListAdd extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			int user_no = Integer.parseInt(request.getParameter("user_no"));
 			AdminUserDAO adminUserDAO = new AdminUserDAO();
 			int result = adminUserDAO.blackList(user_no);
@@ -36,9 +36,9 @@ public class AdminUserBlackListAdd extends HttpServlet {
 			} else { //추가 실패
 				writer.println("<script>alert('" + "블랙 리스트 추가에 실패했습니다" + "'); window.location.href = document.referrer;</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

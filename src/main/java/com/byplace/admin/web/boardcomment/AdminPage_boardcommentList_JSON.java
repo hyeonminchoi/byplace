@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminBoardcommentDAO;
 import com.byplace.dto.BoardcommentDTO;
+import com.byplace.dto.UserDTO;
 import com.google.gson.Gson;
 
 @WebServlet("/adminPage_boardcommentList_JSON")
@@ -27,7 +28,7 @@ public class AdminPage_boardcommentList_JSON extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			String sort = request.getParameter("sort");
 			String cmd = "";
 			String searchColumn = "boardcomment_comment";
@@ -69,9 +70,9 @@ public class AdminPage_boardcommentList_JSON extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(json);
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 	
 	

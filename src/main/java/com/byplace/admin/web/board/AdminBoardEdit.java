@@ -12,8 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminBoardDAO;
 import com.byplace.dto.BoardDTO;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.byplace.dto.UserDTO;
 
 @WebServlet("/adminBoardEdit")
 public class AdminBoardEdit extends HttpServlet {
@@ -33,7 +32,7 @@ public class AdminBoardEdit extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			long board_no = Long.parseLong(request.getParameter("board_no"));
 			String board_title = request.getParameter("board_title");
 			String board_comment = request.getParameter("board_comment");
@@ -50,9 +49,9 @@ public class AdminBoardEdit extends HttpServlet {
 			} else { //수정 실패
 				writer.println("<script>alert('" + "수정에 실패했습니다" + "'); window.location.href = document.referrer;</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 }

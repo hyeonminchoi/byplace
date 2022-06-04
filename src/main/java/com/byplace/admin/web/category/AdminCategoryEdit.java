@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminCategoryDAO;
+import com.byplace.dto.UserDTO;
 
 @WebServlet("/adminCategoryEdit")
 public class AdminCategoryEdit extends HttpServlet {
@@ -30,7 +31,7 @@ public class AdminCategoryEdit extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			int category_no = Integer.parseInt(request.getParameter("categoryNo"));
 			String category_category = request.getParameter("categoryName");
 			AdminCategoryDAO adminCategoryDAO = new AdminCategoryDAO();
@@ -40,9 +41,9 @@ public class AdminCategoryEdit extends HttpServlet {
 			} else { //추가 실패
 				writer.println("<script>alert('" + "수정에 실패했습니다" + "'); location.href='./adminPage_categoryList';</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 }

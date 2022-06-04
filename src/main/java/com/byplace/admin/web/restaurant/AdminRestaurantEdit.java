@@ -12,8 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminRestaurantDAO;
 import com.byplace.dto.RestaurantDTO;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.byplace.dto.UserDTO;
 
 @WebServlet("/adminRestaurantEdit")
 public class AdminRestaurantEdit extends HttpServlet {
@@ -33,7 +32,7 @@ public class AdminRestaurantEdit extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			long restaurant_no = Long.parseLong(request.getParameter("restaurant_no"));
 			String restaurant_name = request.getParameter("restaurant_name");
 			String restaurant_description = request.getParameter("restaurant_description");
@@ -60,9 +59,9 @@ public class AdminRestaurantEdit extends HttpServlet {
 			} else { //수정 실패
 				writer.println("<script>alert('" + "수정에 실패했습니다" + "'); window.location.href = document.referrer;</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 }

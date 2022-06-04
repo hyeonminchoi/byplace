@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.byplace.admin.dao.AdminCategoryDAO;
 import com.byplace.admin.dao.AdminReportboardDAO;
 import com.byplace.admin.util.pageConfigure;
+import com.byplace.dto.UserDTO;
 
 @WebServlet("/adminPage_reportboardList")
 public class AdminPage_reportboardList extends HttpServlet {
@@ -24,7 +24,7 @@ public class AdminPage_reportboardList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER")!=null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER")!=null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			String searchColumn = "reportboard_title";
 			if(request.getParameter("searchColumn")!=null)
 				searchColumn = request.getParameter("searchColumn");
@@ -62,9 +62,9 @@ public class AdminPage_reportboardList extends HttpServlet {
 				request.setAttribute("pg", pg);
 			request.setAttribute("sort", sort);
 			request.getRequestDispatcher("./adminPage_reportboardList.jsp").forward(request, response);
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

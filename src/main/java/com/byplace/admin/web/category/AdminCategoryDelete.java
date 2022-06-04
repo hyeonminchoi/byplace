@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.byplace.admin.dao.AdminCategoryDAO;
+import com.byplace.dto.UserDTO;
 
 @WebServlet("/adminCategoryDelete")
 public class AdminCategoryDelete extends HttpServlet {
@@ -26,7 +27,7 @@ public class AdminCategoryDelete extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
-//		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
+		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
 			int category_no = Integer.parseInt(request.getParameter("category_no"));
 			AdminCategoryDAO adminCategoryDAO = new AdminCategoryDAO();
 			int result = adminCategoryDAO.delete(category_no);
@@ -35,9 +36,9 @@ public class AdminCategoryDelete extends HttpServlet {
 			} else { //삭제 실패
 				writer.println("<script>alert('" + "삭제에 실패했습니다" + "'); location.href='./adminPage_categoryList';</script>");
 			}
-//		} else {
-//			response.sendRedirect("./index.jsp");
-//		}
+		} else {
+			response.sendRedirect("./index.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
