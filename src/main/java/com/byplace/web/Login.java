@@ -1,6 +1,7 @@
 package com.byplace.web;
 
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,7 +43,35 @@ public class Login extends HttpServlet {
 			
 
 			if (userDTO != null) {
-				dao.userlog(userDTO.getUser_no(), "login");
+				String ip = null;
+
+		        ip = request.getHeader("X-Forwarded-For");
+		        
+		        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		            ip = request.getHeader("Proxy-Client-IP"); 
+		        } 
+		        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		            ip = request.getHeader("WL-Proxy-Client-IP"); 
+		        } 
+		        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		            ip = request.getHeader("HTTP_CLIENT_IP"); 
+		        } 
+		        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		            ip = request.getHeader("HTTP_X_FORWARDED_FOR"); 
+		        }
+		        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		            ip = request.getHeader("X-Real-IP"); 
+		        }
+		        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		            ip = request.getHeader("X-RealIP"); 
+		        }
+		        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		            ip = request.getHeader("REMOTE_ADDR");
+		        }
+		        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		            ip = request.getRemoteAddr(); 
+		        }
+				dao.userlog(userDTO.getUser_no(), "login", ip);
 				request.getSession().setAttribute("USER", userDTO);
 				response.sendRedirect("./index.jsp");
 			} else {

@@ -338,15 +338,16 @@ public class UserDAO {
 		}
 	}
 	
-	public void userlog(long user_no, String status) {
+	public void userlog(long user_no, String status, String ip) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO userlog(user_no, userlog_status) VALUES(?, ?)";
+		String sql = "INSERT INTO userlog(user_no, userlog_status, userlog_ipaddr) VALUES(?, ?, ?)";
 		try {
 			con = DBConnection.dbConn();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, user_no);
 			pstmt.setString(2, status);
+			pstmt.setString(3, ip);
 			pstmt.execute();
 		} catch(Exception e) {
 			e.printStackTrace();

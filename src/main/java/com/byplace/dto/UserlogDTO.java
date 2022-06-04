@@ -2,8 +2,14 @@ package com.byplace.dto;
 
 public class UserlogDTO {
 	private long userlog_no, user_no;
-	private String userlog_status, userlog_date, user_id;
+	private String userlog_status, userlog_date, user_id, userlog_ipaddr;
 	
+	public String getUserlog_ipaddr() {
+		return userlog_ipaddr;
+	}
+	public void setUserlog_ipaddr(String userlog_ipaddr) {
+		this.userlog_ipaddr = userlog_ipaddr;
+	}
 	public long getUserlog_no() {
 		return userlog_no;
 	}

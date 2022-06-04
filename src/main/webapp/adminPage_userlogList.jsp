@@ -80,6 +80,7 @@ function changed(){
 				temp += "	<td>" + userlogList[i].user_id + "</td>";
 				temp += "	<td>" + userlogList[i].userlog_status + "</td>";
 				temp += "	<td>" + userlogList[i].userlog_date + "</td>";
+				temp += "	<td>" + userlogList[i].userlog_ipaddr + "</td>";
 				temp += "</tr>";
 			}
 			$("#userLog_body").append(temp);
@@ -102,7 +103,7 @@ window.onload = function(){
 </head>
 <body>
 	<!-- 관리자 권한 있는 사람만 접속 가능 -->
-	<c:if test="${sessionScope.userLog.userLog_type ne '관리자' }">
+	<c:if test="${sessionScope.USER.user_type ne '관리자' }">
 		<script>
 			location.href="./index.jsp";
 		</script>
@@ -135,6 +136,7 @@ window.onload = function(){
 						<th>ID</th>
 						<th>상태</th>
 						<th>날짜</th>
+						<th>IP</th>
 					</tr>
 				</thead>
 				<tbody id="userLog_body">

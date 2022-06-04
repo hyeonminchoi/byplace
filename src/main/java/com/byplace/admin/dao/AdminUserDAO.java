@@ -442,6 +442,7 @@ public class AdminUserDAO {
 				userlogDTO.setUser_id(rs.getString("user_id"));
 				userlogDTO.setUserlog_date(rs.getString("userlog_date"));
 				userlogDTO.setUserlog_status(rs.getString("userlog_status"));
+				userlogDTO.setUserlog_ipaddr(rs.getString("userlog_ipaddr"));
 				list.add(userlogDTO);
 			}
 		} catch (Exception e) {
