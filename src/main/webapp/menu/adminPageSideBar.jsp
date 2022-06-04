@@ -28,6 +28,7 @@
 				<ul class="sub-menu">
 					<li><a class="link_name" href="#">사이트관리</a></li>
 					<li><a href="./adminPage_userlogList">접속기록</a></li>
+					<li><a href="./adminPage_loginList">접속중인 사용자</a></li>
 				</ul>
 			</li>
 			<li>

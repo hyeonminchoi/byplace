@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.EnumUtils;
 
+import com.byplace.admin.util.loginSearchColumn;
 import com.byplace.admin.util.userSearchColumn;
 import com.byplace.admin.util.userlogSearchColumn;
 import com.byplace.db.DBConnection;
@@ -451,5 +452,97 @@ public class AdminUserDAO {
 			close(rs, pstmt);
 		}
 		return list;
+	}
+
+	public void login(String name) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO login(user_id) VALUES(?)";
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+		} finally {
+			close(null, pstmt);
+		}
+	}
+	
+	public void logout(String name) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM login WHERE user_id = ?";
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+		} finally {
+			close(null, pstmt);
+		}
+	}
+	
+	public List<UserDTO> findLoginList(String sort, String searchColumn, String searchValue, int currentPage, int pageSize) {
+		String sql = "";
+		if(EnumUtils.isValidEnumIgnoreCase(loginSearchColumn.class, searchColumn))
+				sql = "SELECT * FROM adminlogin WHERE " + searchColumn + " LIKE ? ORDER BY " + sort + " LIMIT ?, ?";
+		List<UserDTO> list = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + searchValue + "%");
+			pstmt.setInt(2, (currentPage - 1) * pageSize);
+			pstmt.setInt(3, pageSize);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				UserDTO userDTO = new UserDTO();
+				userDTO.setUser_no(rs.getLong("user_no"));
+				userDTO.setUser_id(rs.getString("user_id"));
+				userDTO.setUser_name(rs.getString("user_name"));
+				userDTO.setUser_nickname(rs.getString("user_nickname"));
+				userDTO.setUser_email(rs.getString("user_email"));
+				userDTO.setUser_postcode(rs.getString("user_postcode"));
+				userDTO.setUser_roadAddress(rs.getString("user_roadAddress"));
+				userDTO.setUser_detailAddress(rs.getString("user_detailAddress"));
+				userDTO.setUser_extraAddress(rs.getString("user_extraAddress"));
+				userDTO.setUser_birthday(rs.getString("user_birthday"));
+				userDTO.setUser_joined(rs.getString("user_joined"));
+				userDTO.setUser_type(rs.getString("user_type"));
+				userDTO.setUser_phone(rs.getString("user_phone"));
+				list.add(userDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt);
+		}
+		return list;
+	}
+	
+	public int countLoginUser(String searchColumn, String searchValue) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		if(EnumUtils.isValidEnumIgnoreCase(userSearchColumn.class, searchColumn))
+				sql = "SELECT COUNT(*) FROM adminlogin WHERE " + searchColumn + " LIKE ?";
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + searchValue + "%");
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt);
+		}
+		return 0;
 	}
 }

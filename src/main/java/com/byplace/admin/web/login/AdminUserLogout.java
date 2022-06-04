@@ -1,4 +1,4 @@
-package com.byplace.admin.web.user;
+package com.byplace.admin.web.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,32 +14,25 @@ import com.byplace.admin.dao.AdminUserDAO;
 import com.byplace.admin.util.LoginManager;
 import com.byplace.dto.UserDTO;
 
-@WebServlet("/adminUserBlackListAdd")
-public class AdminUserBlackListAdd extends HttpServlet {
+@WebServlet("/adminUserLogout")
+public class AdminUserLogout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdminUserBlackListAdd() {
+    public AdminUserLogout() {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.setCharacterEncoding("UTF-8");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		HttpSession session = request.getSession();
 		if(session.getAttribute("USER") != null && ((UserDTO)session.getAttribute("USER")).getUser_type().equals("관리자")) {
-			int user_no = Integer.parseInt(request.getParameter("user_no"));
-			AdminUserDAO adminUserDAO = new AdminUserDAO();
-			int result = adminUserDAO.blackList(user_no);
-			if(result==1) { //추가 성공
-				String user_id = request.getParameter("user_id");
-				LoginManager loginManager = LoginManager.getInstance();
-				loginManager.removeSession(user_id);
-				writer.println("<script>alert('" + "블랙 리스트 추가에 성공했습니다" + "'); window.location.href = document.referrer;</script>");
-			} else { //추가 실패
-				writer.println("<script>alert('" + "블랙 리스트 추가에 실패했습니다" + "'); window.location.href = document.referrer;</script>");
-			}
+			String user_id = request.getParameter("user_id");
+			LoginManager loginManager = LoginManager.getInstance();
+			loginManager.removeSession(user_id);
+			writer.println("<script>window.location.href = document.referrer;</script>");
 		} else {
 			response.sendRedirect("./index.jsp");
 		}
@@ -47,7 +40,6 @@ public class AdminUserBlackListAdd extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect("./index.jsp");
-		
 	}
 
 }

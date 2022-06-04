@@ -1,7 +1,6 @@
 package com.byplace.web;
 
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.byplace.admin.util.LoginManager;
 import com.byplace.dao.UserDAO;
 import com.byplace.dto.UserDTO;
 
@@ -72,7 +72,12 @@ public class Login extends HttpServlet {
 		            ip = request.getRemoteAddr(); 
 		        }
 				dao.userlog(userDTO.getUser_no(), "login", ip);
+				LoginManager loginManager = LoginManager.getInstance();
 				request.getSession().setAttribute("USER", userDTO);
+				if(loginManager.isUsing(userDTO.getUser_id())) {
+					loginManager.removeSession(userDTO.getUser_id());
+				}
+				loginManager.setSession(request.getSession(), userDTO.getUser_id());
 				response.sendRedirect("./index.jsp");
 			} else {
 				request.setAttribute("error", "로그인에 실패했습니다.");

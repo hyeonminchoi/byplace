@@ -159,7 +159,7 @@ function changed(){
 				}
 				temp += "	<td>" + "<button type=\"button\" onclick=\'showUserEditDialog(" + user + ")\'>수정</button>" + "</td>";
 				temp += "	<td>" + "<button type=\"button\" onclick=\"deleteUser(" + userList[i].user_no + ")\">탈퇴</button>" + "</td>";
-				temp += "	<td>" + "<button type=\"button\" onclick=\"blackList(" + userList[i].user_no + ")\">블랙</button>" + "</td>";
+				temp += "	<td>" + "<button type=\"button\" onclick=\"blackList(" + userList[i].user_no + ",\'" + userList[i].user_id +"\')\">블랙</button>" + "</td>";
 				temp += "</tr>";
 			}
 			$("#user_body").append(temp);
@@ -315,9 +315,9 @@ window.onload = function(){
 		}
 	}
 	
-	function blackList(no){
+	function blackList(no, id){
 		if(confirm("사용자를 블랙리스트에 추가하겠습니까?")){
-			location.href='./adminUserBlackListAdd?user_no=' + no;
+			location.href='./adminUserBlackListAdd?user_no=' + no + "&user_id=" + id;
 		} else{
 			location.href='./adminPage_userList';
 		}
