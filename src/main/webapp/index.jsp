@@ -197,7 +197,7 @@ function logout(){
 										<li><a href="./contact.jsp">Contacts</a></li>
 										<c:if test="${sessionScope.USER eq null }">
 											<li class="dropdown">
-												<button class="dropbtn" href="./login.jsp">Login</button>
+												<button class="dropbtn" onclick="location.href='./login.jsp'">Login</button>
 												<div class="dropdown-content">
 													<a href="./findid.jsp">아이디 찾기</a>
 													<a href="./findpw.jsp">비밀번호	초기화</a>
