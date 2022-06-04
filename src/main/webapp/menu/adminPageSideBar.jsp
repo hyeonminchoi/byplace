@@ -83,7 +83,7 @@
 				</div>
 				<ul class="sub-menu">
 					<li><a class="link_name" href="#">공지사항관리</a></li>
-					<li><a href="#">공지사항보기</a></li>
+					<li><a href="./adminPage_noticeList">공지사항보기</a></li>
 				</ul>
 			</li>
 		</ul>
