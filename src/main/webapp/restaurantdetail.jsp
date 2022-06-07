@@ -110,17 +110,27 @@ $('.starRev span').click(function(){
 table, td, th {
 	border-collapse: collapse;
 }
-;
+#resup, #resdel, #resback{
+	margin-top : 10px;
+	height: 30px;
+	width: 60px;
+    padding: 10px 0px 10px;
+    border: 0;
+    color: black;
+    background-color: #76cdff;
+    font-size: 15px;
+    font-weight: 200;
+}
 </style>
 </head>
 <body>
 	<div id="head">
 		<div id="headoption" style="float: left;">
-			<button onclick="resback()">뒤로가기</button>
+			<button  id="resback" onclick="resback()">뒤로가기</button>
 			<c:if
 				test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
-				<button onclick="resup(${resdetail.restaurant_no})">수정</button>
-				<button onclick="resdel(${resdetail.restaurant_no})">삭제</button>
+				<button id="resup" onclick="resup(${resdetail.restaurant_no})">수정</button>
+				<button id="resdel" onclick="resdel(${resdetail.restaurant_no})">삭제</button>
 			</c:if>
 		</div>
 		<div id="headtitle" style="text-align: center;">
