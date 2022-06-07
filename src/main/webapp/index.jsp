@@ -163,7 +163,7 @@ function logout(){
 	header-img start 
 	============================== -->
 	<div id="hero-area" style="position: fixed; top: 0; width: 100%; height: 100%">
-		<video src="./img/foodv1.mp4"  width="100%" height="100%"  autoplay muted loop style="opacity: 0.3;"></video>
+		<video src="./img/foodv.mp4"  width="100%" height="100%"  autoplay muted loop style="opacity: 0.3;"></video>
 	</div>
 	<!--
     Header start 
@@ -172,7 +172,7 @@ function logout(){
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="block" style="background-color: rgba(255,255,255,0.4);">
+					<div class="block" style="background-color: white;">
 						<nav class="navbar navbar-default">
 							<div class="container-fluid">
 								<!-- Brand and toggle get grouped for better mobile display -->
