@@ -189,7 +189,6 @@ function nicknameCheck(){
 							<option value="">유형을 선택하세요.</option>
 							<option value="개인">개인</option>
 							<option value="사업자">사업자</option>
-							<option value="관리자">관리자</option>
 						</select>
 					</td>
 					<td></td>
