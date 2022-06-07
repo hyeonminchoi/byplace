@@ -38,6 +38,16 @@
 	background-position: -15px 0;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	$('.starRev span').click(function(){
+		  $('#starRev').val($(this).text());
+		  $(this).parent().children('span').removeClass('on');
+		  $(this).addClass('on').prevAll('span').addClass('on');
+		  return false;
+		});
+	});
+</script>
 </head>
 <body>
 <form action="./reviewupdate" method="post">
