@@ -37,7 +37,7 @@ public class AdminPage_userlogList extends HttpServlet {
 			request.setAttribute("pageSize", pageConfigure.pageSize);
 			
 			Cookie cookie[] = request.getCookies();
-			String sort = "userlog_no asc";
+			String sort = "userlog_date desc";
 			String column="", column_sort=""; 
 			if(cookie != null) {
 				for(int i=0;i<cookie.length;i++) {
