@@ -510,24 +510,25 @@ function logout(){
 						</h3>
 						<div class="info">
 							<ul>
-								<li>
+								<li class="name">
 									<h4>
-										<i class="fa fa-phone"></i>Telefone
+										<i class="fa fa-map-marker"></i>Name
 									</h4>
-									<p>(000) 123 456 78- (000) 123 4567 89</p>
-
-								</li>
-								<li>
-									<h4>
-										<i class="fa fa-map-marker"></i>Address
-									</h4>
-									<p>Bucheon</p>
+									<p>황제호</p>
+									<p>명재성</p>
+									<p>최현민</p>
+									<p>이진영</p>
+									<p>정예림</p>
 								</li>
 								<li>
 									<h4>
 										<i class="fa fa-envelope"></i>E mail
 									</h4>
-									<p>Korea@gmail.com - kor@mail.net</p>
+									<p>jeho0809@naver.com</p>
+									<p>mjs789456@naver.com</p>
+									<p>gusalsdl5119@naver.com</p>
+									<p>yeong3120@gmail.com</p>
+									<p>thdlf1324@naver.com</p>
 
 								</li>
 							</ul>
@@ -582,13 +583,13 @@ function logout(){
 								Follow <span>US</span>
 							</h3>
 							<ul>
-								<li><a href="#"> <i class="fa fa-twitter">A</i>
+								<li><a href="#"> <i class="fa fa-twitter"></i>
 								</a></li>
-								<li><a href="#"> <i class="fa fa-facebook">B</i>
+								<li><a href="#"> <i class="fa fa-facebook"></i>
 								</a></li>
-								<li><a href="#"> <i class="fa fa-dribbble">C</i>
+								<li><a href="#"> <i class="fa fa-dribbble"></i>
 								</a></li>
-								<li><a href="#"> <i class="fa fa-behance">D</i>
+								<li><a href="#"> <i class="fa fa-behance"></i>
 								</a></li>
 							</ul>
 						</div>
