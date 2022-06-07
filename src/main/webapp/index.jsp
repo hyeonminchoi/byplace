@@ -264,7 +264,7 @@ function logout(){
 											<div id="img">
 												<img src="./restaurantImage/${k.restaurant_image}" alt="로드 실패"/><br>
 											</div>
-											<a href="./restaurantInfo?restaurant_no=${k.restaurant_no}">${k.restaurant_name}</a><br>
+											<a href="./restaurantdetail?restaurant_no=${k.restaurant_no}">${k.restaurant_name}</a><br>
 											${k.restaurant_roadAddress }, ${k.restaurant_detailAddress }${k.restaurant_extraAddress }<br>
 											<br>평점: ${k.restaurant_rating } / 5.0
 										</div>
