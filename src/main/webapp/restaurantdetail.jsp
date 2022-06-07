@@ -15,10 +15,6 @@
 <link href="./css/menu.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/resdetail.css">
 <script type="text/javascript">
-function menuup(n1, n2){
-	location.href = './index.jsp';
-}
-
 function menudel(n1, n2){
 	if(confirm("삭제하시겠습니까?")){
 		location.href = './menudelete?food_no='+n2 + "&restaurant_no=" + n1;
@@ -208,11 +204,7 @@ table, td, th {
 						style="width: 200px; height: 200px;"></td><td></td>
 					</tr>
 					<tr>	
-					<c:if
-						test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
-						<td><button name="menuup" id="menuup"
-							onclick="menuup(${resdetail.restaurant_no},${m.food_no})">수정</button></td>
-							<td></td>
+					<c:if test="${sessionScope.USER.user_type eq '사장' or sessionScope.USER.user_type eq '관리자' }">
 						<td><button name="menudel" id="menudel"
 							onclick="menudel(${resdetail.restaurant_no},${m.food_no})">삭제</button></td>
 							<td></td>
