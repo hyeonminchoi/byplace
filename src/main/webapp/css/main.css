@@ -339,7 +339,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
   float: left;
   width: 50%;
   height: 100%;
-  background: red;
+  background: white;
   overflow: hidden;
 }
 #blog .block ul li .blog-img img {
