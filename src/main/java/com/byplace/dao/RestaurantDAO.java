@@ -489,4 +489,27 @@ public class RestaurantDAO {
 		}
 		
 	}
+
+	public void reviewupdate(ReviewDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE review SET review_comment=?, review_rating=? WHERE review_no=?";
+		
+		try {
+			con = DBConnection.dbConn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getReview_comment());
+			pstmt.setDouble(2, dto.getReview_rating());
+			pstmt.setLong(3, dto.getReview_no());
+			pstmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

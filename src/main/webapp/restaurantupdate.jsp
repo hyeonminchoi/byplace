@@ -70,8 +70,8 @@ function cancel(n1){
 					<tr>
 						<td><label>카테고리</label>
 						<td><select name="category_category" id="category_category"
-							required="required">
-								<option value="">선택</option>
+							required="required" >
+								<option>선택</option>
 								<c:forEach items="${catelist }" var="i">
 									<option value="${i.category_category }">${i.category_category }</option>
 								</c:forEach>

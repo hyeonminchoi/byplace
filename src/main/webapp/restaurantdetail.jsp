@@ -27,6 +27,12 @@ function reviewdel(n1, n2){
 	}
 }
 
+function reviewup(n1, n2){
+	if(confirm("수정하시겠습니까?")){
+		location.href='./reviewupdate?review_no='+n1 + "&restaurant_no=" + n2;
+	}
+}
+
 function resdel(n1){
 	if(confirm("삭제하시겠습니까?")){
 		location.href='./resdel?restaurant_no='+n1;
@@ -247,7 +253,7 @@ table, td, th {
 							placeholder="내용" name="review_comment" required="required"><br>
 						<label>리뷰평가</label>
 						<div class="starRev" style="margin: auto; text-align: center;">
-							<input type="hidden" value="" id="starRev" name="starRev"
+							<input type="hidden" value="0.5" id="starRev" name="starRev"
 								style="margin: auto; text-align: center;"> <span
 								class="starR1 on">0.5</span> <span class="starR2">1</span> <span
 								class="starR1">1.5</span> <span class="starR2">2</span> <span
@@ -275,10 +281,15 @@ table, td, th {
 							<th>${r.review_comment }</th>
 							<th>${r.review_date }</th>
 							<th>${r.review_rating }</th>
-							<th>${r.user_id }<c:if test="${sessionScope.USER ne null }">
+							<th>${r.user_id }</th>
+							<th>
+								<c:if test="${sessionScope.USER.user_id eq r.user_id }">
 									<button
 										onclick="reviewdel(${r.review_no }, ${resdetail.restaurant_no })">삭제</button>
-								</c:if></th>
+									<button
+										onclick="reviewup(${r.review_no }, ${resdetail.restaurant_no })">수정</button>
+								</c:if>
+							</th>
 						<tr>
 					</c:forEach>
 				</table>
