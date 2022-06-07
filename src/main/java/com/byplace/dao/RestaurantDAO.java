@@ -95,7 +95,7 @@ public class RestaurantDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM restaurant WHERE restaurant_no=?";
+		String sql = "SELECT * FROM restaurantView WHERE restaurant_no=?";
 
 		try {
 			con = DBConnection.dbConn();
@@ -111,6 +111,7 @@ public class RestaurantDAO {
 				dto.setRestaurant_roadAddress(rs.getString("restaurant_roadAddress"));
 				dto.setRestaurant_detailAddress(rs.getString("restaurant_detailAddress"));
 				dto.setRestaurant_extraAddress(rs.getString("restaurant_extraAddress"));
+				dto.setRestaurant_rating(rs.getDouble("restaurant_rating"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
