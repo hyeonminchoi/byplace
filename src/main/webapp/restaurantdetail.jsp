@@ -117,7 +117,7 @@ table, td, th {
     padding: 10px 0px 10px;
     border: 0;
     color: black;
-    background-color: #76cdff;
+    background-color: #BDBDBD;
     font-size: 15px;
     font-weight: 200;
 }
