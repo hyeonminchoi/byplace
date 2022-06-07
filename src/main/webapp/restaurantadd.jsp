@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>음식점 추가</title>
+<title>맛집 추가</title>
 <link rel="stylesheet" href="./css/resadd.css">
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -44,29 +44,29 @@ div{
 <body>
 	<div id="main">
 		<div id="resadd" style="text-align: center;">
-			<h1>음식점추가</h1>
+			<h1>맛집추가</h1>
 			<hr>
 			<form action="./resadd" method="post" name="resadd"
 				enctype="multipart/form-data" id="qwer">
 				<table>
 					<tr>
-						<td><label>음식점 이름</label></td>
+						<td><label>맛집 이름</label></td>
 						<td><input type="text" id="restaurant_name"
-							placeholder="음식점 이름을 쓰시오." name="restaurant_name"
+							placeholder="맛집 이름을 쓰시오." name="restaurant_name"
 							required="required">
 						</td>
 						<td></td>
 					</tr>
 					<tr>
-						<td><label>음식점 소개</label></td>
+						<td><label>맛집 소개</label></td>
 						<td><input type="text" id="restaurant_description"
-							placeholder="음식점 설명을 쓰시오." name="restaurant_description"
+							placeholder="맛집 설명을 쓰시오." name="restaurant_description"
 							required="required"></td>
 							<td></td>
 					</tr>
 
 					<tr>
-						<td><label>음식점 주소</label></td>
+						<td><label>맛집 주소</label></td>
 						<td>
 							<input type="text" id="restaurant_postcode"
 							placeholder="우편번호" name="restaurant_postcode" required="required"><br>
@@ -96,7 +96,7 @@ div{
 						<td></td>
 					</tr>
 					<tr>
-						<td><label>음식점 사진</label></td>
+						<td><label>맛집 사진</label></td>
 						<td><input type="file" name="restaurant_image"
 							id="restaurant_image" accept="image/*" required="required"></td>
 							<td></td>

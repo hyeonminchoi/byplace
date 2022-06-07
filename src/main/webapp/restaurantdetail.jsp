@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>음식점 상세보기</title>
+<title>맛집 상세보기</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript"
@@ -174,28 +174,28 @@ table, td, th {
 						enctype="multipart/form-data">
 						<table id="detailmenu">
 							<tr>
-								<td><label>음식 이름</label></td>
+								<td><label>메뉴 이름</label></td>
 								<td><input type="text" id="food_name"
-									placeholder="음식 이름을 입력하시오." name="food_name"
+									placeholder="메뉴 이름을 입력하시오." name="food_name"
 									required="required"></td>
 								<td></td>
 							</tr>
 							<tr>
-								<td><label>음식 설명</label></td>
+								<td><label>메뉴 설명</label></td>
 								<td><input type="text" id="food_description"
-									placeholder="음식 설명을 입력하시오." name="food_description"
+									placeholder="메뉴 설명을 입력하시오." name="food_description"
 									required="required"></td>
 								<td></td>
 							</tr>
 							<tr>
-								<td><label>음식 가격</label></td>
+								<td><label>메뉴 가격</label></td>
 								<td><input type="number" id="food_price"
-									placeholder="음식 가격을 입력하시오." name="food_price"
+									placeholder="메뉴 가격을 입력하시오." name="food_price"
 									required="required"></td>
 								<td></td>
 							</tr>
 							<tr>
-								<td><label>음식 사진</label></td>
+								<td><label>메뉴 사진</label></td>
 								<td><input type="file" name="food_image" id="food_image"
 									accept="image/*" required="required"></td>
 								<td><input type="hidden" name="restaurant_no"

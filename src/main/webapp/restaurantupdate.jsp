@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>음식점 수정</title>
+<title>맛집 수정</title>
 <link rel="stylesheet" href="./css/resup.css">
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -32,27 +32,27 @@ function cancel(n1){
 <body>
 	<div id="main">
 		<div id="resup" style="text-align: center;">
-			<h1>음식점수정</h1>
+			<h1>맛집수정</h1>
 			<hr>
 			<form action="./resup" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="restaurant_no" value="${restaurant_no}">
 				<table>
 					<tr>
-						<td><label>음식점 이름</label></td>
+						<td><label>맛집 이름</label></td>
 						<td><input type="text" id="restaurant_name"
-							placeholder="음식점 이름을 쓰시오." name="restaurant_name"
+							placeholder="맛집 이름을 쓰시오." name="restaurant_name"
 							required="required"></td>
 							<td></td>
 					</tr>
 					<tr>
-						<td><label>음식점 소개</label></td>
+						<td><label>맛집 소개</label></td>
 						<td><input type="text" id="restaurant_description"
-							placeholder="음식점 설명을 쓰시오." name="restaurant_description"
+							placeholder="맛집 설명을 쓰시오." name="restaurant_description"
 							required="required"></td>
 							<td></td>
 					</tr>
 					<tr>
-						<td><label>음식점 주소</label></td>
+						<td><label>맛집 주소</label></td>
 						<td><input type="text" id="restaurant_postcode"
 							placeholder="우편번호" name="restaurant_postcode" required="required"><br>
 							<input type="text" id="restaurant_roadAddress" placeholder="도로명주소"
@@ -79,7 +79,7 @@ function cancel(n1){
 						<td></td>
 					</tr>
 					<tr>
-						<td><label>음식점 사진</label></td>
+						<td><label>맛집 사진</label></td>
 						<td><input type="file" name="restaurant_image"
 							id="restaurant_image" accept="image/*" required="required">
 						<td>
